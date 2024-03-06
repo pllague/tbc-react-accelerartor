@@ -5,12 +5,6 @@ git clone git@github.com:pllague/tbc-react-accelerartor.git
 ```
 cd tbc-react-accelerartor
 ```
-
-## Until the first merge, `main` branch is empty, so checkout
-```
-git checkout SES-1-Create-react-app
-```
-
 ```
 npm install
 ```
