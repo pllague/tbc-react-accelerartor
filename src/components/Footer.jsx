@@ -1,3 +1,5 @@
+import email_icon from "../email-icon.svg"
+
 const Footer = () => {
     return (
         <footer className="bg-secondary w-full px-10 py-10 mt-5">
@@ -19,6 +21,7 @@ const Footer = () => {
                         </a>
                     </div>
                     <form className="flex flex-col lg:flex-row h-[65px] bg-white rounded-[100px] items-center p-[5px] overflow-hidden my-auto">
+                        <img className="hidden lg:flex ml-5" src={email_icon} alt="Email icon"/>
                         <input
                             className="h-full bg-white bg-no-repeat bg-auto border-0 mb-0 pl-[25px] text-secondary focus:border-transparent focus:outline-none"
                             maxLength="100"
@@ -29,7 +32,7 @@ const Footer = () => {
                         />
                         <input
                             type="submit"
-                            className="hidden lg:block bg-blue-500 hover:bg-light_blue rounded-[32px] py-3 px-10 text-[18px] font-medium cursor-pointer transition-all transform duration-300 ease-linear"
+                            className="hidden lg:block bg-blue-500 hover:bg-light_blue rounded-[32px] py-3 px-10 ml-5 text-[18px] font-medium cursor-pointer transition-all transform duration-300 ease-linear"
                             value="Get our updates"
                         />
                     </form>
