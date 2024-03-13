@@ -1,8 +1,8 @@
-import email_icon from "../email-icon.svg"
+import email_icon from "../assets/icons/email-icon.svg"
 
 const Footer = () => {
     return (
-        <footer className="bg-secondary w-full px-10 py-10 mt-5">
+        <footer className="bg-secondary w-full px-10 py-10">
             <div className="w-full max-w-[80%] mx-auto">
                 <div className="flex flex-col lg:flex-row lg:justify-around">
                     <div className="flex flex-col mb-10 lg:mb-0 gap-5 *:text-[14px] *:leading-[25px] ">
