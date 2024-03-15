@@ -10,7 +10,7 @@ const Header = () => {
                     <img src={logo} className="w-full h-full" alt="logo" />
                 </a>
                 {/* main navigation */}
-                <Navigation />
+                <Navigation layout="flex-row"/>
             </div>
         </header>
     );

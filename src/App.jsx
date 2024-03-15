@@ -6,7 +6,7 @@ import "./App.css";
 
 function App() {
   return (
-    <div className="bg-primary text-white">
+    <div className="bg-primary text-white min-h-screen flex flex-col justify-between">
       <Header />
       <Content />
       <Footer />
