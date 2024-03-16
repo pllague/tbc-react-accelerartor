@@ -7,7 +7,7 @@ const Navigation = ({layout}) => {
                         className="hover:text-light_blue leading-[25px] transition duration-300 ease-linear"
                         href="#"
                     >
-                        მთავარი
+                        Home
                     </a>
                 </li>
                 <li className="cursor-pointer">
@@ -15,7 +15,7 @@ const Navigation = ({layout}) => {
                         className="hover:text-light_blue leading-[25px] transition duration-300 ease-linear"
                         href="#"
                     >
-                        პროდუქტები
+                        Products
                     </a>
                 </li>
                 <li className="cursor-pointer">
@@ -23,7 +23,7 @@ const Navigation = ({layout}) => {
                         className="hover:text-light_blue leading-[25px] transition duration-300 ease-linear"
                         href="#"
                     >
-                        კონტაქტი
+                        Contact
                     </a>
                 </li>
 
