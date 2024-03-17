@@ -1,5 +1,5 @@
-import logo from "../logo.svg";
-import Navigation from './Navigation';
+import logo from "../../logo.svg";
+import Navigation from '../navigation/Navigation';
 
 const Header = () => {
     return (
@@ -10,7 +10,7 @@ const Header = () => {
                     <img src={logo} className="w-full h-full" alt="logo" />
                 </a>
                 {/* main navigation */}
-                <Navigation />
+                <Navigation layout="flex-row" />
             </div>
         </header>
     );

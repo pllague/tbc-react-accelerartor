@@ -2,6 +2,7 @@
 module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
+    "./public/**/*.{html}",
   ],
   theme: {
     extend: {
@@ -9,7 +10,8 @@ module.exports = {
         primary: "#161616",
         secondary: "#191E1E",
         light_blue: "#61DAFB",
-        grey: "#2B2B2B"
+        grey: "#2B2B2B",
+        orange: "#f97316"
       },
     },
   },
