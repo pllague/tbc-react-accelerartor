@@ -13,13 +13,13 @@ const Footer = () => {
                     <div className="flex flex-col lg:mb-0 gap-3 lg:gap-5 *:text-[14px] *:leading-[25px] ">
                         <span>&copy; {currentYear} React Accelerator</span>
                         <a
-                            className="hover:text-light_blue transition-all transform duration-300 ease-linear"
+                            className="hover:text-orange transition-all transform duration-300 ease-linear"
                             href="#"
                         >
                             Privacy & Policy
                         </a>
                         <a
-                            className="hover:text-light_blue transition-all transform duration-300 ease-linear"
+                            className="hover:text-orange transition-all transform duration-300 ease-linear"
                             href="#"
                         >
                             Terms
