@@ -4,7 +4,7 @@ const Navigation = ({layout}) => {
             <ul className={"flex w-full h-full justify-end items-start text-medium gap-3 lg:gap-5 " + layout}>
                 <li className="cursor-pointer">
                     <a
-                        className="hover:text-light_blue leading-[25px] transition duration-300 ease-linear"
+                        className="hover:text-orange leading-[25px] transition duration-300 ease-linear"
                         href="#"
                     >
                         Home
@@ -12,7 +12,7 @@ const Navigation = ({layout}) => {
                 </li>
                 <li className="cursor-pointer">
                     <a
-                        className="hover:text-light_blue leading-[25px] transition duration-300 ease-linear"
+                        className="hover:text-orange leading-[25px] transition duration-300 ease-linear"
                         href="#"
                     >
                         Products
@@ -20,7 +20,7 @@ const Navigation = ({layout}) => {
                 </li>
                 <li className="cursor-pointer">
                     <a
-                        className="hover:text-light_blue leading-[25px] transition duration-300 ease-linear"
+                        className="hover:text-orange leading-[25px] transition duration-300 ease-linear"
                         href="#"
                     >
                         Contact
