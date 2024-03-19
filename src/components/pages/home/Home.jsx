@@ -1,8 +1,8 @@
-import Products from './Products';
-import Blog from './Blog';
-import Search from './Search';
+import Products from '../products/Products';
+import Blog from '../../Blog';
+import Search from '../../Search';
 
-const Content = () => {
+const Home = () => {
     return (
         <main className="flex flex-col justify-between">
             <Search />
@@ -12,4 +12,4 @@ const Content = () => {
     );
 }
 
-export default Content;
+export default Home;
