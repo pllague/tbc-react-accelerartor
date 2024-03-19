@@ -1,30 +1,32 @@
-const Navigation = ({layout}) => {
+import { Link } from "react-router-dom";
+
+const Navigation = ({ layout }) => {
     return (
         <nav className="w-full lg:max-w-fit lg:bg-transparent ">
             <ul className={"flex w-full h-full justify-end items-start text-medium gap-3 lg:gap-5 " + layout}>
                 <li className="cursor-pointer">
-                    <a
+                    <Link to="/"
                         className="hover:text-orange leading-[25px] transition duration-300 ease-linear"
-                        href="#"
+
                     >
                         Home
-                    </a>
+                    </Link>
                 </li>
                 <li className="cursor-pointer">
-                    <a
+                    <Link to="/products"
                         className="hover:text-orange leading-[25px] transition duration-300 ease-linear"
-                        href="#"
+
                     >
                         Products
-                    </a>
+                    </Link>
                 </li>
                 <li className="cursor-pointer">
-                    <a
+                    <Link to="contact"
                         className="hover:text-orange leading-[25px] transition duration-300 ease-linear"
-                        href="#"
+
                     >
                         Contact
-                    </a>
+                    </Link>
                 </li>
 
             </ul>
