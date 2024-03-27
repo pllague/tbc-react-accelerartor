@@ -3,10 +3,10 @@ const Contact = () => {
     return (
         <section>
             <div className="w-full flex flex-col gap-10 justify-between items-center">
-                <div className="w-1/4 flex flex-col gap-5 justify-between items-start mx-auto border-b-2 border-light_blue pb-2">
+                <div className="w-1/3 flex flex-col gap-5 justify-between items-start mx-auto border-b-2 border-light_blue pb-2">
                     <h1 className="text-[50px] mx-auto">Contact us</h1>
                     <div className="flex flex-col gap-2">
-                        <div className="flex  gap-5 items-center group">
+                        <div className="flex  gap-5 group">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 mt-[7px] group-hover:stroke-orange transition-all transform duration-300 ease-linear">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
                             </svg>
@@ -33,10 +33,10 @@ const Contact = () => {
                     </div>
                 </div>
 
-                <form className="w-1/4 flex flex-col gap-3 justify-between items-start mx-auto">
+                <form className="w-1/3 flex flex-col gap-3 justify-between items-start mx-auto">
                     <div className="w-full flex gap-3 justify-between">
                         <input
-                            className="w-full h-full border-2 border-light_blue py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
+                            className="w-2/5 h-full border-2 border-light_blue py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
                             maxLength="100"
                             name="firstname"
                             placeholder="Firstname"
@@ -46,7 +46,7 @@ const Contact = () => {
                             spellCheck="false"
                         />
                         <input
-                            className="w-full h-full border-2 border-light_blue  py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
+                            className="w-3/5 h-full border-2 border-light_blue  py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
                             maxLength="100"
                             name="lastname"
                             placeholder="Lastname"
@@ -58,7 +58,7 @@ const Contact = () => {
                     </div>
                     <div className="w-full flex gap-3 justify-between">
                         <input
-                            className="w-full h-full border-2 border-light_blue py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
+                            className="w-2/5 h-full border-2 border-light_blue py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
                             maxLength="100"
                             name="mobile"
                             placeholder="Mobile"
@@ -68,7 +68,7 @@ const Contact = () => {
                             spellCheck="false"
                         />
                         <input
-                            className="w-full h-full border-2 border-light_blue py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
+                            className="w-3/5 h-full border-2 border-light_blue py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
                             maxLength="100"
                             name="email"
                             placeholder="Email"

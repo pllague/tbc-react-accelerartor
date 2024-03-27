@@ -1,5 +1,5 @@
 import Products from '../products/Products';
-import Blog from '../../Blog';
+import Blog from '../blog/Blog';
 import Search from '../../Search';
 
 const Home = () => {
@@ -7,7 +7,7 @@ const Home = () => {
         <main className="flex flex-col justify-between">
             <Search />
             <Products />
-            <Blog />
+            <Blog quantity={5}/>
         </main>
     );
 }
