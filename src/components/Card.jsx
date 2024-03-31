@@ -1,4 +1,4 @@
-const Card = ({ logo, index, description }) => {
+const Card = ({ card:{ logo, title, description }}) => {
     return (
         <div className="flex flex-col gap-3 lg:gap-0 w-[250px] h-[350px] rounded-[10px] border border-light_blue overflow-hidden lg:w-[300px] lg:h-[470px] hover:scale-110 transition duration-300 ease-linear ">
             <div className="h-[500px] w-full lg:h-[800px]">
@@ -11,10 +11,10 @@ const Card = ({ logo, index, description }) => {
             <div className="flex flex-col gap-3 h-full px-[18px] lg:px-[22px]">
 
                 <h5 className="text-[15px] leading-[24px] lg:text-[18px] lg:leading-[29px] text-center">
-                    Product {index}
+                    {title}
                 </h5>
                 <div className="flex flex-col gap-3 justify-between items-center">
-                    <div className="w-full text-[11px] lg:text-[13px] text-wrap">
+                    <div className="w-full h-[50px] lg:h-[60px] text-[11px] lg:text-[13px] text-wrap">
                         {description}
                     </div>
                     <div className="w-full">

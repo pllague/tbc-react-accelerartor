@@ -1,4 +1,38 @@
+import { useState } from "react";
+
 const Profile = () => {
+
+    const [profileData, setProfileData] = useState(
+        {
+            firstname: "",
+            lastname: "",
+            email: "",
+            mobile: "",
+            currentPassword: "",
+            newPassword: "",
+            confirmNewPassword: ""
+        }
+    );
+
+    const {
+        firstname,
+        lastname,
+        email,
+        mobile,
+        currentPassword,
+        newPassword,
+        confirmNewPassword,
+    } = profileData;
+
+    function handleChange(event) {
+        setProfileData((prev) => (
+            {
+                ...prev,
+                [event.target.name]: event.target.value,
+            }
+        ));
+    }
+    console.log(profileData);
 
     return (
         <>
@@ -14,6 +48,8 @@ const Profile = () => {
                     autoCapitalize="none"
                     autoComplete="off"
                     spellCheck="false"
+                    value={firstname}
+                    onChange={handleChange}
                 />
 
                 <input
@@ -25,6 +61,8 @@ const Profile = () => {
                     autoCapitalize="none"
                     autoComplete="off"
                     spellCheck="false"
+                    value={lastname}
+                    onChange={handleChange}
                 />
 
                 <input
@@ -36,6 +74,8 @@ const Profile = () => {
                     autoCapitalize="none"
                     autoComplete="off"
                     spellCheck="false"
+                    value={email}
+                    onChange={handleChange}
                 />
 
                 <input
@@ -47,6 +87,8 @@ const Profile = () => {
                     autoCapitalize="none"
                     autoComplete="off"
                     spellCheck="false"
+                    value={mobile}
+                    onChange={handleChange}
                 />
 
                 <input
@@ -58,6 +100,8 @@ const Profile = () => {
                     autoCapitalize="none"
                     autoComplete="off"
                     spellCheck="false"
+                    value={currentPassword}
+                    onChange={handleChange}
                     required
                 />
 
@@ -70,18 +114,22 @@ const Profile = () => {
                     autoCapitalize="none"
                     autoComplete="off"
                     spellCheck="false"
+                    value={newPassword}
+                    onChange={handleChange}
                     required
                 />
 
                 <input
                     className="w-full h-full border-2 border-light_blue py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
                     maxLength="100"
-                    name="currentNewPassword"
+                    name="confirmNewPassword"
                     placeholder="Confirm New Password"
                     type="password"
                     autoCapitalize="none"
                     autoComplete="off"
                     spellCheck="false"
+                    value={confirmNewPassword}
+                    onChange={handleChange}
                     required
                 />
 
