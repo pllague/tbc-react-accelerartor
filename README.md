@@ -11,6 +11,6 @@ npm install
 ```
 npm run dev
 ```
-If port 3000 is not busy you can open the project in your browser using the following [react-app](http://localhost:3000/) link
+If port 3000 is not busy you can open the project in your browser using the following [next-app](http://localhost:3000/) link
 
 ## Happy Coding !!!
