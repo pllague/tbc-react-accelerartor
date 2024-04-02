@@ -1,3 +1,4 @@
+import Image from "next/image";
 const Article = ({ title, text, image, createDate }) => {
     return (
         <div className="mb-10 border-b border-light_blue">
@@ -5,7 +6,7 @@ const Article = ({ title, text, image, createDate }) => {
 
             <div className="w-full flex gap-5 items-center">
                 <div className="w-1/4">
-                    <img src={image} alt="blog" className="w-full h-full object-cover" />
+                    <Image src={image} alt="blog" className="w-full h-full object-cover" width={692} height={330} />
                 </div>
 
                 <div className="py-[15px] w-3/4 flex flex-col gap-2">

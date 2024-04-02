@@ -3,14 +3,13 @@
 @tailwind utilities;
 
 @layer components {
-    
-    html {
-        @apply !scroll-smooth;
-        scrollbar-width: none;
-    }
+
+  html {
+    @apply !scroll-smooth;
+    scrollbar-width: none;
+  }
     
 }
-
 
 .hide-scrollbar {
     -ms-overflow-style: none;  /* for Internet Explorer, Edge */

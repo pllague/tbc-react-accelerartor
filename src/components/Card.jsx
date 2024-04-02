@@ -1,11 +1,15 @@
-const Card = ({ card:{ logo, title, description }}) => {
+import Image from "next/image";
+import Link from "next/link";
+const Card = ({ card:{ title, description }}) => {
     return (
         <div className="flex flex-col gap-3 lg:gap-0 w-[250px] h-[350px] rounded-[10px] border border-light_blue overflow-hidden lg:w-[300px] lg:h-[470px] hover:scale-110 transition duration-300 ease-linear ">
             <div className="h-[500px] w-full lg:h-[800px]">
-                <img
+                <Image
                     className="w-full h-full object-cover object-center"
-                    src={logo}
+                    src="/logo.svg"
                     alt="React"
+                    width={100}
+                    height={100}
                 />
             </div>
             <div className="flex flex-col gap-3 h-full px-[18px] lg:px-[22px]">

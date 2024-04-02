@@ -1,5 +1,6 @@
-import Article from "../../Article";
-import euroImage from"../../../euro2024.png";
+import Article from "@/components/Article";
+// import euroImage from "/euro2024.png"
+
 
 const Blog = ({quantity=20}) => {
 
@@ -21,7 +22,7 @@ const Blog = ({quantity=20}) => {
             <div className="max-w-[1400px] mx-auto w-full pt-[30px] ">
                 <h2 className="text-[40px] leading-[25px] text-center mb-[60px]">Blog</h2>
                 {articles.map((article) => (
-                    <Article key={article.id} title={article.title} text={article.text} createDate={article.createDate} image={euroImage} />
+                    <Article key={article.id} title={article.title} text={article.text} createDate={article.createDate} image="/euro2024.png" />
                 ))}
             </div>
         </section>
