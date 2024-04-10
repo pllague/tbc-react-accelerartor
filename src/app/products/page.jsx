@@ -9,6 +9,7 @@ const Products = ({ isSorted = false, searchQuery = "" }) => {
 
     useEffect(() => {
         const fetchData = async () => {
+            // await new Promise(resolve => setTimeout(resolve, 3000));
             try {
                 const response = await fetch("https://dummyjson.com/products");
                 if (!response.ok) {
@@ -16,7 +17,6 @@ const Products = ({ isSorted = false, searchQuery = "" }) => {
                 }
                 const data = await response.json();
                 setCards(data.products);
-                // setIsLoading(false);
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
@@ -35,18 +35,18 @@ const Products = ({ isSorted = false, searchQuery = "" }) => {
 
     return (
         <section>
-            <div className="w-full py-5 px-5 max-w-[1400px] mx-auto my-10 lg:py-10 lg:px-0">
-                <h2 className="text-[40px] leading-[25px] text-center mb-[60px]">Products</h2>
-                <div className="flex flex-wrap justify-center mt-[25px] lg:mt-[65px] gap-[25px] lg:gap-10">
-                    {newCards.length === 0 ? (
-                        <p className="text-[#fdf2e9] text-[2rem] col-span-full justify-self-center">
-                            No results found
-                        </p>
-                    ) : (
-                        newCards.map((card) => <Card key={card.id} card={card} />)
-                    )}
-                </div>
-            </div>
+            {newCards.length === 0 ? (
+                <p className="text-light_blue text-[32px] text-center mt-[100px]">
+                    Loading...
+                </p>
+            ) : (
+                <div className="w-full py-5 px-5 max-w-[1400px] mx-auto my-10 lg:py-10 lg:px-0">
+                    <h2 className="text-[40px] leading-[25px] text-center mb-[60px]">Products</h2>
+                    <div className="flex flex-wrap justify-center mt-[25px] lg:mt-[65px] gap-[25px] lg:gap-10">
+
+                        {newCards.map((card) => <Card key={card.id} card={card} />)}
+                    </div>
+                </div>)}
         </section>
     );
 }

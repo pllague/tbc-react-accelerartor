@@ -33,7 +33,6 @@ const Profile = () => {
             }
         ));
     }
-    console.log(profileData);
 
     return (
         <>

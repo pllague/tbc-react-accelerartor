@@ -7,7 +7,7 @@ const Article = ({ article: { id, title, body } }) => {
 
     return (
         <div className="mb-10 border-b border-light_blue">
-            <Link href={"/blog/" + id}><h3 className="w-fit border-b-[3px] border-light_blue text-[30px] text-start break-words break-normal mb-[20px]">{title}</h3></Link>
+            <h3 className="w-fit border-b-[3px] border-light_blue text-[30px] text-start break-words break-normal mb-[20px]">{title}</h3>
 
             <div className="w-full flex gap-5 items-center">
                 <div className="w-1/4">

@@ -21,7 +21,7 @@ const Navigation = ({ layout }) => {
                     </Link>
                 </li>
                 <li className="cursor-pointer">
-                    <Link href="contact"
+                    <Link href="/contact"
                         className="hover:text-orange leading-[25px] transition duration-300 ease-linear"
 
                     >
