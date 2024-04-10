@@ -1,12 +1,17 @@
 import Image from "next/image";
-const Article = ({ title, text, image, createDate }) => {
+import Link from "next/link";
+const Article = ({ article: { id, title, body } }) => {
+
+    const createDate = "07.07.2077";
+    const imageUrl = "/euro2024.png";
+
     return (
         <div className="mb-10 border-b border-light_blue">
             <h3 className="w-fit border-b-[3px] border-light_blue text-[30px] text-start break-words break-normal mb-[20px]">{title}</h3>
 
             <div className="w-full flex gap-5 items-center">
                 <div className="w-1/4">
-                    <Image src={image} alt="blog" className="w-full h-full object-cover" width={692} height={330} />
+                    <Image src={imageUrl} alt={title} className="w-full h-full object-cover" width={692} height={330} />
                 </div>
 
                 <div className="py-[15px] w-3/4 flex flex-col gap-2">
@@ -17,8 +22,8 @@ const Article = ({ title, text, image, createDate }) => {
 
                         <span className="text-light_blue">{createDate}</span>
                     </div>
-                    {text}
-                    <a href="#" className="w-fit text-[20px] text-light_blue hover:text-orange transition-all duration-300 ease-in-out">Read more ...</a>
+                    {body}
+                    <Link href={"/blog/" + id} className="w-fit text-[20px] text-light_blue hover:text-orange transition-all duration-300 ease-in-out">Read more ...</Link>
                 </div>
             </div>
 
