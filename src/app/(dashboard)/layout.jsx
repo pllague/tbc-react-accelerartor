@@ -13,6 +13,12 @@ const DashboardLayout = ({ children }) => {
     if (!cookie?.value) {
         redirect('/login');
     }
+    else {
+        const cookieObject = JSON.parse(cookie.value);
+        if (cookieObject?.message) {
+            redirect('/login');
+        }
+    }
 
     return (
         <>

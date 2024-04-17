@@ -40,6 +40,7 @@ const LoginForm = ({ handlLogin }) => {
                 spellCheck="false"
                 value={username}
                 onChange={handleChange}
+                required
             />
 
             <input
@@ -53,6 +54,7 @@ const LoginForm = ({ handlLogin }) => {
                 spellCheck="false"
                 value={password}
                 onChange={handleChange}
+                required
             />
 
             <div className="w-full flex gap-3">

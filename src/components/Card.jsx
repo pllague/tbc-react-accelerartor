@@ -8,7 +8,7 @@ const Card = ({ card: { id, title, description, thumbnail } }) => {
     return (
         <Link href={"/products/" + id}>
             <div className="flex flex-col gap-3 w-[250px] h-[370px] rounded-[10px] border border-light_blue overflow-hidden lg:w-[300px] lg:h-[470px] hover:scale-110 transition duration-300 ease-linear ">
-                <div className="w-full min-h-[200px] lg:min-h-[250px]">
+                <div className="w-full min-h-[200px] max-h-[200px] lg:min-h-[250px] lg:max-h-[250px]">
                     <Image
                         className="w-full h-full object-cover object-center"
                         src={thumbnail}
