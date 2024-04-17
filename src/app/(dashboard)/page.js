@@ -1,9 +1,8 @@
 "use client";
 import Products from "./products/page";
-// import Blog from '../blog/Blog';
 import Search from "@/components/Search";
-
 import { useState } from "react";
+// import Blog from "../blog/Blog";
 
 const Home = () => {
   const [isSorted, setIsSorted] = useState(false);
