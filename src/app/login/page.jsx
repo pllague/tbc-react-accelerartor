@@ -23,7 +23,9 @@ const LoginPage = async () => {
 
     const handlLogin = async (username, password) => {
         'use server';
-        await login(username, password);
+        if (username && password) {
+            await login(username, password);
+        }
     }
     return (
         <div className="w-full h-[100vh] flex flex-col gap-10 justify-center items-center">
