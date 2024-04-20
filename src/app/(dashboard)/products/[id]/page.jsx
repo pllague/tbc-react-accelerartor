@@ -1,5 +1,14 @@
 import Image from "next/image";
 
+export async function generateStaticParams() {
+    const response = await fetch("https://dummyjson.com/products")
+    const data = await response.json();
+
+    const paths = data.products.map((product) => ({ params: { id: product.id }, }));
+
+    return paths;
+}
+
 const fetchData = async (productId) => {
     try {
         const response = await fetch(`https://dummyjson.com/products/${productId}`);
