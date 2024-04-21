@@ -26,7 +26,7 @@ const ProductDetails = async ({ params }) => {
     const articleId = params.id;
     const articleData = await fetchData(articleId);
     const createDate = "07.07.2077";
-    const imageUrl = "/euro2024.png";
+    const imageUrl = "/assets/euro2024.png";
 
     return (
         <section>

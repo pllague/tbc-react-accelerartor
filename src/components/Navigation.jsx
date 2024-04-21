@@ -1,6 +1,10 @@
+import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 
+
 const Navigation = ({ layout }) => {
+    const t = useTranslations('Index');
+    const locale = useLocale();
     return (
         <nav className="w-full lg:max-w-fit lg:bg-transparent ">
             <ul className={"flex w-full h-full justify-end items-start text-medium gap-3 lg:gap-5 " + layout}>
@@ -9,23 +13,23 @@ const Navigation = ({ layout }) => {
                         className="hover:text-orange leading-[25px] transition duration-300 ease-linear"
 
                     >
-                        Home
+                        {/* {t('title')}{messages.index.title} */} {t('home')}
                     </Link>
                 </li>
                 <li className="cursor-pointer">
-                    <Link href="/products"
+                    <Link href={`/${locale}/products`}
                         className="hover:text-orange leading-[25px] transition duration-300 ease-linear"
 
                     >
-                        Products
+                        {t('products')}
                     </Link>
                 </li>
                 <li className="cursor-pointer">
-                    <Link href="/contact"
+                    <Link href={`/${locale}/contact`}
                         className="hover:text-orange leading-[25px] transition duration-300 ease-linear"
 
                     >
-                        Contact
+                        {t('contact')}
                     </Link>
                 </li>
 

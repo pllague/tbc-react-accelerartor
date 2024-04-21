@@ -3,7 +3,7 @@ import Link from "next/link";
 const Article = ({ article: { id, title, body } }) => {
 
     const createDate = "07.07.2077";
-    const imageUrl = "/euro2024.png";
+    const imageUrl = "/assets/euro2024.png";
 
     return (
         <div className="mb-10 border-b border-light_blue">

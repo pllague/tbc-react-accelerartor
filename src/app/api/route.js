@@ -18,7 +18,7 @@ export async function POST(request) {
   cookieStore.set(AUTH_COOKIE_KEY, JSON.stringify(user));
 
   if (response.ok && user.username === loginData.get("username")) {
-    return redirect("/");
+    return redirect("/en");
   }
   return redirect("/login");
 }

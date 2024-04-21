@@ -5,6 +5,7 @@ module.exports = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  darkMode: "selector",
   theme: {
     extend: {
       colors: {
@@ -12,7 +13,7 @@ module.exports = {
         secondary: "#191E1E",
         light_blue: "#61DAFB",
         grey: "#2B2B2B",
-        orange: "#f97316"
+        orange: "#f97316",
       },
     },
   },

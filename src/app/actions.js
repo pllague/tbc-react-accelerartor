@@ -21,9 +21,9 @@ export async function login(username, password) {
   }
 }
 
-export async function logOut() {
+export async function logOut(lang) {
   "use server";
   const cookieStore = cookies();
   cookieStore.delete(AUTH_COOKIE_KEY);
-  redirect("/login");
+  redirect("/" + lang + "/login");
 }

@@ -2,8 +2,10 @@ import Link from "next/link";
 import Image from "next/image";
 // import email_icon from "/assets/icons/email-icon.svg";
 import Navigation from './Navigation';
+import { useTranslations } from "next-intl";
 
 const Footer = () => {
+    const t = useTranslations('Index');
 
     const currentDate = new Date();
     const currentYear = currentDate.getFullYear();
@@ -18,19 +20,19 @@ const Footer = () => {
                             className="hover:text-orange transition-all transform duration-300 ease-linear"
 
                         >
-                            Privacy & Policy
+                            {t('privacyPolicy')}
                         </Link>
                         <Link
                             href="#"
                             className="hover:text-orange transition-all transform duration-300 ease-linear"
 
                         >
-                            Terms
+                            {t('terms')}
                         </Link>
                     </div>
                     <form className="flex flex-col lg:flex-row h-[50px] lg:h-[65px] bg-white rounded-[100px] items-center p-[5px] ">
                         <div className="w-full h-full flex justify-center items-center">
-                            <div className="mr-2 lg:mr-0 lg:ml-3"><Image src="/assets/icons/email-icon.svg" alt="Email icon" width={24}
+                            <div className="mr-2 lg:mr-0 lg:ml-3 "><Image src="/assets/icons/email-icon.svg" alt="Email icon" width={24}
                                 height={24} /></div>
                             <input
                                 className="h-full bg-white border-0 rounded-[100px] mb-0 px-0 lg:text-[20px] lg:px-[25px] text-secondary focus:border-transparent focus:outline-none"
