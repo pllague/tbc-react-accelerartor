@@ -11,8 +11,10 @@
       "lastname": "Lastname",
       "mobile": "Mobile",
       "email": "Email",
-      "submit":"Submit",
-      "privacyPolicy":"Privacy & Policy",
-      "terms":"Terms"
+      "submit": "Submit",
+      "privacyPolicy": "Privacy & Policy",
+      "terms": "Terms",
+      "loginError": "Username or Password is incorrect",
+      "getOurUpdates": "Get our updates"
     }
   }

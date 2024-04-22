@@ -1,67 +1,67 @@
-// import { NextResponse } from "next/server";
-// import { cookies } from "next/headers";
-// import { AUTH_COOKIE_KEY } from "@/costants";
-import createMiddleware from "next-intl/middleware";
+import { NextResponse } from "next/server";
+import { AUTH_COOKIE_KEY } from "@/costants";
+import createIntlMiddleware from "next-intl/middleware";
+const protectedRoutes = [
+  "/",
+  "/en",
+  "/ka",
+  "/profile",
+  "/contact",
+  "/products",
+  "/blog",
+  "/about",
+];
 
-// export function middleware(request) {
-//   const cookieStore = cookies();
-//   if (!cookieStore.has(AUTH_COOKIE_KEY)) {
-//     return NextResponse.redirect(new URL("/login", request.url));
-//   }
+const publicRoutes = ["/login", "/ka/login", "/en/login"];
 
-// }
+export default async function middleware(request) {
+  //Middleware for rout protections
+  const cookie = request.cookies.get(AUTH_COOKIE_KEY)?.value;
+  let token = null;
 
-export default createMiddleware({
-  locales: ["en", "ka"],
-  defaultLocale: "en",
-});
+  if (cookie) {
+    const cookieObject = JSON.parse(cookie);
+    if (cookieObject) {
+      token = cookieObject?.token;
+    }
+  }
+  const localeValue = request.cookies.get("NEXT_LOCALE")?.value;
 
-// export const config = {
-//   matcher: [
-//     "/",
-//     "/products",
-//     "/products/:path*",
-//     "/blog",
-//     "/blog/:path*",
-//     "/contact",
-//     "/profile",
-//   ],
-// };
+  const path = request.nextUrl.pathname;
+  const isProtectedRoute =
+    protectedRoutes.includes(path) ||
+    path.includes("/blog") ||
+    path.includes("/products");
+
+  const isPublicRoute = publicRoutes.includes(path);
+
+  if (isProtectedRoute && !token) {
+    return NextResponse.redirect(new URL("/login", request.nextUrl));
+  }
+  if (isPublicRoute && token) {
+    return NextResponse.redirect(new URL("/", request.nextUrl));
+  }
+  if (path === "/" && token) {
+    return NextResponse.redirect(new URL(`/${localeValue}`, request.nextUrl));
+  }
+
+  const defaultLocale = request.headers.get("ka") || "en";
+
+  const i18nRouting = createIntlMiddleware({
+    locales: ["en", "ka"],
+    defaultLocale,
+  });
+  const response = i18nRouting(request);
+
+  response.headers.set("ka", defaultLocale);
+
+  return response;
+}
 
 export const config = {
   matcher: [
-    "/((?!api|login|_next/static|_next/image|images|favicon.ico|logo.svg|assets).*)",
+    "/((?!api|_next/static|_next/image|images|favicon.ico|logo.svg|assets).*)",
+    "/",
+    "/(ka|en)/:path*",
   ],
 };
-
-// export const config = {
-//   matcher: [
-//     "/",
-//     "/(ka|en)",
-//     "/(ka|en)/products",
-//     "/(ka|en)/products/:path*",
-//     "/(ka|en)/blog",
-//     "/(ka|en)/blog/:path*",
-//     "/(ka|en)/contact",
-//     "/(ka|en)/profile",
-//   ],
-// };
-
-// import { NextResponse } from "next/server";
-// import { cookies } from "next/headers";
-// import { AUTH_COOKIE_KEY } from "./constants";
-
-// export function middleware(request) {
-//   const cookieStore = cookies().get(AUTH_COOKIE_KEY);
-//   const { pathname } = request.nextUrl;
-//   if (!cookieStore?.value && !pathname.startsWith("/login")) {
-//     return NextResponse.redirect(new URL("/login", request.url));
-//   }
-//   if (cookieStore?.value && pathname.startsWith("/login")) {
-//     return NextResponse.redirect(new URL("/", request.url));
-//   }
-// }
-
-// export const config = {
-//   matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
-// };

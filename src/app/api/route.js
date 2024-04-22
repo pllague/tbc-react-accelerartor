@@ -1,24 +1,37 @@
-import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 import { AUTH_COOKIE_KEY } from "@/costants";
 
 export async function POST(request) {
-  const loginData = await request.formData();
-
+  const formData = await request.formData();
   const response = await fetch("https://dummyjson.com/auth/login", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify({
-      username: loginData.get("username"),
-      password: loginData.get("password"),
+      username: formData.get("username"),
+      password: formData.get("password"),
     }),
   });
+
   const user = await response.json();
   const cookieStore = cookies();
-  cookieStore.set(AUTH_COOKIE_KEY, JSON.stringify(user));
-
-  if (response.ok && user.username === loginData.get("username")) {
-    return redirect("/en");
+  if (user.message) {
+    cookieStore.set(AUTH_COOKIE_KEY, JSON.stringify(user));
+    return redirect("/login");
   }
-  return redirect("/login");
+
+  if (user.username === formData.get("username")) {
+    cookieStore.set(AUTH_COOKIE_KEY, JSON.stringify(user));
+    return redirect("/");
+  }
+  return Response.json(user);
+}
+
+export async function GET() {
+  const cookieStore = cookies();
+  cookieStore.delete(AUTH_COOKIE_KEY);
+
+  redirect("/login");
 }
