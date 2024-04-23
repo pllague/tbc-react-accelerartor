@@ -1,10 +1,11 @@
 import Image from "next/image";
+import { unstable_setRequestLocale } from 'next-intl/server';
 
 export async function generateStaticParams() {
     const response = await fetch("https://dummyjson.com/posts");
     const data = await response.json();
 
-    const paths = data.posts.map((post) => ({ params: { id: post.id }, }));
+    const paths = data.posts.map((post) => ({ params: { id: `/blog/${post.id}` }, }));
 
     return paths;
 }
@@ -23,6 +24,7 @@ const fetchData = async (articleId) => {
 };
 
 const ProductDetails = async ({ params }) => {
+    unstable_setRequestLocale(params.locale);
     const articleId = params.id;
     const articleData = await fetchData(articleId);
     const createDate = "07.07.2077";
