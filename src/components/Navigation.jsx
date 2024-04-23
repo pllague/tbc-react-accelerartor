@@ -9,11 +9,11 @@ const Navigation = ({ layout }) => {
         <nav className="w-full lg:max-w-fit lg:bg-transparent ">
             <ul className={"flex w-full h-full justify-end items-start text-medium gap-3 lg:gap-5 " + layout}>
                 <li className="cursor-pointer">
-                    <Link href="/"
+                    <Link href={`/${locale}`}
                         className="hover:text-orange leading-[25px] transition duration-300 ease-linear"
 
                     >
-                        {/* {t('title')}{messages.index.title} */} {t('home')}
+                        {t('home')}
                     </Link>
                 </li>
                 <li className="cursor-pointer">
