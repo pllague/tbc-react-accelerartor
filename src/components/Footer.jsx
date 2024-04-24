@@ -10,7 +10,7 @@ const Footer = () => {
     const currentYear = currentDate.getFullYear();
 
     return (
-        <footer className="bg-secondary w-full px-10 py-8 "> {/* lg:sticky lg:bottom-0 lg:z-10 */}
+        <footer className="bg-[#E5E1CC] dark:bg-secondary w-full px-10 py-8 "> {/* lg:sticky lg:bottom-0 lg:z-10 */}
             <div className="w-full max-w-[90%] mx-auto">
                 <div className="flex flex-col gap-10 lg:gap-0 lg:flex-row lg:justify-between lg:items-center">
                     <div className="flex flex-col lg:mb-0 gap-3 lg:gap-5 *:text-[14px] *:leading-[25px] ">

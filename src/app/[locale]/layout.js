@@ -12,7 +12,7 @@ export default function RootLayout({ children, params: { locale } }) {
   return (
     <html lang={locale}>
       <body className={inter.className}>
-        <div className="bg-white dark:bg-primary text-primary dark:text-white min-h-screen flex flex-col justify-between">
+        <div className="bg-[#E5E1CC]/30 dark:bg-primary text-primary dark:text-white min-h-screen flex flex-col justify-between">
           {children}
         </div>
       </body>

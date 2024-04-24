@@ -7,7 +7,7 @@ const Contact = () => {
     return (
         <section>
             <div className="w-full flex flex-col gap-10 justify-between items-center">
-                <div className="w-1/3 flex flex-col gap-5 justify-between items-start mx-auto border-b-2 border-light_blue pb-2">
+                <div className="w-1/3 flex flex-col gap-5 justify-between items-start mx-auto border-b-2 border-yellow-600 dark:border-light_blue pb-2">
                     <h1 className="text-[50px] mx-auto">{t('contactUs')}</h1>
                     <div className="flex flex-col gap-2">
                         <div className="flex  gap-5 group">
@@ -40,7 +40,7 @@ const Contact = () => {
                 <form className="w-1/3 flex flex-col gap-3 justify-between items-start mx-auto">
                     <div className="w-full flex gap-3 justify-between">
                         <input
-                            className="w-2/5 h-full border-2 border-light_blue py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
+                            className="w-2/5 h-full border-2 border-yellow-600 dark:border-light_blue py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
                             maxLength="100"
                             name="firstname"
                             placeholder={t('firstname')}
@@ -50,7 +50,7 @@ const Contact = () => {
                             spellCheck="false"
                         />
                         <input
-                            className="w-3/5 h-full border-2 border-light_blue  py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
+                            className="w-3/5 h-full border-2 border-yellow-600 dark:border-light_blue  py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
                             maxLength="100"
                             name="lastname"
                             placeholder={t('lastname')}
@@ -62,7 +62,7 @@ const Contact = () => {
                     </div>
                     <div className="w-full flex gap-3 justify-between">
                         <input
-                            className="w-2/5 h-full border-2 border-light_blue py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
+                            className="w-2/5 h-full border-2 border-yellow-600 dark:border-light_blue py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
                             maxLength="100"
                             name="mobile"
                             placeholder={t('mobile')}
@@ -72,7 +72,7 @@ const Contact = () => {
                             spellCheck="false"
                         />
                         <input
-                            className="w-3/5 h-full border-2 border-light_blue py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
+                            className="w-3/5 h-full border-2 border-yellow-600 dark:border-light_blue py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
                             maxLength="100"
                             name="email"
                             placeholder={t('email')}

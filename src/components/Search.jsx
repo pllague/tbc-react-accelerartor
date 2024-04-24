@@ -41,7 +41,7 @@ const Search = ({ isSorted, setIsSorted, searchQuery, setSearchQuery }) => {
 
                 <button
                     onClick={handleClick}
-                    className={"w-[70%] lg:w-[15%] lg:h-full bg-blue-500 hover:bg-orange rounded-[100px] py-2 lg:py-auto px-7 font-small lg:font-medium cursor-pointer transition-all transform duration-300 ease-linear" + (locale === 'ka' ? ' lg:text-[16px]' : ' lg:text-[22px]')}
+                    className={"w-[70%] lg:w-[15%] lg:h-full bg-yellow-600 dark:bg-blue-500 hover:bg-orange rounded-[100px] py-2 lg:py-auto px-7 font-small lg:font-medium cursor-pointer transition-all transform duration-300 ease-linear" + (locale === 'ka' ? ' lg:text-[16px]' : ' lg:text-[22px]')}
                 >
                     {isSorted ? (locale === 'en' ? "Reset" : "გადატვირთვა") : (locale === 'en' ? "Sort by title" : "დალაგება სათურით")}
                 </button>

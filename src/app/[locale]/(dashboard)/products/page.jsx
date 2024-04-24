@@ -39,7 +39,7 @@ const Products = ({ isSorted = false, searchQuery = "" }) => {
     return (
         <section>
             {newCards.length === 0 ? (
-                <p className="text-light_blue text-[32px] text-center mt-[100px]">
+                <p className="text-yellow-600 dark:text-light_blue text-[32px] text-center mt-[100px]">
                     {locale === 'en' ? "Loading..." : "იტვირთება..."}
                 </p>
             ) : (

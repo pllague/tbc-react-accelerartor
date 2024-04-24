@@ -21,13 +21,13 @@ const SubscribtionForm = () => {
                     /></div>
                 <input
                     type="submit"
-                    className="hidden lg:block bg-blue-500 hover:bg-orange rounded-[32px] py-3 px-10 text-[18px] font-medium cursor-pointer transition-all transform duration-300 ease-linear"
+                    className="hidden lg:block bg-yellow-600 dark:bg-blue-500 hover:bg-orange rounded-[32px] py-3 px-10 text-[18px] font-medium cursor-pointer transition-all transform duration-300 ease-linear"
                     value={t("getOurUpdates")}
                 />
             </form>
             <input
                 type="submit"
-                className="block lg:hidden -mt-5 bg-blue-500 hover:bg-orange rounded-[32px] py-2 px-10 text-[18px] font-medium cursor-pointer transition-all transform duration-300 ease-linear"
+                className="block lg:hidden -mt-5 bg-yellow-600 dark:bg-blue-500 hover:bg-orange rounded-[32px] py-2 px-10 text-[18px] font-medium cursor-pointer transition-all transform duration-300 ease-linear"
                 value={t("getOurUpdates")}
             />
         </>
