@@ -1,4 +1,12 @@
 import Image from "next/image";
+import { unstable_setRequestLocale } from 'next-intl/server';
+
+export async function generateStaticParams() {
+    const response = await fetch("https://dummyjson.com/posts");
+    const data = await response.json();
+    const paths = data.posts.map((post) => ({ id: `${post.id}` }));
+    return paths;
+}
 
 const fetchData = async (articleId) => {
     try {
@@ -13,11 +21,12 @@ const fetchData = async (articleId) => {
     }
 };
 
-const ProductDetails = async ({ params }) => {
+const BlogDetails = async ({ params }) => {
+    unstable_setRequestLocale(params.locale);
     const articleId = params.id;
     const articleData = await fetchData(articleId);
     const createDate = "07.07.2077";
-    const imageUrl = "/euro2024.png";
+    const imageUrl = "/assets/euro2024.png";
 
     return (
         <section>
@@ -27,14 +36,14 @@ const ProductDetails = async ({ params }) => {
                         <Image src={imageUrl} alt="Georgia winner" width={1000} height={1000} className="w-full h-full object-cover object-center" />
                     </div>
                 </div>
-                <div className="w-full lg:w-1/2 flex flex-col gap-5 lg:gap-10 justify-start text-light_blue text-[14px] lg:text-[16px]">
+                <div className="w-full lg:w-1/2 flex flex-col gap-5 lg:gap-10 justify-start dark:text-light_blue text-[14px] lg:text-[16px]">
                     <div className="w-full flex flex-col gap-3">
                         <h2 className="text-[25px] leading-[25px] lg:text-[40px] lg:leading-[45px] text-start text-orange">{articleData?.title}</h2>
                         <div className="flex gap-3">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                             </svg>
-                            <span className="text-light_blue">{createDate}</span>
+                            <span className="dark:text-light_blue">{createDate}</span>
                         </div>
                     </div>
                     <p>{articleData?.body}</p>
@@ -49,4 +58,4 @@ const ProductDetails = async ({ params }) => {
         </section >);
 }
 
-export default ProductDetails;
+export default BlogDetails;

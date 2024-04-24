@@ -1,5 +1,8 @@
+import { useLocale } from "next-intl";
+
 const Search = ({ isSorted, setIsSorted, searchQuery, setSearchQuery }) => {
 
+    const locale = useLocale();
 
     function handleClick() {
         setIsSorted((prev) => !prev)
@@ -25,7 +28,7 @@ const Search = ({ isSorted, setIsSorted, searchQuery, setSearchQuery }) => {
                         className="w-full h-full border-0 px-2 lg:px-[25px] rounded-[100px] text-secondary lg:text-[22px] focus:border-transparent focus:outline-none"
                         maxLength="100"
                         name="search"
-                        placeholder="Type to search ..."
+                        placeholder={locale === 'en' ? "Type to search ..." : "ძებნა ..."}
                         type="search"
                         autoCapitalize="none"
                         autoComplete="off"
@@ -38,9 +41,9 @@ const Search = ({ isSorted, setIsSorted, searchQuery, setSearchQuery }) => {
 
                 <button
                     onClick={handleClick}
-                    className="w-[70%] lg:w-[15%] lg:h-full bg-blue-500 hover:bg-orange rounded-[100px] py-2 lg:py-auto px-7 lg:text-[22px] font-small lg:font-medium cursor-pointer transition-all transform duration-300 ease-linear"
+                    className={"w-[70%] lg:w-[15%] lg:h-full bg-yellow-600 dark:bg-blue-500 hover:bg-orange rounded-[100px] py-2 lg:py-auto px-7 font-small lg:font-medium cursor-pointer transition-all transform duration-300 ease-linear" + (locale === 'ka' ? ' lg:text-[16px]' : ' lg:text-[22px]')}
                 >
-                    {isSorted ? "Reset" : "Sort by title"}
+                    {isSorted ? (locale === 'en' ? "Reset" : "გადატვირთვა") : (locale === 'en' ? "Sort by title" : "დალაგება სათურით")}
                 </button>
             </div>
         </section>

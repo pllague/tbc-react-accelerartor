@@ -1,0 +1,22 @@
+{
+    "Index": {
+      "home": "Home",
+      "products": "Products",
+      "contact": "Contact",
+      "contactUs": "Contact us",
+      "street": "Street",
+      "city":"City",
+      "country":"Country",
+      "firstname": "Fisrtname",
+      "lastname": "Lastname",
+      "mobile": "Mobile",
+      "email": "Email",
+      "submit": "Submit",
+      "privacyPolicy": "Privacy & Policy",
+      "terms": "Terms",
+      "loginError": "Username or Password is incorrect",
+      "getOurUpdates": "Get our updates",
+      "readMore": "Read more ...",
+      "blog": "Blog" 
+    }
+  }

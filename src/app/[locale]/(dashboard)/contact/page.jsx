@@ -1,10 +1,14 @@
+import { useTranslations } from "next-intl";
+
 const Contact = () => {
+
+    const t = useTranslations('Index');
 
     return (
         <section>
             <div className="w-full flex flex-col gap-10 justify-between items-center">
-                <div className="w-1/3 flex flex-col gap-5 justify-between items-start mx-auto border-b-2 border-light_blue pb-2">
-                    <h1 className="text-[50px] mx-auto">Contact us</h1>
+                <div className="w-1/3 flex flex-col gap-5 justify-between items-start mx-auto border-b-2 border-yellow-600 dark:border-light_blue pb-2">
+                    <h1 className="text-[50px] mx-auto">{t('contactUs')}</h1>
                     <div className="flex flex-col gap-2">
                         <div className="flex  gap-5 group">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 mt-[7px] group-hover:stroke-orange transition-all transform duration-300 ease-linear">
@@ -20,7 +24,7 @@ const Contact = () => {
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
                             </svg>
 
-                            <span className="text-[30px] group-hover:text-orange transition-all transform duration-300 ease-linear">Street 77 · 77777 City · Country</span>
+                            <span className="text-[30px] group-hover:text-orange transition-all transform duration-300 ease-linear">{t('street')} 77 · 77777 {t('city')} · {t('country')}</span>
                         </div>
 
                         <div className="flex  gap-5 items-center group">
@@ -36,20 +40,20 @@ const Contact = () => {
                 <form className="w-1/3 flex flex-col gap-3 justify-between items-start mx-auto">
                     <div className="w-full flex gap-3 justify-between">
                         <input
-                            className="w-2/5 h-full border-2 border-light_blue py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
+                            className="w-2/5 h-full border-2 border-yellow-600 dark:border-light_blue py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
                             maxLength="100"
                             name="firstname"
-                            placeholder="Firstname"
+                            placeholder={t('firstname')}
                             type="text"
                             autoCapitalize="none"
                             autoComplete="off"
                             spellCheck="false"
                         />
                         <input
-                            className="w-3/5 h-full border-2 border-light_blue  py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
+                            className="w-3/5 h-full border-2 border-yellow-600 dark:border-light_blue  py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
                             maxLength="100"
                             name="lastname"
-                            placeholder="Lastname"
+                            placeholder={t('lastname')}
                             type="text"
                             autoCapitalize="none"
                             autoComplete="off"
@@ -58,20 +62,20 @@ const Contact = () => {
                     </div>
                     <div className="w-full flex gap-3 justify-between">
                         <input
-                            className="w-2/5 h-full border-2 border-light_blue py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
+                            className="w-2/5 h-full border-2 border-yellow-600 dark:border-light_blue py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
                             maxLength="100"
                             name="mobile"
-                            placeholder="Mobile"
+                            placeholder={t('mobile')}
                             type="text"
                             autoCapitalize="none"
                             autoComplete="off"
                             spellCheck="false"
                         />
                         <input
-                            className="w-3/5 h-full border-2 border-light_blue py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
+                            className="w-3/5 h-full border-2 border-yellow-600 dark:border-light_blue py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
                             maxLength="100"
                             name="email"
-                            placeholder="Email"
+                            placeholder={t('email')}
                             type="text"
                             autoCapitalize="none"
                             autoComplete="off"
@@ -79,7 +83,7 @@ const Contact = () => {
                         />
                     </div>
                     <button className="w-full h-full border-0 bg-blue-500 py-3 mx-auto text-white lg:text-[20px] rounded-[5px] hover:bg-orange transition-all transform duration-300 ease-linear">
-                        Submit
+                        {t('submit')}
                     </button>
                 </form>
             </div>
