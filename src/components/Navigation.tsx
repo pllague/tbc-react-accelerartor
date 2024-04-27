@@ -2,7 +2,7 @@ import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 
 
-const Navigation = ({ layout }) => {
+const Navigation = ({ layout }: {layout: string}) => {
     const t = useTranslations('Index');
     const locale = useLocale();
     return (

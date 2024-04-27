@@ -1,17 +1,17 @@
 import { useLocale } from "next-intl";
 
-const Search = ({ isSorted, setIsSorted, searchQuery, setSearchQuery }) => {
+const Search: React.FC<searchProps> = ({ isSorted, setIsSorted, searchQuery, setSearchQuery }) => {
 
     const locale = useLocale();
 
     function handleClick() {
-        setIsSorted((prev) => !prev)
+        setIsSorted((prev:boolean) => !prev)
     }
 
     const pattern = /[^a-z0-9]/gi;
     // set search query
-    function handleChange(event) {
-        setSearchQuery((prev) => (prev = event.target.value).replace(pattern, ""));
+    function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+        setSearchQuery(event.target.value).replace(pattern, "");
     }
 
     return (
@@ -26,7 +26,7 @@ const Search = ({ isSorted, setIsSorted, searchQuery, setSearchQuery }) => {
                     </svg>
                     <input
                         className="w-full h-full border-0 px-2 lg:px-[25px] rounded-[100px] text-secondary lg:text-[22px] focus:border-transparent focus:outline-none"
-                        maxLength="100"
+                        maxLength={100}
                         name="search"
                         placeholder={locale === 'en' ? "Type to search ..." : "ძებნა ..."}
                         type="search"

@@ -4,11 +4,11 @@ import { unstable_setRequestLocale } from 'next-intl/server';
 export async function generateStaticParams() {
     const response = await fetch("https://dummyjson.com/products");
     const data = await response.json();
-    const paths = data.products.map((product) => ({ id: `${product.id}` }));
+    const paths = data.products.map((product: productElement) => ({ id: `${product.id}` }));
     return paths;
 }
 
-const fetchData = async (productId) => {
+const fetchData = async (productId: number) => {
     try {
         const response = await fetch(`https://dummyjson.com/products/${productId}`);
         if (!response.ok) {
@@ -22,11 +22,11 @@ const fetchData = async (productId) => {
 };
 
 
-const ProductDetails = async ({ params }) => {
+const ProductDetails: React.FC<paramsObj> = async ({ params }) => {
     unstable_setRequestLocale(params.locale);
 
     const productId = params.id;
-    const productData = await fetchData(productId);
+    const productData: productElement = await fetchData(productId);
 
     return (
         <section>

@@ -2,7 +2,7 @@ export async function generateStaticParams() {
     return [{ locale: "en" }, { locale: "ka" }]
 }
 
-const BlogLayout = ({ children }) => {
+const BlogLayout: React.FC<childrenProps> = ({ children }) => {
 
     return (
         <>

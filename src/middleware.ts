@@ -1,5 +1,5 @@
-import { NextResponse } from "next/server";
-import { AUTH_COOKIE_KEY } from "@/costants";
+import { NextResponse, NextRequest } from "next/server";
+import { AUTH_COOKIE_KEY } from "./costants";
 import createIntlMiddleware from "next-intl/middleware";
 const protectedRoutes = [
   "/",
@@ -14,7 +14,7 @@ const protectedRoutes = [
 
 const publicRoutes = ["/login", "/ka/login", "/en/login"];
 
-export default async function middleware(request) {
+export default async function middleware(request: NextRequest) {
   //Middleware for rout protections
   const cookie = request.cookies.get(AUTH_COOKIE_KEY)?.value;
   let token = null;

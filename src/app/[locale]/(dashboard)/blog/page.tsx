@@ -1,4 +1,4 @@
-import Article from "@/components/Article";
+import Article from "../../../../components/Article";
 import { useLocale } from "next-intl";
 
 const fetchData = async () => {
@@ -17,7 +17,7 @@ const fetchData = async () => {
 const Blog = async () => {
 
     const locale = useLocale();
-    const articles = await fetchData();
+    const articles: postElement[] = await fetchData();
 
     return (
         <section className="w-full p-5 pb-[50px] bg-[#E5E1CC]/30 dark:bg-grey">

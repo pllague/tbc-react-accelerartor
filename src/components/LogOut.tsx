@@ -1,7 +1,5 @@
 'use client';
-import { useLocale } from "next-intl";
 const LogOut = () => {
-    const locale = useLocale();
     return (
         <form action="/api" method="GET">
             <button className="group mt-[5px]"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-7 h-7 group-hover:stroke-orange transition-all transform duration-300 ease-linear">
