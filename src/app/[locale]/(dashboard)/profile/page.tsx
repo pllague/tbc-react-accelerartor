@@ -25,7 +25,7 @@ const Profile = () => {
         confirmNewPassword,
     } = profileData;
 
-    function handleChange(event) {
+    function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
         setProfileData((prev) => (
             {
                 ...prev,
@@ -41,7 +41,7 @@ const Profile = () => {
 
                 <input
                     className="w-full h-full border-2 border-light_blue py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
-                    maxLength="100"
+                    maxLength={100}
                     name="firstname"
                     placeholder="Firstname"
                     type="text"
@@ -54,7 +54,7 @@ const Profile = () => {
 
                 <input
                     className="w-full h-full border-2 border-light_blue  py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
-                    maxLength="100"
+                    maxLength={100}
                     name="lastname"
                     placeholder="Lastname"
                     type="text"
@@ -67,7 +67,7 @@ const Profile = () => {
 
                 <input
                     className="w-full h-full border-2 border-light_blue py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
-                    maxLength="100"
+                    maxLength={100}
                     name="email"
                     placeholder="Email"
                     type="text"
@@ -80,7 +80,7 @@ const Profile = () => {
 
                 <input
                     className="w-full h-full border-2 border-light_blue py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
-                    maxLength="100"
+                    maxLength={100}
                     name="mobile"
                     placeholder="Mobile"
                     type="text"
@@ -93,7 +93,7 @@ const Profile = () => {
 
                 <input
                     className="w-full h-full border-2 border-light_blue py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
-                    maxLength="100"
+                    maxLength={100}
                     name="currentPassword"
                     placeholder="Current Password"
                     type="password"
@@ -107,7 +107,7 @@ const Profile = () => {
 
                 <input
                     className="w-full h-full border-2 border-light_blue py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
-                    maxLength="100"
+                    maxLength={100}
                     name="newPassword"
                     placeholder="New Password"
                     type="password"
@@ -121,7 +121,7 @@ const Profile = () => {
 
                 <input
                     className="w-full h-full border-2 border-light_blue py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
-                    maxLength="100"
+                    maxLength={100}
                     name="confirmNewPassword"
                     placeholder="Confirm New Password"
                     type="password"

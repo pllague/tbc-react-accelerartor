@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useLocale } from "next-intl";
 
-const Card = ({ card: { id, title, description, thumbnail } }) => {
+const Card: React.FC<cardProps> = ({ card: { id, title, description, thumbnail } }) => {
 
     const locale = useLocale();
     // Check if title is more then 25 chars

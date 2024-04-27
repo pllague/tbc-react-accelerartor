@@ -1,8 +1,7 @@
 "use client";
-import Products from "./products/page";
-import Search from "@/components/Search";
+import Products from "../../../components/Products";
+import Search from "../../../components/Search";
 import { useState } from "react";
-// import Blog from "../blog/Blog";
 
 const Home = () => {
   const [isSorted, setIsSorted] = useState(false);
@@ -17,7 +16,6 @@ const Home = () => {
         setSearchQuery={setSearchQuery}
       />
       <Products isSorted={isSorted} searchQuery={searchQuery} />
-      {/* <Blog quantity={5}/> */}
     </div>
   );
 };

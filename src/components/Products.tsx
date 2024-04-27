@@ -1,14 +1,14 @@
 "use client";
-import Card from "@/components/Card";
-import useDebounce from "@/hooks/useDebounce";
+import Card from "./Card";
+import useDebounce from "../hooks/useDebounce";
 import { useState, useEffect } from "react";
 import { useLocale } from "next-intl";
 
-const Products = ({ isSorted = false, searchQuery = "" }) => {
+const Products = ({ isSorted = false, searchQuery = ""}) => {
 
     const locale = useLocale();
 
-    const [cards, setCards] = useState([]);
+    const [cards, setCards] = useState<productElement[]>([]);
 
     useEffect(() => {
         const fetchData = async () => {

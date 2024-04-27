@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 
-const Article = ({ article: { id, title, body } }) => {
+const Article: React.FC<articleProps> = ({ article: { id, title, body } }) => {
 
     const t = useTranslations('Index');
     const createDate = "07.07.2077";

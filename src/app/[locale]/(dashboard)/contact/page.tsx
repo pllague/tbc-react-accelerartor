@@ -41,7 +41,7 @@ const Contact = () => {
                     <div className="w-full flex gap-3 justify-between">
                         <input
                             className="w-2/5 h-full border-2 border-yellow-600 dark:border-light_blue py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
-                            maxLength="100"
+                            maxLength={100}
                             name="firstname"
                             placeholder={t('firstname')}
                             type="text"
@@ -51,7 +51,7 @@ const Contact = () => {
                         />
                         <input
                             className="w-3/5 h-full border-2 border-yellow-600 dark:border-light_blue  py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
-                            maxLength="100"
+                            maxLength={100}
                             name="lastname"
                             placeholder={t('lastname')}
                             type="text"
@@ -63,7 +63,7 @@ const Contact = () => {
                     <div className="w-full flex gap-3 justify-between">
                         <input
                             className="w-2/5 h-full border-2 border-yellow-600 dark:border-light_blue py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
-                            maxLength="100"
+                            maxLength={100}
                             name="mobile"
                             placeholder={t('mobile')}
                             type="text"
@@ -73,7 +73,7 @@ const Contact = () => {
                         />
                         <input
                             className="w-3/5 h-full border-2 border-yellow-600 dark:border-light_blue py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
-                            maxLength="100"
+                            maxLength={100}
                             name="email"
                             placeholder={t('email')}
                             type="text"

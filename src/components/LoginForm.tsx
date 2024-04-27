@@ -6,7 +6,7 @@ const LoginForm = () => {
         <form action="/api" method="POST" className="w-1/5 border-2 border-yellow-600 dark:border-light_blue shadow-xl shadow-red-300 dark:shadow-light_blue p-8 rounded-xl flex flex-col gap-5 justify-center items-center">
             <input
                 className="w-full h-full border-2 border-yellow-600 dark:border-light_blue py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
-                maxLength="100"
+                maxLength={100}
                 name="username"
                 placeholder={locale === 'en' ? "Username" : "სახელი"}
                 type="text"
@@ -18,7 +18,7 @@ const LoginForm = () => {
 
             <input
                 className="w-full h-full border-2 border-yellow-600 dark:border-light_blue  py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
-                maxLength="100"
+                maxLength={100}
                 name="password"
                 placeholder={locale === 'en' ? "Password" : "პაროლი"}
                 type="password"

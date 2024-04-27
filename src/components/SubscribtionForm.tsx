@@ -13,7 +13,7 @@ const SubscribtionForm = () => {
                         height={24} /></div>
                     <input
                         className="h-full bg-white border-0 rounded-[100px] mb-0 px-0 lg:text-[20px] lg:px-[25px] text-secondary focus:border-transparent focus:outline-none"
-                        maxLength="100"
+                        maxLength={100}
                         name="email"
                         placeholder={t("email") + " ..."}
                         type="email"
