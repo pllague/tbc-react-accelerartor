@@ -11,7 +11,7 @@ const Search: React.FC<searchProps> = ({ isSorted, setIsSorted, searchQuery, set
     const pattern = /[^a-z0-9]/gi;
     // set search query
     function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-        setSearchQuery(event.target.value).replace(pattern, "");
+        setSearchQuery(event.target.value)?.replace(pattern, "");
     }
 
     return (
