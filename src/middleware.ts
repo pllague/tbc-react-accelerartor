@@ -25,7 +25,7 @@ export default async function middleware(request: NextRequest) {
       token = cookieObject?.token;
     }
   }
-  const localeValue = request.cookies.get("NEXT_LOCALE")?.value;
+  // const localeValue = request.cookies.get("NEXT_LOCALE")?.value;
 
   const path = request.nextUrl.pathname;
   const isProtectedRoute =
@@ -41,15 +41,17 @@ export default async function middleware(request: NextRequest) {
   if (isPublicRoute && token) {
     return NextResponse.redirect(new URL("/", request.nextUrl));
   }
-  if (path === "/" && token) {
-    return NextResponse.redirect(new URL(`/${localeValue}`, request.nextUrl));
-  }
+  // if (path === "/" && token) {
+  //   return NextResponse.redirect(new URL(`/${localeValue}`, request.nextUrl));
+  // }
 
   const defaultLocale = request.headers.get("ka") || "en";
 
   const i18nRouting = createIntlMiddleware({
     locales: ["en", "ka"],
     defaultLocale,
+    localePrefix: 'never',
+
   });
   const response = i18nRouting(request);
 
