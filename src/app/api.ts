@@ -19,3 +19,10 @@ export async function deleteUser(id: number) {
         method: 'DELETE',
     });
 }
+
+export async function updateUser(id: string, name: string, email: string, age: string) {
+    return await fetch(BASE_URL + "/api/edit-user", {
+        method: 'PUT',
+        body: JSON.stringify({ id, name, email, age }),
+    });
+}
