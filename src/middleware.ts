@@ -1,5 +1,5 @@
 import { NextResponse, NextRequest } from "next/server";
-import { AUTH_COOKIE_KEY } from "./costants";
+import { AUTH_COOKIE_KEY } from "./constants";
 import createIntlMiddleware from "next-intl/middleware";
 const protectedRoutes = [
   "/",
@@ -45,17 +45,17 @@ export default async function middleware(request: NextRequest) {
   //   return NextResponse.redirect(new URL(`/${localeValue}`, request.nextUrl));
   // }
 
-  const defaultLocale = request.headers.get("ka") || "en";
+  // const defaultLocale = request.headers.get("ka") || "en";
 
   const i18nRouting = createIntlMiddleware({
     locales: ["en", "ka"],
-    defaultLocale,
+    defaultLocale: "en",
     localePrefix: 'never',
 
   });
   const response = i18nRouting(request);
 
-  response.headers.set("ka", defaultLocale);
+  // response.headers.set("ka", defaultLocale);
 
   return response;
 }
@@ -63,7 +63,7 @@ export default async function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     "/((?!api|_next/static|_next/image|images|favicon.ico|logo.svg|assets).*)",
-    "/",
-    "/(ka|en)/:path*",
+    // "/",
+    // "/(ka|en)/:path*",
   ],
 };

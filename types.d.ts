@@ -2,7 +2,7 @@ interface postElement {
     id: number;
     title: string;
     body: string;
-    userId: number;
+    UserId: number;
     tags: Array<string>;
     reactions: number;
 }
@@ -47,4 +47,11 @@ interface searchProps {
     setIsSorted: Dispatch<SetStateAction<boolean>>;
     searchQuery: string;
     setSearchQuery: Dispatch<SetStateAction<string>>;
+}
+
+interface User {
+    id: number;
+    name: string;
+    age: string;
+    email: string;
 }
