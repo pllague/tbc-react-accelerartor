@@ -1,3 +1,4 @@
+"use client";
 import { useRouter } from "next/navigation";
 import { updateUserAction } from "../app/actions";
 import { useState } from "react";
@@ -29,10 +30,10 @@ const UserEditForm = ({
     try {
       await updateUserAction(formData);
       setOpenModal(false);
-      router.refresh();
     } catch (error) {
       console.error("Error occurred while handling form submission:", error);
     }
+    router.refresh();
   };
 
   return (

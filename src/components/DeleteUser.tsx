@@ -1,10 +1,16 @@
 "use client";
 
 import { deleteUserAction } from "../app/actions";
+import { useRouter } from "next/navigation";
 
 const DeleteUser = ({ id }: { id: number }) => {
+  const router = useRouter();
+  function handClick() {
+    deleteUserAction(id);
+    router.refresh();
+  }
   return (
-    <button onClick={() => deleteUserAction(id)}>
+    <button onClick={() => handClick()}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"

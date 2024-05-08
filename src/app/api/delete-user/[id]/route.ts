@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { sql } from '@vercel/postgres';
 
-export const revalidate = 0;
 
 export async function DELETE(request: NextRequest) {
     const id = request.nextUrl.pathname.replace('/api/delete-user/','');

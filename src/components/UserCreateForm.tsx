@@ -13,10 +13,10 @@ const UserCreateForm = ({
     try {
       await createUserAction(formData);
       setOpenModal(false);
-      router.refresh();
     } catch (error) {
       console.error("Error occurred while handling form submission:", error);
     }
+    router.refresh();
   };
 
   return (

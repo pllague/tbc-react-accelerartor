@@ -1,13 +1,10 @@
 import { sql } from '@vercel/postgres';
 import { NextResponse } from 'next/server';
 
-export const revalidate = 0;
-
 export async function POST(request: Request) {
   
   const { name, email, age }  = await request.json();
- 
- 
+
   try {
     if (!name || !email || !age) throw new Error('name, email and age are required');
     await sql`INSERT INTO users (name, email, age) VALUES (${name}, ${email}, ${age});`;

@@ -10,6 +10,7 @@ const protectedRoutes = [
   "/products",
   "/blog",
   "/about",
+  "/admin",
 ];
 
 const publicRoutes = ["/login", "/ka/login", "/en/login"];
