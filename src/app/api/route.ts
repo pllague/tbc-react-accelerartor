@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { AUTH_COOKIE_KEY } from "../../costants";
+import { AUTH_COOKIE_KEY } from "../../constants";
 import { NextRequest } from "next/server";
 
 export async function POST(request: NextRequest) {
