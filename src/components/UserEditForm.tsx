@@ -39,7 +39,6 @@ const UserEditForm = ({
   return (
     <div className="absolute top-0 left-0 w-screen h-screen flex justify-center items-center bg-secondary/80 z-[999]">
       <form
-        // action={createUserAction}
         onSubmit={handleSubmit}
         className="w-1/5 border-2 border-yellow-600 bg-[#E5E1CC] dark:bg-secondary dark:border-light_blue shadow-xl shadow-red-300 dark:shadow-light_blue p-8 rounded-xl flex flex-col gap-5 justify-center items-center"
       >
@@ -61,7 +60,7 @@ const UserEditForm = ({
         />
         <input
           className="w-full h-full border-2 border-light_blue py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
-          type="text"
+          type="email"
           name="email"
           placeholder="Email"
           value={email}

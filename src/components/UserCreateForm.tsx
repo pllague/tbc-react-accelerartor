@@ -35,7 +35,7 @@ const UserCreateForm = ({
         />
         <input
           className="w-full h-full border-2 border-light_blue py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
-          type="text"
+          type="email"
           name="email"
           placeholder="Email"
           required
