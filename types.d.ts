@@ -26,6 +26,7 @@ interface productElement {
 
 interface cardProps {
     card: productElement;
+    handleClick: (productId: number) => void;
 }
 
 interface params {
@@ -55,3 +56,8 @@ interface User {
     age: string;
     email: string;
 }
+
+interface SelectedProduct {
+    id: number;
+    count: number;
+  }
