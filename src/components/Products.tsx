@@ -1,62 +1,22 @@
 "use client";
 import Card from "./Card";
 import Cart from "./Cart";
-import useDebounce from "../hooks/useDebounce";
+import { useDebounce, useLocalStorage } from "../hooks/hooks";
 import { useState, useEffect, useReducer } from "react";
 import { useLocale } from "next-intl";
-
-const initialState: SelectedProduct[] = [];
-
-type Action =
-  | { type: "INCREMENT"; payload: number }
-  | { type: "DECREMENT"; payload: number }
-  | { type: "RESET" };
-
-function reducer(state: SelectedProduct[], action: Action) {
-  switch (action.type) {
-    case "INCREMENT": {
-      const SelectedProductIdx = state.findIndex(
-        (p) => p.id === action.payload
-      );
-      if (SelectedProductIdx === -1)
-        return [...state, { id: action.payload, count: 1 }];
-      const clone = [...state];
-      const SelectedProduct = clone[SelectedProductIdx];
-      const updatedSelectedProduct = {
-        ...SelectedProduct,
-        count: SelectedProduct.count + 1,
-      };
-      clone[SelectedProductIdx] = updatedSelectedProduct;
-      return clone;
-    }
-    case "DECREMENT": {
-      const SelectedProductIdx = state.findIndex(
-        (p) => p.id === action.payload
-      );
-      if (SelectedProductIdx === -1)
-        return [...state, { id: action.payload, count: 1 }];
-      const clone = [...state];
-      const SelectedProduct = clone[SelectedProductIdx];
-      const updatedSelectedProduct = {
-        ...SelectedProduct,
-        count: SelectedProduct.count - 1,
-      };
-      clone[SelectedProductIdx] = updatedSelectedProduct;
-      return clone;
-    }
-    case "RESET":
-      return initialState;
-  }
-}
+import { reducer } from "../helpers";
 
 const Products = ({ isSorted = false, searchQuery = "" }) => {
   const locale = useLocale();
 
   const [cards, setCards] = useState<productElement[]>([]);
 
+  const [cachedValue, setCachedValue] = useLocalStorage("selectedProducts", []);
+
+  const [SelectedProducts, dispatch] = useReducer(reducer, cachedValue);
+
   useEffect(() => {
     const fetchData = async () => {
-      // await new Promise(resolve => setTimeout(resolve, 3000));
       try {
         const response = await fetch("https://dummyjson.com/products");
         if (!response.ok) {
@@ -72,6 +32,10 @@ const Products = ({ isSorted = false, searchQuery = "" }) => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    setCachedValue(SelectedProducts);
+  }, [SelectedProducts, setCachedValue]);
+
   let newCards = isSorted
     ? cards.slice().sort((a, b) => a.title.localeCompare(b.title))
     : cards;
@@ -82,10 +46,8 @@ const Products = ({ isSorted = false, searchQuery = "" }) => {
     product.title.toLowerCase().includes(debouncedSearchQuery.toLowerCase())
   );
 
-  const [SelectedProducts, dispatch] = useReducer(reducer, initialState);
-
   const handleClick = (card: productElement) => {
-    dispatch({ type: "INCREMENT", payload: card.id });
+    dispatch({ type: "INCREMENT", payload: card });
   };
 
   const selectedNumber = SelectedProducts.reduce((acc, curr) => {
