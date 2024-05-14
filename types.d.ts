@@ -60,4 +60,5 @@ interface User {
 interface SelectedProduct {
     id: number;
     count: number;
+    selectedCard: productElement;
   }
