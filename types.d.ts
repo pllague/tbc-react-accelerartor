@@ -63,12 +63,15 @@ interface SelectedProduct {
     selectedCard: productElement;
 }
 
+interface ProductObject {
+    id: number;
+    quantity: number;
+}
+
 interface CartTable {
     id: number,
     user_id: number,
-    products: {
-        id: number,
-        quantity: number,
-    }[],
+    products: ProductObject[],
     added_on: string,
 }
+
