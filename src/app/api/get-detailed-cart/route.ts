@@ -1,5 +1,6 @@
 import { sql } from '@vercel/postgres';
 import { NextResponse, NextRequest } from 'next/server';
+import { fetchDataFromApi } from '../../api';
 
 export const revalidate = 0;
 
@@ -9,14 +10,6 @@ const initialState = {
   products: [],
 }
 
-const fetchData = async<T>(url: string): Promise<T> => {
-  const res = await fetch(url);
-
-  const json = await res.json();
-
-  return json;
-}
-
 export async function GET(req: NextRequest) {
   try {
     const user_id = req.cookies.get("uid")?.value;
@@ -24,7 +17,7 @@ export async function GET(req: NextRequest) {
     if (!user_id) throw new Error('not auth!');
 
     const cart = await sql<CartTable>`SELECT * FROM carts WHERE user_id = ${+user_id};`;
-    const { products } = await fetchData<{ products: productElement[] }>(`https://dummyjson.com/products`);
+    const { products } = await fetchDataFromApi<{ products: productElement[] }>(`https://dummyjson.com/products`);
 
     if (cart.rows.length) {
       const userCart = cart.rows[0].products;

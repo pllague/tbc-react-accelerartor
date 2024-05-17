@@ -1,6 +1,6 @@
 import { sql } from '@vercel/postgres';
 import { NextResponse, NextRequest } from 'next/server';
-import { createCart } from '../../../api';
+import { createCart } from '../../api';
 
 export async function PUT(request: NextRequest) {
 
