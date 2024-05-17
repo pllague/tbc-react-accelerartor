@@ -5,6 +5,7 @@
 import { revalidatePath } from "next/cache";
 import {
   addToCart,
+  clearCart,
   createUser,
   decrementProductQuantity,
   deleteUser,
@@ -67,5 +68,10 @@ export async function decrementProductQuantityAction(id: number) {
 
 export async function removeProductFromCartAction(id: number) {
   await removeProductFromCart(id);
+  revalidatePath("/checkout");
+}
+
+export async function clearCartAction() {
+  await clearCart();
   revalidatePath("/checkout");
 }

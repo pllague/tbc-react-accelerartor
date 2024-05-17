@@ -108,3 +108,13 @@ export async function removeProductFromCart(id: number) {
     body: JSON.stringify({ prod_id: id }),
   });
 }
+
+export async function clearCart() {
+  await fetch(`${BASE_URL}/api/clear-cart`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Cookie: `uid=${JSON.parse(cookies().get(AUTH_COOKIE_KEY)?.value!).id}`,
+    },
+  });
+}
