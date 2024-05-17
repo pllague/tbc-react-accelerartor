@@ -8,6 +8,7 @@ import {
   createUser,
   decrementProductQuantity,
   deleteUser,
+  removeProductFromCart,
   updateUser,
 } from "./api";
 
@@ -61,5 +62,10 @@ export async function addToCartAction(id: number) {
 
 export async function decrementProductQuantityAction(id: number) {
   await decrementProductQuantity(id);
+  revalidatePath("/checkout");
+}
+
+export async function removeProductFromCartAction(id: number) {
+  await removeProductFromCart(id);
   revalidatePath("/checkout");
 }

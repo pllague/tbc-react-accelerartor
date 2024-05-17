@@ -97,3 +97,14 @@ export async function decrementProductQuantity(id: number) {
     body: JSON.stringify({ prod_id: id }),
   });
 }
+
+export async function removeProductFromCart(id: number) {
+  await fetch(`${BASE_URL}/api/remove-product-from-cart`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Cookie: `uid=${JSON.parse(cookies().get(AUTH_COOKIE_KEY)?.value!).id}`,
+    },
+    body: JSON.stringify({ prod_id: id }),
+  });
+}
