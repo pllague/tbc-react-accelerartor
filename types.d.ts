@@ -61,4 +61,14 @@ interface SelectedProduct {
     id: number;
     count: number;
     selectedCard: productElement;
-  }
+}
+
+interface CartTable {
+    id: number,
+    user_id: number,
+    products: {
+        id: number,
+        quantity: number,
+    }[],
+    added_on: string,
+}
