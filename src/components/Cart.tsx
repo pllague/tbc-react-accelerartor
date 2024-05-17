@@ -1,27 +1,25 @@
 import Link from "next/link";
 import { useLocale } from "next-intl";
 
-const Cart = ({
-  className,
-  selectedNumber,
-}: {
-  className: string;
-  selectedNumber: number;
-}) => {
+const Cart = ({ selectedNumber }: { selectedNumber: number }) => {
   const locale = useLocale();
 
   return (
     <Link href={`/${locale}/checkout`}>
-      <div className={className}>
+      <div className="group relative cursor-pointer">
         {selectedNumber > 0 ? (
-          <span className="group-hover:text-orange transition-all duration-300 ease-in-out">
+          <span
+            className={`absolute -top-[5px] -right-2 bg-green-500 rounded-full text-[12px] ${
+              selectedNumber < 10 ? "px-[6px]" : "px-1 py-[1px]"
+            }`}
+          >
             {selectedNumber}
           </span>
         ) : (
           ""
         )}
         <svg
-          className="w-10 h-auto"
+          className="w-8 h-auto"
           xmlns="http://www.w3.org/2000/svg"
           width="18.524"
           height="17.75"

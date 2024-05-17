@@ -3,14 +3,13 @@ import { NextResponse, NextRequest } from 'next/server';
 
 export async function POST(request: NextRequest) {
   try {
-    const user_id = request.cookies.get("uid")?.value;
 
-    const { item_id } = await request.json();
-    const item = JSON.stringify([{ id: item_id, quantity: 1 }])
+    const { prod_id, uid } = await request.json();
+    const item = JSON.stringify([{ id: prod_id, quantity: 1 }])
 
-    if (!user_id || !item_id) throw new Error('user_id and products fields required');
+    if (!uid || !prod_id) throw new Error('user_id and products fields required');
 
-    await sql`INSERT INTO carts (user_id, products) VALUES (${+user_id}, ${item});`;
+    await sql`INSERT INTO carts (user_id, products) VALUES (${+uid}, ${item});`;
   } catch (error) {
     return NextResponse.json({ error }, { status: 500 });
   }

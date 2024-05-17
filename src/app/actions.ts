@@ -3,7 +3,7 @@
 // import { redirect } from "next/navigation";
 'use server';
 import { revalidatePath } from "next/cache";
-import { createUser, deleteUser, updateUser } from "./api";
+import { addToCart, createUser, deleteUser, updateUser } from "./api";
 
 // export async function login(username, password) {
 //   "use server";
@@ -47,4 +47,9 @@ export async function updateUserAction(formData: FormData) {
     const { id, name, email, age } = Object.fromEntries(formData);
     updateUser(id as string, name as string, email as string, age as string);
     revalidatePath("/admin");
+}
+
+export async function addToCartAction(id: number) {
+    await addToCart(id);
+    revalidatePath("/");
 }

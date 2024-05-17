@@ -1,6 +1,5 @@
-import { BASE_URL } from "../constants";
 import { cookies } from "next/headers";
-import { AUTH_COOKIE_KEY } from "../constants";
+import { BASE_URL, AUTH_COOKIE_KEY } from "../constants";
 
 export async function getUsers() {
     const response = await fetch(BASE_URL + '/api/get-users');
@@ -29,16 +28,12 @@ export async function updateUser(id: string, name: string, email: string, age: s
     });
 }
 
-export async function createCart(item_id: number, user_id: string) {
+export async function createCart(user_id: number, item_id: number) {
     return await fetch(`${BASE_URL}/api/create-cart`, {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Cookie': `uid=${user_id};`,
-        },
-        body: JSON.stringify({ item_id })
+        body: JSON.stringify({ "uid":user_id, "prod_id": item_id })
     });
-};
+}
 
 export async function getDetailedCart() {
     const res = await fetch(`${BASE_URL}/api/get-detailed-cart`, {
@@ -63,4 +58,26 @@ export async function fetchDataFromApi<T>(
     const json = await res.json();
 
     return json;
+}
+export async function getCart(){
+    const response = await fetch(BASE_URL + `/api/get-cart`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Cookie": `uid=${JSON.parse(cookies().get(AUTH_COOKIE_KEY)?.value!).id}`
+        }
+    });
+    const carts = await response.json();
+    return carts.cart.rows;
+}
+
+export async function addToCart(id: number) {
+    await fetch(`${BASE_URL}/api/add-to-cart`, {
+        method: 'PUT',
+        headers: {
+            "Content-Type": "application/json",
+            "Cookie": `uid=${JSON.parse(cookies().get(AUTH_COOKIE_KEY)?.value!).id}`
+        },
+        body: JSON.stringify({ "prod_id": id })
+    });
 }

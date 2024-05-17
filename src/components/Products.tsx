@@ -1,19 +1,20 @@
 "use client";
 import Card from "./Card";
-import Cart from "./Cart";
-import { useDebounce, useLocalStorage } from "../hooks/hooks";
-import { useState, useEffect, useReducer } from "react";
+// import Cart from "./Cart";
+import { useDebounce } from "../hooks/hooks";
+import { useState, useEffect } from "react";
 import { useLocale } from "next-intl";
-import { reducer } from "../helpers";
+// import { reducer } from "../helpers";
+import { addToCartAction } from "../app/actions";
 
 const Products = ({ isSorted = false, searchQuery = "" }) => {
   const locale = useLocale();
 
   const [cards, setCards] = useState<productElement[]>([]);
 
-  const [cachedValue, setCachedValue] = useLocalStorage("selectedProducts", []);
+  // const [cachedValue, setCachedValue] = useLocalStorage("selectedProducts", []);
 
-  const [SelectedProducts, dispatch] = useReducer(reducer, cachedValue);
+  // const [SelectedProducts, dispatch] = useReducer(reducer, cachedValue);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,9 +33,9 @@ const Products = ({ isSorted = false, searchQuery = "" }) => {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    setCachedValue(SelectedProducts);
-  }, [SelectedProducts, setCachedValue]);
+  // useEffect(() => {
+  //   setCachedValue(SelectedProducts);
+  // }, [SelectedProducts, setCachedValue]);
 
   let newCards = isSorted
     ? cards.slice().sort((a, b) => a.title.localeCompare(b.title))
@@ -46,13 +47,13 @@ const Products = ({ isSorted = false, searchQuery = "" }) => {
     product.title.toLowerCase().includes(debouncedSearchQuery.toLowerCase())
   );
 
-  const handleClick = (card: productElement) => {
-    dispatch({ type: "INCREMENT", payload: card });
-  };
+  // const handleClick = (card: productElement) => {
+  //   dispatch({ type: "INCREMENT", payload: card });
+  // };
 
-  const selectedNumber = SelectedProducts.reduce((acc, curr) => {
-    return acc + curr.count;
-  }, 0);
+  // const selectedNumber = SelectedProducts.reduce((acc, curr) => {
+  //   return acc + curr.count;
+  // }, 0);
 
   return (
     <section>
@@ -66,17 +67,18 @@ const Products = ({ isSorted = false, searchQuery = "" }) => {
             <h2 className="text-[40px] leading-[25px] text-center">
               {locale === "en" ? "Products" : "პროდუქტები"}
             </h2>
-            <Cart
+            {/* <Cart
               className="group absolute top-0 right-[25px] lg:right-[40px] transform -translate-y-1/2 cursor-pointer "
               selectedNumber={selectedNumber}
-            />
+            /> */}
           </div>
           <div className="flex flex-wrap justify-center mt-[25px] lg:mt-[65px] gap-[25px] lg:gap-10">
             {newCards.map((card) => (
               <Card
                 key={card.id}
                 card={card}
-                handleClick={() => handleClick(card)}
+                // handleClick={() => handleClick(card)}
+                handleClick={() => addToCartAction(card.id)}
               />
             ))}
           </div>
