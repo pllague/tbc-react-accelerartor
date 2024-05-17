@@ -3,9 +3,8 @@
 // import { useEffect, useState, useReducer } from "react";
 // import { useLocalStorage } from "../../../../hooks/hooks";
 import { useLocale } from "next-intl";
-import Image from "next/image";
+// import Image from "next/image";
 import { getCart } from "../../../api";
-import { addToCartAction } from "../../../actions";
 import IncrementButton from "../../../../components/IncrementButton";
 // import { reducer } from "../../../../helpers";
 
