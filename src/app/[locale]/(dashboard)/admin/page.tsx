@@ -1,10 +1,11 @@
 import DeleteUser from "../../../../components/DeleteUser";
-// import { createUserAction } from "../../../actions";
 import { getUsers } from "../../../api";
 import UserCreateButton from "../../../../components/UserCreateButton";
 import UserEditButton from "../../../../components/UserEditButton";
+import { getTranslations } from "next-intl/server";
 
 const AdminPage = async () => {
+  const t = await getTranslations("Index");
   const users = await getUsers();
   return (
     <div className="h-full flex flex-col gap-10 max-w-full lg:max-w-[70%] mx-10 lg:mx-auto">
@@ -13,9 +14,9 @@ const AdminPage = async () => {
       <div className="flex flex-col">
         {users.length ? (
           <div className="grid grid-cols-5 border-b border-t gap-5 py-2 px-2 bg-yellow-600 dark:bg-blue-500">
-            <div>Name</div>
-            <div>Email</div>
-            <div>Age</div>
+            <div>{t("name")}</div>
+            <div>{t("email")}</div>
+            <div>{t("age")}</div>
           </div>
         ) : (
           ""

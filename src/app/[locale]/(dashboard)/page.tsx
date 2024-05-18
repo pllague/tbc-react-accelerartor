@@ -8,7 +8,7 @@ const Home = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
   return (
-    <div className="flex flex-col justify-between">
+    <div className="flex flex-col">
       <Search
         isSorted={isSorted}
         setIsSorted={setIsSorted}

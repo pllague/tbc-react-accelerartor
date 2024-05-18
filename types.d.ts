@@ -76,3 +76,7 @@ interface CartTable {
     added_on: string,
 }
 
+interface NavigationProps {
+    layout: string;
+    setIsOpen?: React.Dispatch<React.SetStateAction<boolean>>;
+}

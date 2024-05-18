@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import { useLocale } from "next-intl";
 // import { reducer } from "../helpers";
 import { addToCartAction } from "../app/actions";
+import LoadingAnimation from "./LoadingAnimation";
 
 const Products = ({ isSorted = false, searchQuery = "" }) => {
   const locale = useLocale();
@@ -58,9 +59,7 @@ const Products = ({ isSorted = false, searchQuery = "" }) => {
   return (
     <section>
       {newCards.length === 0 ? (
-        <p className="text-yellow-600 dark:text-light_blue text-[32px] text-center mt-[100px]">
-          {locale === "en" ? "Loading..." : "იტვირთება..."}
-        </p>
+        <LoadingAnimation />
       ) : (
         <div className="w-full py-5 px-5 max-w-[1400px] mx-auto my-10 lg:py-10 lg:px-0 ">
           <div className="relative mb-[60px]">
