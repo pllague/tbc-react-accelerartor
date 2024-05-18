@@ -22,6 +22,7 @@ interface productElement {
     category: string;
     thumbnail: string;
     images: Array<string>;
+    quantity?: number;
 }
 
 interface cardProps {
