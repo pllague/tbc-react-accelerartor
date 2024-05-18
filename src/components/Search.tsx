@@ -21,7 +21,7 @@ const Search: React.FC<searchProps> = ({
   return (
     <section className="w-full pt-20">
       <div className="flex flex-col lg:flex-row max-w-[1400px] mx-auto h-[100px] lg:h-[65px] justify-center items-center gap-3 lg:gap-5 ">
-        <form className="w-[70%] lg:w-[50%] h-[50px] lg:h-[65px] flex items-center bg-white rounded-[100px] px-2 lg:px-5">
+        <form className="w-[70%] lg:w-[50%] h-[50px] lg:h-[65px] flex items-center bg-white dark:bg-[#121212] rounded-[100px] px-2 lg:px-5">
           <svg
             className="hidden lg:block w-[15px] h-[15px] lg:w-[25px] lg:h-[25px]"
             xmlns="http://www.w3.org/2000/svg"
@@ -54,7 +54,7 @@ const Search: React.FC<searchProps> = ({
             </g>
           </svg>
           <input
-            className="w-full h-full border-0 px-2 lg:px-[25px] rounded-[100px] text-secondary lg:text-[22px] focus:border-transparent focus:outline-none"
+            className="w-full h-full border-0 px-2 lg:px-[25px] rounded-[100px] text-secondary lg:text-[22px] focus:border-transparent focus:outline-none dark:text-white"
             maxLength={100}
             name="search"
             placeholder={locale === "en" ? "Type to search ..." : "ძებნა ..."}
@@ -70,7 +70,7 @@ const Search: React.FC<searchProps> = ({
         <button
           onClick={handleClick}
           className={
-            "w-fit lg:h-full bg-yellow-600 dark:bg-blue-500 hover:bg-orange rounded-[100px] py-2 lg:py-auto px-7 font-small lg:font-medium cursor-pointer transition-all transform duration-300 ease-linear" +
+            "w-fit lg:h-full bg-yellow-600 dark:bg-blue-500 hover:bg-orange dark:hover:bg-orange rounded-[100px] py-2 lg:py-auto px-7 font-small lg:font-medium cursor-pointer transition-all transform duration-300 ease-linear" +
             (locale === "ka" ? " lg:text-[14px]" : " lg:text-[16px]")
           }
         >
