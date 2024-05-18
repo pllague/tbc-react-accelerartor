@@ -10,6 +10,8 @@
       "firstname": "Fisrtname",
       "lastname": "Lastname",
       "mobile": "Mobile",
+      "name": "Name",
+      "age": "Age",
       "email": "Email",
       "submit": "Submit",
       "privacyPolicy": "Privacy & Policy",
@@ -17,6 +19,9 @@
       "loginError": "Username or Password is incorrect",
       "getOurUpdates": "Get our updates",
       "readMore": "Read more ...",
-      "blog": "Blog" 
+      "blog": "Blog",
+      "profile": "Profile",
+      "admin": "Admin",
+      "add-user": "Add User"
     }
   }

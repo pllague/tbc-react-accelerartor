@@ -7,23 +7,20 @@ import LangSwitcher from "./LangSwitcher";
 import { useLocale } from "next-intl";
 import Cart from "./Cart";
 import { getCart } from "../app/api";
-// import { getCartAction } from "../app/actions";
+import BurgerMenu from "./BurgerMenu";
 
 const Header = async () => {
   const locale = useLocale();
   const cartElements = await getCart();
   const totalQuantity = cartElements[0]?.products.reduce(
-    (acc: any, item: any) => acc + item.quantity,
+    (acc: number, item: ProductObject) => acc + item.quantity,
     0
   );
   return (
     <header className="w-full h-[70px] lg:h-[85px] bg-[#E5E1CC] dark:bg-secondary/90 sticky top-0 z-10">
-      <div className="w-full h-full flex mx-auto justify-between lg:items-center max-w-[1400px]">
+      <div className="w-full h-full flex mx-auto justify-between items-center px-10 lg:px-0 lg:max-w-[1400px]">
         {/* logo */}
-        <Link
-          className="w-[40px] h-[40px] lg:w-[80px] lg:h-[80px]"
-          href={`/${locale}`}
-        >
+        <Link className="w-[80px] h-[80px]" href={`/${locale}`}>
           <Image
             src="/logo.svg"
             priority={true}
@@ -34,12 +31,17 @@ const Header = async () => {
           />
         </Link>
         {/* main navigation */}
-        <Navigation layout="flex-row" />
-        <div className="flex gap-4 items-center">
+        <div className="hidden lg:block">
+          <Navigation layout="flex-row" />
+        </div>
+        <div className="flex gap-6 lg:gap-4 items-center">
           <Cart selectedNumber={totalQuantity} />
-          <LangSwitcher />
-          <DarkMode />
-          <LogOut />
+          <BurgerMenu />
+          <div className="hidden lg:flex gap-4 items-center">
+            <LangSwitcher />
+            <DarkMode />
+            <LogOut />
+          </div>
         </div>
       </div>
     </header>
