@@ -1,39 +1,21 @@
-"use client";
-import { useEffect, useState, useReducer } from "react";
-import { useLocalStorage } from "../../../../hooks/hooks";
+"use server";
 import { useLocale } from "next-intl";
 import Image from "next/image";
-import { reducer } from "../../../../helpers";
+import { getDetailedCart } from "../../../api";
+import IncrementButton from "../../../../components/IncrementButton";
+import DecrementButton from "../../../../components/DecrementButton";
+import RemoveProductButton from "../../../../components/RemoveProductButton";
+import ClearCartButton from "../../../../components/ClearCartButton";
 
-const CheckoutPage = () => {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-  const [cardsData, setCachedValue] = useLocalStorage("selectedProducts", []);
-
+const CheckoutPage = async () => {
   const locale = useLocale();
 
-  const [SelectedProducts, dispatch] = useReducer(reducer, cardsData);
+  const cartElements = await getDetailedCart();
+  const cardsData = cartElements.products;
 
-  useEffect(() => {
-    setCachedValue(SelectedProducts);
-  }, [SelectedProducts, setCachedValue]);
-
-  const handleQuantityChange = (
-    action: "INCREMENT" | "DECREMENT" | "REMOVE",
-    card: productElement
-  ) => {
-    dispatch({ type: action, payload: card });
-  };
-
-  const handleProductRemove = (action: "RESET") => {
-    dispatch({ type: action });
-  };
   return (
     <div className="w-full py-5 px-5 max-w-[1400px] mx-auto my-10 lg:py-10 lg:px-0 ">
-      {isMounted && cardsData.length > 0 ? (
+      {cardsData.length > 0 ? (
         <h2
           className={`text-[40px] leading-[25px] text-center ${
             cardsData.length < 3 ? "lg:-mt-[200px]" : ""
@@ -44,7 +26,7 @@ const CheckoutPage = () => {
       ) : (
         ""
       )}
-      {isMounted && cardsData.length > 0 ? (
+      {cardsData.length > 0 ? (
         <div className="w-full lg:w-4/5 flex flex-col mt-[25px] lg:mt-[65px] gap-[25px] lg:gap-10 mx-auto">
           <table className="border-separate border-spacing-3">
             <thead>
@@ -57,71 +39,37 @@ const CheckoutPage = () => {
                 <th>{locale === "en" ? "Price" : "ფასი"}</th>
                 <th>{locale === "en" ? "Quantity" : "რაოდენობა"}</th>
                 <th className="flex justify-center">
-                  <button
-                    className={
-                      " bg-yellow-600 dark:bg-blue-500 hover:bg-orange rounded-[100px] py-2 lg:py-auto px-7 font-small lg:font-medium cursor-pointer transition-all transform duration-300 ease-linear" +
-                      (locale === "ka" ? " lg:text-[16px]" : " lg:text-[18px]")
-                    }
-                    onClick={() => handleProductRemove("RESET")}
-                  >
-                    {locale === "en" ? "Clear" : "გასუფთავება"}
-                  </button>
+                  <ClearCartButton />
                 </th>
               </tr>
             </thead>
             <tbody>
-              {cardsData.map((product: SelectedProduct) => (
+              {cardsData.map((product: productElement) => (
                 <tr key={product.id}>
                   <td>
                     <div className="w-full max-h-[100px] lg:max-h-[150px] overflow-hidden">
                       <Image
                         className="w-auto object-cover object-center"
-                        src={product.selectedCard.thumbnail}
-                        alt={product.selectedCard.title}
+                        src={product.thumbnail}
+                        alt={product.title}
                         width={100}
                         height={100}
                       />
                     </div>
                   </td>
-                  <td>{product.selectedCard.title}</td>
-                  <td>{product.selectedCard.category}</td>
-                  <td>$ {product.selectedCard.price}</td>
+                  <td>{product.title}</td>
+                  <td>{product.category}</td>
+                  <td>{product.price} €</td>
+
                   <td>
                     <div className="flex gap-3 items-center">
-                      <button
-                        className="text-3xl hover:text-orange transition-all duration-300 ease-in-out"
-                        onClick={() =>
-                          handleQuantityChange(
-                            "DECREMENT",
-                            product.selectedCard
-                          )
-                        }
-                      >
-                        -
-                      </button>
-                      <span className="text-2xl">{product.count}</span>
-                      <button
-                        className="text-3xl hover:text-orange transition-all duration-300 ease-in-out"
-                        onClick={() =>
-                          handleQuantityChange(
-                            "INCREMENT",
-                            product.selectedCard
-                          )
-                        }
-                      >
-                        +
-                      </button>
+                      <DecrementButton id={product.id} />
+                      <span className="text-2xl">{product.quantity}</span>
+                      <IncrementButton id={product.id} />
                     </div>
                   </td>
                   <td className="text-center">
-                    <button
-                      className="text-3xl text-red-700 hover:text-green-700 transition-all duration-300 ease-in-out"
-                      onClick={() =>
-                        handleQuantityChange("REMOVE", product.selectedCard)
-                      }
-                    >
-                      X
-                    </button>
+                    <RemoveProductButton id={product.id} />
                   </td>
                 </tr>
               ))}

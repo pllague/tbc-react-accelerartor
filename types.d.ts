@@ -22,6 +22,7 @@ interface productElement {
     category: string;
     thumbnail: string;
     images: Array<string>;
+    quantity?: number;
 }
 
 interface cardProps {
@@ -61,4 +62,21 @@ interface SelectedProduct {
     id: number;
     count: number;
     selectedCard: productElement;
-  }
+}
+
+interface ProductObject {
+    id: number;
+    quantity: number;
+}
+
+interface CartTable {
+    id: number,
+    user_id: number,
+    products: ProductObject[],
+    added_on: string,
+}
+
+interface NavigationProps {
+    layout: string;
+    setIsOpen?: React.Dispatch<React.SetStateAction<boolean>>;
+}
