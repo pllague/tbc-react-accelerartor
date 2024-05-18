@@ -39,7 +39,7 @@ const Card: React.FC<cardProps> = ({
       <div className="w-full px-[35px] lg:px-[50px]">
         <button
           onClick={() => handleClick(id)}
-          className="group w-full flex justify-center gap-3 items-center lg:py-2 border border-yellow-600 dark:border-light_blue rounded-[10px] lg:rounded-[12px] hover:border-orange hover:text-orange transition-all duration-300 ease-in-out"
+          className="group w-full flex justify-center gap-3 items-center lg:py-2 border border-yellow-600 dark:border-light_blue rounded-[10px] lg:rounded-[12px] hover:border-orange dark:hover:border-orange hover:text-orange transition-all duration-300 ease-in-out"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
