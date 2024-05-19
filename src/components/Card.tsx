@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useLocale } from "next-intl";
 
 const Card: React.FC<cardProps> = ({
-  card: { id, title, description, thumbnail },
+  card: { id, title, description, thumbnail, price },
   handleClick,
 }) => {
   const locale = useLocale();
@@ -12,8 +12,11 @@ const Card: React.FC<cardProps> = ({
   const trimmedTitle = title.length > 26 ? `${title.slice(0, 23)}...` : title;
 
   return (
-    <div className="flex flex-col gap-3 w-[250px] h-[370px] rounded-[10px] border border-yellow-600 dark:border-light_blue overflow-hidden lg:w-[300px] lg:h-[470px] hover:scale-105 transition duration-300 ease-linear ">
+    <div className="relative flex flex-col gap-3 w-[250px] h-[370px] rounded-[10px] border border-yellow-600 dark:border-light_blue overflow-hidden lg:w-[300px] lg:h-[470px] hover:scale-105 transition duration-300 ease-linear ">
       <Link href={`/${locale}/products/${id}`}>
+        <div className="absolute top-0 right-0 w-[80px] dark:bg-light_blue bg-yellow-600 text-center rounded-bl-xl">
+          {price} €
+        </div>
         <div className="flex flex-col gap-3 w-full h-[310px] lg:h-[390px]">
           <div className="w-full min-h-[200px] max-h-[200px] lg:min-h-[250px] lg:max-h-[250px]">
             <Image
@@ -36,10 +39,16 @@ const Card: React.FC<cardProps> = ({
           </div>
         </div>
       </Link>
-      <div className="w-full px-[35px] lg:px-[50px]">
+      <div
+        className={`w-full px-[35px] lg:px-[50px] ${
+          locale === "ka" ? "px-[25px]" : ""
+        }`}
+      >
         <button
           onClick={() => handleClick(id)}
-          className="group w-full flex justify-center gap-3 items-center lg:py-2 border border-yellow-600 dark:border-light_blue rounded-[10px] lg:rounded-[12px] hover:border-orange dark:hover:border-orange hover:text-orange transition-all duration-300 ease-in-out"
+          className={`group w-full flex justify-center gap-3 items-center py-1 lg:py-2 border border-yellow-600 dark:border-light_blue rounded-[10px] lg:rounded-[12px] hover:border-orange dark:hover:border-orange hover:text-orange transition-all duration-300 ease-in-out text-[15px] ${
+            locale === "ka" ? "gap-1 lg:gap-3" : ""
+          }`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
