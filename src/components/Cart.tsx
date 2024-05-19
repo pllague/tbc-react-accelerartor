@@ -9,7 +9,7 @@ const Cart = ({ selectedNumber }: { selectedNumber: number }) => {
       <div className="group relative cursor-pointer">
         {selectedNumber > 0 ? (
           <span
-            className={`absolute -top-[5px] -right-2 bg-green-500 rounded-full text-[12px] ${
+            className={`absolute -top-[5px] -right-2 bg-orange dark:bg-blue-500 rounded-full text-[12px] ${
               selectedNumber < 10 ? "px-[6px]" : "px-1 py-[1px]"
             }`}
           >
