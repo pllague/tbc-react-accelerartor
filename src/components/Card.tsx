@@ -12,7 +12,7 @@ const Card: React.FC<cardProps> = ({
   const trimmedTitle = title.length > 26 ? `${title.slice(0, 23)}...` : title;
 
   return (
-    <div className="flex flex-col gap-3 w-[250px] h-[370px] rounded-[10px] border border-yellow-600 dark:border-light_blue overflow-hidden lg:w-[300px] lg:h-[470px] hover:scale-110 transition duration-300 ease-linear ">
+    <div className="flex flex-col gap-3 w-[250px] h-[370px] rounded-[10px] border border-yellow-600 dark:border-light_blue overflow-hidden lg:w-[300px] lg:h-[470px] hover:scale-105 transition duration-300 ease-linear ">
       <Link href={`/${locale}/products/${id}`}>
         <div className="flex flex-col gap-3 w-full h-[310px] lg:h-[390px]">
           <div className="w-full min-h-[200px] max-h-[200px] lg:min-h-[250px] lg:max-h-[250px]">

@@ -22,6 +22,15 @@
       "blog": "Blog",
       "profile": "Profile",
       "admin": "Admin",
-      "add-user": "Add User"
+      "add-user": "Add User",
+      "cart" : "Cart",
+      "product-image" : "Product Image",
+      "product-title" : "Product Title",
+      "category" : "Category",
+      "price" : "Price",
+      "quantity" : "Quantity",
+      "cart-is-empty" : "Cart is empty",
+      "clear" : "Clear",
+      "total": "Total"
     }
   }
