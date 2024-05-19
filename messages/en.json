@@ -31,6 +31,7 @@
       "quantity" : "Quantity",
       "cart-is-empty" : "Cart is empty",
       "clear" : "Clear",
-      "total": "Total"
+      "total-price": "Total Price",
+      "total-items": "Total Items"
     }
   }
