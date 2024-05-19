@@ -31,6 +31,7 @@
       "quantity" : "რაოდენობა",
       "cart-is-empty" : "კალათა ცარიელია",
       "clear" : "გასუფთავება",
-      "total": "სულ"
+      "total-price": "ფასი სულ",
+      "total-items": "ნივთები სულ"
     }
 }

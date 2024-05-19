@@ -1,26 +1,30 @@
-"use client"
+"use client";
 
 import Image from "next/image";
 import IncrementButton from "./IncrementButton";
 import DecrementButton from "./DecrementButton";
 import RemoveProductButton from "./RemoveProductButton";
 import ClearCartButton from "./ClearCartButton";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useOptimistic } from "react";
-
+import Link from "next/link";
 
 const CartList = ({ cartElements }: { cartElements: CartWithProducts }) => {
-  const [optimistic, addOptimistic] = useOptimistic<CartWithProducts, CartWithProducts>(cartElements, (state, newCart) => ({ ...state, ...newCart }));
+  const [optimistic, addOptimistic] = useOptimistic<
+    CartWithProducts,
+    CartWithProducts
+  >(cartElements, (state, newCart) => ({ ...state, ...newCart }));
 
   const cardsData = optimistic.products;
   const t = useTranslations("Index");
-
+  const locale = useLocale();
   return (
     <div className="w-full py-5 px-5 max-w-[1400px] mx-auto my-10 lg:py-10 lg:px-0 ">
       {cardsData.length > 0 ? (
         <h2
-          className={`text-[40px] leading-[25px] text-center ${cardsData.length < 2 ? "lg:-mt-[200px]" : ""
-            } ${cardsData.length < 2 ? "-mt-[50px]" : ""}`}
+          className={`text-[40px] leading-[25px] text-center ${
+            cardsData.length < 2 ? "lg:-mt-[200px]" : ""
+          } ${cardsData.length < 2 ? "-mt-[50px]" : ""}`}
         >
           {t("cart")}
         </h2>
@@ -46,18 +50,21 @@ const CartList = ({ cartElements }: { cartElements: CartWithProducts }) => {
               {cardsData.map((product: productElement, index: number) => (
                 <tr
                   key={product.id}
-                  className={`${index === cardsData.length - 1 ? "[&>td>div]:pb-5" : ""
-                    }`}
+                  className={`${
+                    index === cardsData.length - 1 ? "[&>td>div]:pb-5" : ""
+                  }`}
                 >
                   <td>
                     <div className="w-full max-h-[100px] lg:max-h-[150px] overflow-hidden">
-                      <Image
-                        className="w-auto object-cover object-center"
-                        src={product.thumbnail}
-                        alt={product.title}
-                        width={100}
-                        height={100}
-                      />
+                      <Link href={`/${locale}/products/${product.id}`}>
+                        <Image
+                          className="w-auto object-cover object-center"
+                          src={product.thumbnail}
+                          alt={product.title}
+                          width={100}
+                          height={100}
+                        />
+                      </Link>
                     </div>
                   </td>
                   <td>{product.title}</td>
@@ -66,13 +73,27 @@ const CartList = ({ cartElements }: { cartElements: CartWithProducts }) => {
 
                   <td>
                     <p className="flex gap-3 items-center">
-                      <DecrementButton item={product} optimistic={optimistic} addOptimistic={addOptimistic} />
-                      <span className="text-xl">{product.quantity}</span>
-                      <IncrementButton item={product} optimistic={optimistic} addOptimistic={addOptimistic} />
+                      <DecrementButton
+                        item={product}
+                        optimistic={optimistic}
+                        addOptimistic={addOptimistic}
+                      />
+                      <span className="w-4 text-center text-xl">
+                        {product.quantity}
+                      </span>
+                      <IncrementButton
+                        item={product}
+                        optimistic={optimistic}
+                        addOptimistic={addOptimistic}
+                      />
                     </p>
                   </td>
                   <td className="text-center">
-                    <RemoveProductButton item={product} optimistic={optimistic} addOptimistic={addOptimistic} />
+                    <RemoveProductButton
+                      item={product}
+                      optimistic={optimistic}
+                      addOptimistic={addOptimistic}
+                    />
                   </td>
                 </tr>
               ))}
@@ -81,9 +102,13 @@ const CartList = ({ cartElements }: { cartElements: CartWithProducts }) => {
                 <td></td>
                 <td></td>
                 <td></td>
-                <td className="text-[22px] font-bold ">{t("total")} :</td>
-                <td className="text-[22px] font-bold text-center ">
-                  {optimistic?.price} €
+                <td className="text-[20px] font-bold ">
+                  <div className="w-full">{t("total-items")} :</div>
+                  <div className="w-full">{t("total-price")} :</div>
+                </td>
+                <td className="text-[20px] font-bold text-center ">
+                  <div className="w-full">{optimistic?.count}</div>
+                  <div className="w-full">{optimistic?.price} €</div>
                 </td>
               </tr>
             </tbody>
@@ -95,7 +120,7 @@ const CartList = ({ cartElements }: { cartElements: CartWithProducts }) => {
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
 export default CartList;

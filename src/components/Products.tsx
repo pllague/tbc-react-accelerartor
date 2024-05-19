@@ -58,29 +58,32 @@ const Products = ({ isSorted = false, searchQuery = "" }) => {
 
   return (
     <section>
-      {newCards.length === 0 ? (
+      {cards.length === 0 ? (
         <LoadingAnimation />
       ) : (
-        <div className="w-full py-5 px-5 max-w-[1400px] mx-auto my-10 lg:py-10 lg:px-0 ">
-          <div className="relative mb-[60px]">
-            <h2 className="text-[40px] leading-[25px] text-center">
-              {locale === "en" ? "Products" : "პროდუქტები"}
-            </h2>
-            {/* <Cart
-              className="group absolute top-0 right-[25px] lg:right-[40px] transform -translate-y-1/2 cursor-pointer "
-              selectedNumber={selectedNumber}
-            /> */}
-          </div>
-          <div className="flex flex-wrap justify-center mt-[25px] lg:mt-[65px] gap-[25px] lg:gap-10">
-            {newCards.map((card) => (
-              <Card
-                key={card.id}
-                card={card}
-                // handleClick={() => handleClick(card)}
-                handleClick={() => addToCartAction(card.id)}
-              />
-            ))}
-          </div>
+        <div className="w-full py-5 px-5 max-w-[1400px] mx-auto my-10 lg:py-10 lg:px-0">
+          {newCards.length === 0 ? (
+            <div className="text-center text-xl mt-10">
+              {locale === "en" ? "Product not found" : "პროდუქტი არ მოიძებნა"}
+            </div>
+          ) : (
+            <>
+              <div className="relative mb-[60px]">
+                <h2 className="text-[40px] leading-[25px] text-center">
+                  {locale === "en" ? "Products" : "პროდუქტები"}
+                </h2>
+              </div>
+              <div className="flex flex-wrap justify-center mt-[25px] lg:mt-[65px] gap-[25px] lg:gap-10">
+                {newCards.map((card) => (
+                  <Card
+                    key={card.id}
+                    card={card}
+                    handleClick={() => addToCartAction(card.id)}
+                  />
+                ))}
+              </div>
+            </>
+          )}
         </div>
       )}
     </section>

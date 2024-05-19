@@ -1,27 +1,35 @@
 "use client";
-import { useLocale, useTranslations } from "next-intl";
 import { clearCartAction } from "../app/actions";
 import { useTransition } from "react";
 
-const ClearCartButton = ({ addOptimistic }: { addOptimistic: (action: CartWithProducts) => void }) => {
+const ClearCartButton = ({
+  addOptimistic,
+}: {
+  addOptimistic: (action: CartWithProducts) => void;
+}) => {
   const [, startTransition] = useTransition();
-  const locale = useLocale();
-  const t = useTranslations("Index");
 
   const handleClearCart = async () => {
-    startTransition(() => addOptimistic({ count: 0, price: 0, products: [] }))
-    await clearCartAction()
-  }
+    startTransition(() => addOptimistic({ count: 0, price: 0, products: [] }));
+    await clearCartAction();
+  };
 
   return (
-    <button
-      onClick={handleClearCart}
-      className={
-        " bg-yellow-600 dark:bg-blue-500 hover:bg-orange dark:hover:bg-orange rounded-[100px] py-2 lg:py-auto px-7 font-small lg:font-medium cursor-pointer transition-all transform duration-300 ease-linear" +
-        (locale === "ka" ? " lg:text-[16px]" : " lg:text-[18px]")
-      }
-    >
-      {t("clear")}
+    <button onClick={handleClearCart}>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth={2}
+        stroke="currentColor"
+        className="w-9 h-9 stroke-red-700 hover:stroke-orange transition-all duration-300 ease-in-out"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="m20.25 7.5-.625 10.632a2.25 2.25 0 0 1-2.247 2.118H6.622a2.25 2.25 0 0 1-2.247-2.118L3.75 7.5m6 4.125 2.25 2.25m0 0 2.25 2.25M12 13.875l2.25-2.25M12 13.875l-2.25 2.25M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z"
+        />
+      </svg>
     </button>
   );
 };
