@@ -80,3 +80,9 @@ interface NavigationProps {
     layout: string;
     setIsOpen?: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
+interface CartWithProducts {
+    count: number,
+    price: number,
+    products: productElement[],
+}

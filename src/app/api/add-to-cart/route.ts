@@ -20,9 +20,7 @@ export async function PUT(request: NextRequest) {
             if (index === -1) {
                 newProduct = { id: prod_id, quantity: 1 };
                 await sql`UPDATE carts SET products = jsonb_insert(products,'{0}',${JSON.stringify(newProduct)}),added_on = NOW() WHERE user_id = ${Number(uid)};`;
-            }
-
-            if (index !== -1) {
+            } else {
                 const product = products[index];
                 const path = `{${index}}`;
                 newProduct = { ...product, quantity: product.quantity + 1 };
