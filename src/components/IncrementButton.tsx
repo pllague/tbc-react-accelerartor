@@ -1,27 +1,30 @@
 "use client";
 import { addToCartAction } from "../app/actions";
 import { useTransition } from "react";
+import { useCartOptimistic } from "../hooks/useCartOptimistic";
 
 interface Props {
   item: productElement;
-  optimistic: CartWithProducts;
-  addOptimistic: (action: CartWithProducts) => void;
 }
 
-const IncrementButton = ({ item, optimistic, addOptimistic }: Props) => {
+const IncrementButton = ({ item }: Props) => {
   const [, startTransition] = useTransition();
 
+  const { optimistic, addOptimistic } = useCartOptimistic();
+
   const addToCart = async () => {
-    startTransition(() => {
-      const newCart = {
-        count: optimistic.count + 1,
-        price: optimistic.price + item.price,
-        products: optimistic.products.map((p) =>
-          p.id === item.id ? { ...p, quantity: p.quantity! + 1 } : { ...p }
-        ),
-      };
-      return addOptimistic(newCart);
-    });
+    if (addOptimistic && optimistic) {
+      startTransition(() => {
+        const newCart = {
+          count: optimistic.count + 1,
+          price: optimistic.price + item.price,
+          products: optimistic.products.map((p) =>
+            p.id === item.id ? { ...p, quantity: p.quantity! + 1 } : { ...p }
+          ),
+        };
+        return addOptimistic(newCart);
+      });
+    }
     await addToCartAction(item.id);
   };
 

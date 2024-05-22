@@ -6,14 +6,12 @@ import DecrementButton from "./DecrementButton";
 import RemoveProductButton from "./RemoveProductButton";
 import ClearCartButton from "./ClearCartButton";
 import { useLocale, useTranslations } from "next-intl";
-import { useOptimistic } from "react";
-import Link from "next/link";
 
-const CartList = ({ cartElements }: { cartElements: CartWithProducts }) => {
-  const [optimistic, addOptimistic] = useOptimistic<
-    CartWithProducts,
-    CartWithProducts
-  >(cartElements, (state, newCart) => ({ ...state, ...newCart }));
+import Link from "next/link";
+import { useCartOptimistic } from "../hooks/useCartOptimistic";
+
+const CartList = () => {
+  const { optimistic } = useCartOptimistic();
 
   const cardsData = optimistic.products;
   const t = useTranslations("Index");
@@ -42,7 +40,7 @@ const CartList = ({ cartElements }: { cartElements: CartWithProducts }) => {
                 <th>{t("price")}</th>
                 <th>{t("quantity")}</th>
                 <th className="flex justify-center">
-                  <ClearCartButton addOptimistic={addOptimistic} />
+                  <ClearCartButton />
                 </th>
               </tr>
             </thead>
@@ -73,27 +71,15 @@ const CartList = ({ cartElements }: { cartElements: CartWithProducts }) => {
 
                   <td>
                     <p className="flex gap-3 items-center">
-                      <DecrementButton
-                        item={product}
-                        optimistic={optimistic}
-                        addOptimistic={addOptimistic}
-                      />
+                      <DecrementButton item={product} />
                       <span className="w-4 text-center text-xl">
                         {product.quantity}
                       </span>
-                      <IncrementButton
-                        item={product}
-                        optimistic={optimistic}
-                        addOptimistic={addOptimistic}
-                      />
+                      <IncrementButton item={product} />
                     </p>
                   </td>
                   <td className="text-center">
-                    <RemoveProductButton
-                      item={product}
-                      optimistic={optimistic}
-                      addOptimistic={addOptimistic}
-                    />
+                    <RemoveProductButton item={product} />
                   </td>
                 </tr>
               ))}

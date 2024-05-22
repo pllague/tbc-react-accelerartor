@@ -1,13 +1,11 @@
 "use client";
 import { clearCartAction } from "../app/actions";
 import { useTransition } from "react";
+import { useCartOptimistic } from "../hooks/useCartOptimistic";
 
-const ClearCartButton = ({
-  addOptimistic,
-}: {
-  addOptimistic: (action: CartWithProducts) => void;
-}) => {
+const ClearCartButton = () => {
   const [, startTransition] = useTransition();
+  const { addOptimistic } = useCartOptimistic();
 
   const handleClearCart = async () => {
     startTransition(() => addOptimistic({ count: 0, price: 0, products: [] }));

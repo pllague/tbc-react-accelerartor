@@ -2,15 +2,20 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
+import { CartOptimisticContextProvider } from "../../../providers/CartOptimisticProvider";
+import { getDetailedCart } from "../../api";
 
 const DashboardLayout: React.FC<childrenProps> = async ({ children }) => {
   const messages = await getMessages();
+  const cart = await getDetailedCart();
   return (
     <>
       <NextIntlClientProvider messages={messages}>
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <CartOptimisticContextProvider cart={cart}>
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </CartOptimisticContextProvider>
       </NextIntlClientProvider>
     </>
   );

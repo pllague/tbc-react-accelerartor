@@ -2,11 +2,12 @@
 import Card from "./Card";
 // import Cart from "./Cart";
 import { useDebounce } from "../hooks/hooks";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useTransition } from "react";
 import { useLocale } from "next-intl";
 // import { reducer } from "../helpers";
 import { addToCartAction } from "../app/actions";
 import LoadingAnimation from "./LoadingAnimation";
+import { useCartOptimistic } from "../hooks/useCartOptimistic";
 
 const Products = ({ isSorted = false, searchQuery = "" }) => {
   const locale = useLocale();
@@ -55,6 +56,25 @@ const Products = ({ isSorted = false, searchQuery = "" }) => {
   // const selectedNumber = SelectedProducts.reduce((acc, curr) => {
   //   return acc + curr.count;
   // }, 0);
+  const [, startTransition] = useTransition();
+
+  const { optimistic, addOptimistic } = useCartOptimistic();
+
+  const addToCart = async (card: productElement) => {
+    if (addOptimistic && optimistic) {
+      startTransition(() => {
+        const newCart = {
+          count: optimistic.count + 1,
+          price: optimistic.price + card.price,
+          products: optimistic.products.map((p) =>
+            p.id === card.id ? { ...p, quantity: p.quantity! + 1 } : { ...p }
+          ),
+        };
+        return addOptimistic(newCart);
+      });
+    }
+    await addToCartAction(card.id);
+  };
 
   return (
     <section>
@@ -78,7 +98,7 @@ const Products = ({ isSorted = false, searchQuery = "" }) => {
                   <Card
                     key={card.id}
                     card={card}
-                    handleClick={() => addToCartAction(card.id)}
+                    handleClick={() => addToCart(card)}
                   />
                 ))}
               </div>
