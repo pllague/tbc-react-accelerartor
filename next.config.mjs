@@ -8,12 +8,9 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "cdn.dummyjson.com",
-        port: "",
-        pathname: "/product-images/**",
       },
     ],
   },
 };
 
-// export { nextConfig };
 export default withNextIntl(nextConfig);

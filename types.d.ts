@@ -77,12 +77,18 @@ interface CartTable {
 }
 
 interface NavigationProps {
-    layout: string;
-    setIsOpen?: React.Dispatch<React.SetStateAction<boolean>>;
+    layout: string,
+    setIsOpen?: React.Dispatch<React.SetStateAction<boolean>>,
 }
 
 interface CartWithProducts {
     count: number,
     price: number,
     products: productElement[],
+}
+
+interface IStorageCart {
+    count: number,
+    price: number,
+    products: productElement[]
 }

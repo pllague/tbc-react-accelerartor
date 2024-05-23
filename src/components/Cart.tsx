@@ -1,19 +1,22 @@
+"use client";
 import Link from "next/link";
 import { useLocale } from "next-intl";
+import { useCartOptimistic } from "../hooks/useCartOptimistic";
 
-const Cart = ({ selectedNumber }: { selectedNumber: number }) => {
+const Cart = () => {
   const locale = useLocale();
+  const { optimistic } = useCartOptimistic();
 
   return (
-    <Link href={`/${locale}/checkout`}>
+    <Link href={`/${locale}/cart`}>
       <div className="group relative cursor-pointer">
-        {selectedNumber > 0 ? (
+        {optimistic.count > 0 ? (
           <span
             className={`absolute -top-[5px] -right-2 bg-orange dark:bg-blue-500 rounded-full text-[12px] ${
-              selectedNumber < 10 ? "px-[6px]" : "px-1 py-[1px]"
+              optimistic.count < 10 ? "px-[6px]" : "px-1 py-[1px]"
             }`}
           >
-            {selectedNumber}
+            {optimistic.count}
           </span>
         ) : (
           ""

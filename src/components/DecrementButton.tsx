@@ -1,15 +1,15 @@
 "use client";
 import { decrementProductQuantityAction } from "../app/actions";
 import { useTransition } from "react";
+import { useCartOptimistic } from "../hooks/useCartOptimistic";
 
 interface Props {
   item: productElement;
-  optimistic: CartWithProducts;
-  addOptimistic: (action: CartWithProducts) => void;
 }
 
-const DecrementButton = ({ item, optimistic, addOptimistic }: Props) => {
+const DecrementButton = ({ item }: Props) => {
   const [, startTransition] = useTransition();
+  const { optimistic, addOptimistic } = useCartOptimistic();
 
   const decrementProductQuantity = async () => {
     startTransition(() => {

@@ -1,15 +1,15 @@
 "use client";
 import { removeProductFromCartAction } from "../app/actions";
 import { useTransition } from "react";
+import { useCartOptimistic } from "../hooks/useCartOptimistic";
 
 interface Props {
   item: productElement;
-  optimistic: CartWithProducts;
-  addOptimistic: (action: CartWithProducts) => void;
 }
 
-const RemoveProductButton = ({ item, optimistic, addOptimistic }: Props) => {
+const RemoveProductButton = ({ item }: Props) => {
   const [, startTransition] = useTransition();
+  const { optimistic, addOptimistic } = useCartOptimistic();
 
   const removeProductFromCart = async () => {
     startTransition(() => {
