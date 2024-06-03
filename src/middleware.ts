@@ -1,6 +1,8 @@
 import { NextResponse, NextRequest } from "next/server";
-import { AUTH_COOKIE_KEY } from "./constants";
+// import { AUTH_COOKIE_KEY } from "./constants";
 import createIntlMiddleware from "next-intl/middleware";
+import { getSession } from '@auth0/nextjs-auth0/edge';
+
 const protectedRoutes = [
   "/",
   "/en",
@@ -17,16 +19,22 @@ const protectedRoutes = [
 const publicRoutes = ["/login", "/ka/login", "/en/login"];
 
 export default async function middleware(request: NextRequest) {
-  //Middleware for rout protections
-  const cookie = request.cookies.get(AUTH_COOKIE_KEY)?.value;
-  let token = null;
 
-  if (cookie) {
-    const cookieObject = JSON.parse(cookie);
-    if (cookieObject) {
-      token = cookieObject?.token;
-    }
-  }
+  const res = NextResponse.next();
+
+  const session = await getSession(request, res);
+  const userId = session?.user?.sub;
+
+  //Middleware for rout protections
+  // const cookie = request.cookies.get(AUTH_COOKIE_KEY)?.value;
+  // let token = null;
+  // if (cookie) {
+  //   const cookieObject = JSON.parse(cookie);
+  //   if (cookieObject) {
+  //     token = cookieObject?.token;
+  //   }
+  // }
+
   // const localeValue = request.cookies.get("NEXT_LOCALE")?.value;
 
   const path = request.nextUrl.pathname;
@@ -37,10 +45,10 @@ export default async function middleware(request: NextRequest) {
 
   const isPublicRoute = publicRoutes.includes(path);
 
-  if (isProtectedRoute && !token) {
-    return NextResponse.redirect(new URL("/login", request.nextUrl));
+  if (isProtectedRoute && !userId) {
+    return NextResponse.redirect(new URL("/api/auth/login", request.nextUrl));
   }
-  if (isPublicRoute && token) {
+  if (isPublicRoute && (userId === undefined || userId)) {
     return NextResponse.redirect(new URL("/", request.nextUrl));
   }
   // if (path === "/" && token) {

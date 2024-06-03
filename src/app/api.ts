@@ -1,5 +1,5 @@
-import { cookies } from "next/headers";
-import { BASE_URL, AUTH_COOKIE_KEY } from "../constants";
+import { BASE_URL } from "../constants";
+import { getSession } from "@auth0/nextjs-auth0";
 
 export async function getUsers() {
   const response = await fetch(BASE_URL + "/api/get-users");
@@ -33,7 +33,7 @@ export async function updateUser(
   });
 }
 
-export async function createCart(user_id: number, item_id: number) {
+export async function createCart(user_id: string, item_id: number) {
   return await fetch(`${BASE_URL}/api/create-cart`, {
     method: "POST",
     body: JSON.stringify({ uid: user_id, prod_id: item_id }),
@@ -41,11 +41,14 @@ export async function createCart(user_id: number, item_id: number) {
 }
 
 export async function getDetailedCart() {
+  const session = await getSession();
+  const userId = session?.user?.sub;
   const res = await fetch(`${BASE_URL}/api/get-detailed-cart`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Cookie: `uid=${JSON.parse(cookies().get(AUTH_COOKIE_KEY)?.value!).id};`,
+      // Cookie: `uid=${JSON.parse(cookies().get(AUTH_COOKIE_KEY)?.value!).id};`,
+      Cookie: `uid=${userId};`,
     },
   });
 
@@ -65,11 +68,14 @@ export async function fetchDataFromApi<T>(
   return json;
 }
 export async function getCart() {
+  const session = await getSession();
+  const userId = session?.user?.sub;
   const response = await fetch(BASE_URL + `/api/get-cart`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Cookie: `uid=${JSON.parse(cookies().get(AUTH_COOKIE_KEY)?.value!).id}`,
+      // Cookie: `uid=${JSON.parse(cookies().get(AUTH_COOKIE_KEY)?.value!).id}`,
+      Cookie: `uid=${userId};`,
     },
   });
   const carts = await response.json();
@@ -77,44 +83,56 @@ export async function getCart() {
 }
 
 export async function addToCart(id: number) {
+  const session = await getSession();
+  const userId = session?.user?.sub;
   await fetch(`${BASE_URL}/api/add-to-cart`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
-      Cookie: `uid=${JSON.parse(cookies().get(AUTH_COOKIE_KEY)?.value!).id}`,
+      // Cookie: `uid=${JSON.parse(cookies().get(AUTH_COOKIE_KEY)?.value!).id}`,
+      Cookie: `uid=${userId};`,
     },
     body: JSON.stringify({ prod_id: id }),
   });
 }
 
 export async function decrementProductQuantity(id: number) {
+  const session = await getSession();
+  const userId = session?.user?.sub;
   await fetch(`${BASE_URL}/api/decrement-product-quantity`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
-      Cookie: `uid=${JSON.parse(cookies().get(AUTH_COOKIE_KEY)?.value!).id}`,
+      // Cookie: `uid=${JSON.parse(cookies().get(AUTH_COOKIE_KEY)?.value!).id}`,
+      Cookie: `uid=${userId};`,
     },
     body: JSON.stringify({ prod_id: id }),
   });
 }
 
 export async function removeProductFromCart(id: number) {
+  const session = await getSession();
+  const userId = session?.user?.sub;
   await fetch(`${BASE_URL}/api/remove-product-from-cart`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
-      Cookie: `uid=${JSON.parse(cookies().get(AUTH_COOKIE_KEY)?.value!).id}`,
+      // Cookie: `uid=${JSON.parse(cookies().get(AUTH_COOKIE_KEY)?.value!).id}`,
+      Cookie: `uid=${userId};`,
     },
     body: JSON.stringify({ prod_id: id }),
   });
 }
 
 export async function clearCart() {
+  const session = await getSession();
+  const userId = session?.user?.sub;
   await fetch(`${BASE_URL}/api/clear-cart`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
-      Cookie: `uid=${JSON.parse(cookies().get(AUTH_COOKIE_KEY)?.value!).id}`,
+      // Cookie: `uid=${JSON.parse(cookies().get(AUTH_COOKIE_KEY)?.value!).id}`,
+      Cookie: `uid=${userId};`,
     },
   });
 }

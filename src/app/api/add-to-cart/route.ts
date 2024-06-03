@@ -6,11 +6,10 @@ export async function PUT(request: NextRequest) {
 
     const uid = request.cookies.get("uid")?.value;
     const { prod_id } = await request.json();
-
     try {
         if (!prod_id || !uid) throw new Error('product or user not found');
 
-        const cart = await sql<CartTable>`SELECT * FROM carts WHERE user_id = ${Number(uid)};`;
+        const cart = await sql<CartTable>`SELECT * FROM carts WHERE user_id = ${uid};`;
 
         if (cart.rows.length) {
             let newProduct: ProductObject;
@@ -19,15 +18,15 @@ export async function PUT(request: NextRequest) {
 
             if (index === -1) {
                 newProduct = { id: prod_id, quantity: 1 };
-                await sql`UPDATE carts SET products = jsonb_insert(products,'{0}',${JSON.stringify(newProduct)}),added_on = NOW() WHERE user_id = ${Number(uid)};`;
+                await sql`UPDATE carts SET products = jsonb_insert(products,'{0}',${JSON.stringify(newProduct)}),added_on = NOW() WHERE user_id = ${uid};`;
             } else {
                 const product = products[index];
                 const path = `{${index}}`;
                 newProduct = { ...product, quantity: product.quantity + 1 };
-                await sql`UPDATE carts SET products = jsonb_set(products,${path},${JSON.stringify(newProduct)}),added_on = NOW() WHERE user_id = ${Number(uid)};`;
+                await sql`UPDATE carts SET products = jsonb_set(products,${path},${JSON.stringify(newProduct)}),added_on = NOW() WHERE user_id = ${uid};`;
             }
         } else {
-            createCart(Number(uid), prod_id);
+            createCart(uid, prod_id);
         }
     } catch (error) {
         return NextResponse.json({ error }, { status: 500 });

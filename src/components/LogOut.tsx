@@ -1,7 +1,7 @@
 "use client";
 const LogOut = () => {
   return (
-    <form action="/api" method="GET">
+    <form action="/api/auth/logout" method="GET">
       <button className="group mt-[5px]">
         <svg
           xmlns="http://www.w3.org/2000/svg"

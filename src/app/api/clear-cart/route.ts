@@ -7,14 +7,14 @@ export async function PUT(request: NextRequest) {
   try {
     if (!uid) throw new Error("user not found");
 
-    const cart = await sql`SELECT * FROM carts WHERE user_id = ${Number(uid)};`;
+    const cart = await sql`SELECT * FROM carts WHERE user_id = ${uid};`;
 
     if (cart.rows.length) {
       const products: SelectedProduct[] = [];
 
       await sql`UPDATE carts SET products = ${JSON.stringify(
         products
-      )}, added_on = NOW() WHERE user_id = ${Number(uid)};`;
+      )}, added_on = NOW() WHERE user_id = ${uid};`;
     }
   } catch (error) {
     return NextResponse.json({ error }, { status: 500 });

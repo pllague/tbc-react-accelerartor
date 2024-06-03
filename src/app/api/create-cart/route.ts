@@ -9,7 +9,7 @@ export async function POST(request: NextRequest) {
 
     if (!uid || !prod_id) throw new Error('user_id and products fields required');
 
-    await sql`INSERT INTO carts (user_id, products) VALUES (${+uid}, ${item});`;
+    await sql`INSERT INTO carts (user_id, products) VALUES (${uid}, ${item});`;
   } catch (error) {
     return NextResponse.json({ error }, { status: 500 });
   }
