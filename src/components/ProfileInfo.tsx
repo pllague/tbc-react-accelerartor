@@ -1,12 +1,18 @@
 "use client";
 import { editProfileInfo } from "../app/actions";
 import { useState } from "react";
+interface UserInfoDb {
+  name: string;
+  email: string;
+  sub: string;
+  image_url: string;
+}
 
-export default function ProfileInfo({ user }: { user: any }) {
+export default function ProfileInfo({ user }: { user: UserInfoDb }) {
   const [name, setName] = useState(user?.name || "");
   const [email, setEmail] = useState(user?.email || "");
   const [editProfileMessage, setEditProfileMessage] = useState(false);
-  const userSub = user.sub;
+  const userSub = user?.sub;
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
