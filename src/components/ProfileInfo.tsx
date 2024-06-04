@@ -3,7 +3,6 @@ import { editProfileInfo } from "../app/actions";
 import { useState } from "react";
 
 export default function ProfileInfo({ user }: { user: any }) {
-  const [nickname, setNickname] = useState(user?.nickname || "");
   const [name, setName] = useState(user?.name || "");
   const [email, setEmail] = useState(user?.email || "");
   const [editProfileMessage, setEditProfileMessage] = useState(false);
@@ -31,14 +30,6 @@ export default function ProfileInfo({ user }: { user: any }) {
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="text-lg leading-6 h-8"
-        />
-      )}
-      {nickname && (
-        <input
-          type="text"
-          value={nickname}
-          onChange={(e) => setNickname(e.target.value)}
           className="text-lg leading-6 h-8"
         />
       )}
