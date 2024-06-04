@@ -3,7 +3,6 @@ import { NextRequest, NextResponse } from 'next/server';
 
 
 export async function GET(_: NextRequest,{ params: { id } }: { params: { id: string }} ) {
-    // const id = request.nextUrl.pathname.replace('/api/get-users/', '');
   try {
     const user = await sql`SELECT * FROM users WHERE sub = ${id}`;
     return NextResponse.json({ user }, { status: 200 });
