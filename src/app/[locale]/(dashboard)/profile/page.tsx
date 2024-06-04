@@ -1,6 +1,6 @@
 import AvatarUpload from "../../../../components/AvatarUpload";
 import { getUserImage, getUserInfo } from "../../../api";
-import ProfileInfo from "../../../../components/ProfileInfo";
+// import ProfileInfo from "../../../../components/ProfileInfo";
 export const metadata = {
   title: "Profile",
   description: "Profile by Next",
@@ -22,12 +22,9 @@ const ProfilePage = async () => {
             {userInfo.name && (
               <h3 className="text-xl  leading-6 h-8">Full Name</h3>
             )}
-            {userInfo.nickname && (
-              <h3 className="text-xl  leading-6 h-8">Nickname</h3>
-            )}
             {userInfo.email && <h3 className="text-xl leading-6 h-8">Email</h3>}
           </div>
-          <ProfileInfo user={userInfo} />
+          {/* <ProfileInfo user={userInfo} /> */}
         </div>
       </div>
     </div>
