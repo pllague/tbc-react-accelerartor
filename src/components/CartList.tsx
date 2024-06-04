@@ -18,7 +18,7 @@ const CartList = () => {
   const locale = useLocale();
   return (
     <div className="w-full py-5 px-5 max-w-[1400px] mx-auto my-10 lg:py-10 lg:px-0 ">
-      {cardsData.length > 0 ? (
+      {cardsData?.length > 0 ? (
         <h2
           className={`text-[40px] leading-[25px] text-center ${
             cardsData.length < 2 ? "lg:-mt-[200px]" : ""
@@ -29,7 +29,7 @@ const CartList = () => {
       ) : (
         ""
       )}
-      {cardsData.length > 0 ? (
+      {cardsData?.length > 0 ? (
         <div className="w-full lg:w-4/5 flex flex-col mt-[25px] lg:mt-[65px] gap-[25px] lg:gap-10 mx-auto">
           <table>
             <thead className="[&>tr>th]:pb-3">

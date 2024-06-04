@@ -92,3 +92,9 @@ interface IStorageCart {
     price: number,
     products: productElement[]
 }
+
+interface ProfileData {
+    email: string;
+    userSub: string;
+    name: string;
+}

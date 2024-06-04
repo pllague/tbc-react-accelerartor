@@ -9,6 +9,14 @@ const nextConfig = {
         protocol: "https",
         hostname: "cdn.dummyjson.com",
       },
+      {
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com",
+      },
+      {
+        protocol: "https",
+        hostname: "xjck1m5khuqeilku.public.blob.vercel-storage.com",
+      },
     ],
   },
 };

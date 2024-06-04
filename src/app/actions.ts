@@ -11,6 +11,7 @@ import {
   deleteUser,
   removeProductFromCart,
   updateUser,
+  editProfile,
 } from "./api";
 
 // export async function login(username, password) {
@@ -74,4 +75,10 @@ export async function removeProductFromCartAction(id: number) {
 export async function clearCartAction() {
   await clearCart();
   revalidatePath("/checkout");
+}
+
+export async function editProfileInfo(formData: ProfileData) {
+  const {name,email,userSub} = formData;
+   revalidatePath("/profile");
+   editProfile(name,email,userSub);
 }

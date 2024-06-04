@@ -8,14 +8,14 @@ export async function PUT(request: NextRequest) {
   try {
     if (!prod_id || !uid) throw new Error("product or user not found");
 
-    const cart = await sql<CartTable>`SELECT * FROM carts WHERE user_id = ${Number(uid)};`;
+    const cart = await sql<CartTable>`SELECT * FROM carts WHERE user_id = ${uid};`;
 
     if (cart.rows.length) {
       const products = cart.rows[0].products;
       const index = products.findIndex((item) => item.id === prod_id);
       const path = `{${index}}`;
 
-      if (index !== -1) await sql`UPDATE carts SET products = products#-${path}, added_on = NOW() WHERE user_id = ${Number(uid)};`;
+      if (index !== -1) await sql`UPDATE carts SET products = products#-${path}, added_on = NOW() WHERE user_id = ${uid};`;
     }
   } catch (error) {
     return NextResponse.json({ error }, { status: 500 });
