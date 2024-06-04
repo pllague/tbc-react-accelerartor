@@ -155,6 +155,7 @@ export async function getUserInfo() {
   const session = await getSession();
   const user = session?.user;
   const id = user?.sub;
+  console.log('ID --- : ' + id);
   const userSubId = await fetch(process.env.NEXT_PUBLIC_VERCEL_URL + `/api/get-users/${id}`,
     {
       cache: "no-store",

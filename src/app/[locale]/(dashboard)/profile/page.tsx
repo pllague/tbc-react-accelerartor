@@ -9,6 +9,7 @@ export const metadata = {
 const ProfilePage = async () => {
   const userImage = await getUserImage();
   const userInfo = await getUserInfo();
+  console.log("user image ------------------ :" + userImage);
   console.log("user data ------------------ :" + userInfo);
   return (
     <div className="px-[4%] pb-24 flex justify-center items-center md:flex-col gap-20 md:gap-12">
