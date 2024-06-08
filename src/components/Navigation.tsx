@@ -1,10 +1,13 @@
 "use client";
 import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
+import { useUser } from "@auth0/nextjs-auth0/client";
 
 const Navigation: React.FC<NavigationProps> = ({ layout, setIsOpen }) => {
   const t = useTranslations("Index");
   const locale = useLocale();
+  const { user } = useUser();
+  const isAdmin = Array.isArray(user?.role) && user.role.includes("Admin");
   return (
     <nav className="w-full lg:max-w-fit lg:bg-transparent ">
       <ul
@@ -49,15 +52,17 @@ const Navigation: React.FC<NavigationProps> = ({ layout, setIsOpen }) => {
             {t("contact")}
           </Link>
         </li>
-        <li className="cursor-pointer">
-          <Link
-            onClick={() => setIsOpen && setIsOpen(false)}
-            href={`/${locale}/admin`}
-            className="hover:text-orange leading-[25px] transition duration-300 ease-linear"
-          >
-            {t("admin")}
-          </Link>
-        </li>
+        {isAdmin && (
+          <li className="cursor-pointer">
+            <Link
+              onClick={() => setIsOpen && setIsOpen(false)}
+              href={`/${locale}/admin`}
+              className="hover:text-orange leading-[25px] transition duration-300 ease-linear"
+            >
+              {t("admin")}
+            </Link>
+          </li>
+        )}
       </ul>
     </nav>
   );

@@ -15,16 +15,7 @@ const ProfilePage = async () => {
         <AvatarUpload userImage={userImage} />
       </div>
       <div className="flex flex-col justify-center gap-8">
-        <div className="flex border border-blue-500 p-4 xs:p-2 rounded-lg gap-8 xs:gap-3 shadow-lg bg-white items-baseline dark:bg-slate-900">
-          <div className="flex flex-1 justify-center items-center"></div>
-          <div className="font-bold text-blue-500">
-            {userInfo?.name && (
-              <h3 className="text-xl  leading-6 h-8">Full Name</h3>
-            )}
-            {userInfo?.email && (
-              <h3 className="text-xl leading-6 h-8">Email</h3>
-            )}
-          </div>
+        <div className="flex p-4 rounded-lg gap-8 ">
           <ProfileInfo user={userInfo} />
         </div>
       </div>

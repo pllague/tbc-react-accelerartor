@@ -1,6 +1,7 @@
 "use client";
 import { editProfileInfo } from "../app/actions";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 interface UserInfoDb {
   name: string;
   email: string;
@@ -9,6 +10,7 @@ interface UserInfoDb {
 }
 
 export default function ProfileInfo({ user }: { user: UserInfoDb }) {
+  const t = useTranslations("Index");
   const [name, setName] = useState(user?.name || "");
   const [email, setEmail] = useState(user?.email || "");
   const [editProfileMessage, setEditProfileMessage] = useState(false);
@@ -30,27 +32,34 @@ export default function ProfileInfo({ user }: { user: UserInfoDb }) {
   };
 
   return (
-    <form className="text-gray-700 flex flex-col" onSubmit={handleSubmit}>
+    <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
       {name && (
-        <input
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          className="text-lg leading-6 h-8"
-        />
+        <div className="flex gap-1">
+          <label htmlFor="profileInfoName">{t("full-name")}</label>
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="text-md leading-6 "
+            id="profileInfoName"
+          />
+        </div>
       )}
       {email && (
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="text-lg leading-6 h-8 opacity-50"
-          readOnly
-        />
+        <div className="flex gap-1">
+          <label htmlFor="profileInfoEmail">{t("email")}</label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="text-md leading-6 "
+            id="profileInfoEmail"
+          />
+        </div>
       )}
       {editProfileMessage && <p>განახლდაა</p>}
       <button type="submit" className="text-lg leading-6 h-8 mt-4">
-        Submit
+        {t("submit")}
       </button>
     </form>
   );
