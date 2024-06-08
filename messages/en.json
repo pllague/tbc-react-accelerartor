@@ -32,6 +32,9 @@
       "cart-is-empty" : "Cart is empty",
       "clear" : "Clear",
       "total-price": "Total Price",
-      "total-items": "Total Items"
+      "total-items": "Total Items",
+      "log-out": "Log Out",
+      "log-in": "Log In",
+      "full-name": "Full Name"
     }
   }

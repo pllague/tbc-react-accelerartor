@@ -8,10 +8,11 @@ import { useLocale } from "next-intl";
 import { addToCartAction } from "../app/actions";
 import LoadingAnimation from "./LoadingAnimation";
 import { useCartOptimistic } from "../hooks/useCartOptimistic";
+import { useUser } from "@auth0/nextjs-auth0/client";
 
 const Products = ({ isSorted = false, searchQuery = "" }) => {
   const locale = useLocale();
-
+  const { user } = useUser();
   const [cards, setCards] = useState<productElement[]>([]);
 
   // const [cachedValue, setCachedValue] = useLocalStorage("selectedProducts", []);
@@ -61,7 +62,7 @@ const Products = ({ isSorted = false, searchQuery = "" }) => {
   const { optimistic, addOptimistic } = useCartOptimistic();
 
   const addToCart = async (card: productElement) => {
-    if (addOptimistic && optimistic) {
+    if (user?.sub && addOptimistic && optimistic) {
       startTransition(() => {
         const newCart = {
           count: optimistic.count + 1,

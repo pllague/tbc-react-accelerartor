@@ -1,4 +1,5 @@
 import { getSession } from "@auth0/nextjs-auth0";
+import { redirect } from "next/navigation";
 
 export async function getUsers() {
   const response = await fetch(process.env.NEXT_PUBLIC_VERCEL_URL + "/api/get-users");
@@ -84,6 +85,9 @@ export async function getCart() {
 export async function addToCart(id: number) {
   const session = await getSession();
   const userId = session?.user?.sub;
+  if(!userId){
+    return redirect("/api/auth/login");
+  }
   await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/add-to-cart`, {
     method: "PUT",
     headers: {

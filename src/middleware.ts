@@ -4,16 +4,19 @@ import createIntlMiddleware from "next-intl/middleware";
 import { getSession } from '@auth0/nextjs-auth0/edge';
 
 const protectedRoutes = [
-  "/",
-  "/en",
-  "/ka",
+  // "/",
+  // "/en",
+  // "/ka",
   "/profile",
-  "/contact",
-  "/products",
-  "/blog",
-  "/about",
+  // "/contact",
+  // "/products",
+  // "/blog",
+  // "/about",
+  "/cart",
+];
+
+const protectedRoutesAdmin = [
   "/admin",
-  "/checkout",
 ];
 
 const publicRoutes = ["/login", "/ka/login", "/en/login"];
@@ -24,7 +27,7 @@ export default async function middleware(request: NextRequest) {
 
   const session = await getSession(request, res);
   const userId = session?.user?.sub;
-
+  const isAdmin = Array.isArray(session?.user?.role) && session?.user.role.includes("Admin");
   //Middleware for rout protections
   // const cookie = request.cookies.get(AUTH_COOKIE_KEY)?.value;
   // let token = null;
@@ -38,14 +41,16 @@ export default async function middleware(request: NextRequest) {
   // const localeValue = request.cookies.get("NEXT_LOCALE")?.value;
 
   const path = request.nextUrl.pathname;
-  const isProtectedRoute =
-    protectedRoutes.includes(path) ||
-    path.includes("/blog") ||
-    path.includes("/products");
+  const isProtectedRoute = protectedRoutes.includes(path);
+
+  const isProtectedRoutesAdmin = protectedRoutesAdmin.includes(path);
 
   const isPublicRoute = publicRoutes.includes(path);
 
   if (isProtectedRoute && !userId) {
+    return NextResponse.redirect(new URL("/api/auth/login", request.nextUrl));
+  }
+  if (isProtectedRoutesAdmin && !isAdmin) {
     return NextResponse.redirect(new URL("/api/auth/login", request.nextUrl));
   }
   if (isPublicRoute && (userId === undefined || userId)) {

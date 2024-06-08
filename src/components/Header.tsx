@@ -7,9 +7,15 @@ import LangSwitcher from "./LangSwitcher";
 import { useLocale } from "next-intl";
 import Cart from "./Cart";
 import BurgerMenu from "./BurgerMenu";
+import { getSession } from "@auth0/nextjs-auth0";
+import LoginForm from "./LoginForm";
+import Profile from "./Pofile";
 
 const Header = async () => {
   const locale = useLocale();
+  const session = await getSession();
+  const userId = session?.user?.sub;
+
   return (
     <header className="w-full h-[70px] lg:h-[85px] bg-[#E5E1CC] dark:bg-secondary/90 sticky top-0 z-10">
       <div className="w-full h-full flex mx-auto justify-between items-center px-10 lg:px-0 lg:max-w-[1400px]">
@@ -30,11 +36,12 @@ const Header = async () => {
         </div>
         <div className="flex gap-6 lg:gap-4 items-center">
           <Cart />
+          {userId && <Profile />}
           <BurgerMenu />
           <div className="hidden lg:flex gap-4 items-center">
             <LangSwitcher />
             <DarkMode />
-            <LogOut />
+            {userId ? <LogOut /> : <LoginForm />}
           </div>
         </div>
       </div>

@@ -32,6 +32,9 @@
       "cart-is-empty" : "კალათა ცარიელია",
       "clear" : "გასუფთავება",
       "total-price": "ფასი სულ",
-      "total-items": "ნივთები სულ"
+      "total-items": "ნივთები სულ",
+      "log-out": "გასვლა",
+      "log-in": "შესვლა",
+      "full-name": "სრული სახელი"
     }
 }
