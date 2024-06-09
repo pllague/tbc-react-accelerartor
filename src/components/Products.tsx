@@ -22,12 +22,14 @@ const Products = ({ isSorted = false, searchQuery = "" }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("https://dummyjson.com/products");
+        const response = await fetch(
+          process.env.NEXT_PUBLIC_VERCEL_URL + "/api/get-products"
+        );
         if (!response.ok) {
           throw new Error("Failed to fetch data");
         }
         const data = await response.json();
-        setCards(data.products);
+        setCards(data.products.rows);
       } catch (error) {
         console.error("Error fetching data:", error);
       }

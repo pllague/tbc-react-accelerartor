@@ -53,3 +53,19 @@ export function reducer(state: SelectedProduct[], action: Action) {
       return initialState;
   }
 }
+
+const formatDate = (dateStr: string): string => {
+  const dateObj = new Date(dateStr);
+
+  // Extract time and date parts
+  const hours = dateObj.getUTCHours().toString().padStart(2, "0");
+  const minutes = dateObj.getUTCMinutes().toString().padStart(2, "0");
+  const day = dateObj.getUTCDate().toString().padStart(2, "0");
+  const month = (dateObj.getUTCMonth() + 1).toString().padStart(2, "0"); // Months are zero-based
+  const year = dateObj.getUTCFullYear().toString();
+
+  // Format date as "HH:MM DD-MM-YYYY"
+  return `${hours}:${minutes} ${day}-${month}-${year}`;
+};
+
+export {formatDate};

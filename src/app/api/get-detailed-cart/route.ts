@@ -17,8 +17,8 @@ export async function GET(req: NextRequest) {
     if (!user_id) throw new Error('not auth!');
 
     const cart = await sql<CartTable>`SELECT * FROM carts WHERE user_id = ${user_id};`;
-    const { products } = await fetchDataFromApi<{ products: productElement[] }>(`https://dummyjson.com/products`);
-
+    const data: FetchedProductsData = await fetchDataFromApi(process.env.NEXT_PUBLIC_VERCEL_URL + "/api/get-products");
+    const products:productElement[] = data.products.rows;
     if (cart.rows.length) {
       const userCart = cart.rows[0].products;
 

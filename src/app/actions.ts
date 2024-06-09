@@ -1,6 +1,3 @@
-// import { cookies } from "next/headers";
-// import { AUTH_COOKIE_KEY } from "@/costants";
-// import { redirect } from "next/navigation";
 "use server";
 import { revalidatePath } from "next/cache";
 import {
@@ -12,33 +9,13 @@ import {
   removeProductFromCart,
   updateUser,
   editProfile,
+  addProduct,
+  updateProduct,
+  deleteProduct,
+  deleteBlog,
+  updateBlog,
+  addBlog,
 } from "./api";
-
-// export async function login(username, password) {
-//   "use server";
-//   try {
-//     const response = await fetch("https://dummyjson.com/auth/login", {
-//       method: "POST",
-//       headers: { "Content-Type": "application/json" },
-//       body: JSON.stringify({
-//         username,
-//         password,
-//       }),
-//     });
-//     const user = await response.json();
-//     const cookieStore = cookies();
-//     cookieStore.set(AUTH_COOKIE_KEY, JSON.stringify(user));
-//   } catch (error) {
-//     console.error("Error fetching data:", error);
-//   }
-// }
-
-// export async function logOut(lang) {
-//   "use server";
-//   const cookieStore = cookies();
-//   cookieStore.delete(AUTH_COOKIE_KEY);
-//   redirect("/" + lang + "/login");
-// }
 
 export async function createUserAction(formData: FormData) {
   const { name, email, age } = Object.fromEntries(formData);
@@ -81,4 +58,38 @@ export async function editProfileInfo(formData: ProfileData) {
   const {name,email,userSub} = formData;
    revalidatePath("/profile");
    editProfile(name,email,userSub);
+}
+
+export async function addProductAction(productData: CreateProduct) {
+  const { title, description, price, image_url, brand, category } = productData;
+  addProduct(title as string, description as string, price as string, image_url as string, brand as string, category as string);
+  revalidatePath("/admin");
+}
+
+export async function updateProductAction(productData: CreateProduct) {
+  const { id, title, description, price, image_url, brand, category } = productData;
+  updateProduct(id as number, title as string, description as string, price as string, image_url as string, brand as string, category as string);
+  revalidatePath("/admin");
+}
+
+export async function deleteProductAction(id: number) {
+  await deleteProduct(id);
+  revalidatePath("/admin");
+}
+
+export async function deleteBlogAction(id: number) {
+  await deleteBlog(id);
+  revalidatePath("/admin");
+}
+
+export async function updateBlogAction(blogData: CreateBlog) {
+  const { id, author, title, description, image_url } = blogData;
+  updateBlog(id as number, author as string, title as string, description as string, image_url as string);
+  revalidatePath("/admin");
+}
+
+export async function addBlogAction(blogData: CreateBlog) {
+  const {author, title, description, image_url } = blogData;
+  addBlog(author as string, title as string, description as string, image_url as string);
+  revalidatePath("/admin");
 }

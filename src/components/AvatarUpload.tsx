@@ -131,6 +131,9 @@ const AvatarUpload = ({ userImage }: { userImage: string }) => {
           const newBlob = (await response.json()) as PutBlobResult;
 
           setBlob(newBlob);
+          if (inputFileRef.current) {
+            inputFileRef.current.value = "";
+          }
         }}
       >
         {inputFileRef?.current?.files?.length! > 0 && (
