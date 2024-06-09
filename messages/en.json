@@ -25,7 +25,7 @@
       "add-user": "Add User",
       "cart" : "Cart",
       "product-image" : "Product Image",
-      "product-title" : "Product Title",
+      "title" : "Title",
       "category" : "Category",
       "price" : "Price",
       "quantity" : "Quantity",
@@ -35,6 +35,17 @@
       "total-items": "Total Items",
       "log-out": "Log Out",
       "log-in": "Log In",
-      "full-name": "Full Name"
+      "full-name": "Full Name",
+      "add-product": "Add Product",
+      "image": "Image",
+      "new-image": "New image",
+      "current-image": "Current image",
+      "success-submition-for-products": "Submitted successfully! open 'All Products' to see your updates...",
+      "product-update-message": "Updated successfully",
+      "delete": "Delete",
+      "update": "Update",
+      "edit": "Edit",
+      "add-blog": "Add blog",
+      "author": "Author"
     }
   }

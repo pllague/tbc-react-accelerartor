@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useLocale } from "next-intl";
 
 const Card: React.FC<cardProps> = ({
-  card: { id, title, description, thumbnail, price },
+  card: { id, title, description, image, price },
   handleClick,
 }) => {
   const locale = useLocale();
@@ -20,11 +20,11 @@ const Card: React.FC<cardProps> = ({
         <div className="flex flex-col gap-3 w-full h-[310px] lg:h-[390px]">
           <div className="w-full min-h-[200px] max-h-[200px] lg:min-h-[250px] lg:max-h-[250px]">
             <Image
-              className="w-full h-full object-cover object-center"
-              src={thumbnail}
+              className="w-full h-full "
+              src={image}
               alt={title}
-              width={1000}
-              height={1000}
+              width={500}
+              height={500}
             />
           </div>
           <div className="flex flex-col gap-3 px-[18px] lg:px-[22px]">

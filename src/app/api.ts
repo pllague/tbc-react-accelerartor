@@ -193,3 +193,42 @@ export async function uploadUserPicture(url:string, sub:string) {
   }
 );
 }
+
+export async function addProduct(title: string, description: string, price: string, img_url: string, brand: string, category: string ) {
+  return await fetch(process.env.NEXT_PUBLIC_VERCEL_URL + "/api/product/add-product", {
+    method: "POST",
+    body: JSON.stringify({ title, description, price, img_url, brand,  category}),
+  });
+}
+
+export async function updateProduct(id: number, title: string, description: string, price: string, img_url: string, brand: string, category: string ) {
+  return await fetch(process.env.NEXT_PUBLIC_VERCEL_URL + "/api/product/update-product", {
+    method: "PUT",
+    body: JSON.stringify({id, title, description, price, img_url, brand,  category}),
+  });
+}
+
+export async function deleteProduct(id: number) {
+  await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/product/delete-product/${id}`, {
+    method: "DELETE",
+  });
+}
+export async function deleteBlog(id: number) {
+  await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/blogs/delete-blog/${id}`, {
+    method: "DELETE",
+  });
+}
+
+export async function updateBlog(id: number, author: string, title: string, description: string, img_url: string ) {
+  return await fetch(process.env.NEXT_PUBLIC_VERCEL_URL + "/api/blogs/update-blog", {
+    method: "PUT",
+    body: JSON.stringify({id, author, title, description, img_url}),
+  });
+}
+
+export async function addBlog(author: string, title: string, description: string, img_url: string ) {
+  return await fetch(process.env.NEXT_PUBLIC_VERCEL_URL + "/api/blogs/add-blog", {
+    method: "POST",
+    body: JSON.stringify({ author, title, description, img_url}),
+  });
+}

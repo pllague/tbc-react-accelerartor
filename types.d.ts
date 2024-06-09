@@ -1,10 +1,10 @@
 interface postElement {
     id: number;
     title: string;
-    body: string;
-    UserId: number;
-    tags: Array<string>;
-    reactions: number;
+    description: string;
+    image: string;
+    author: string;
+    date:string;
 }
 
 interface articleProps {
@@ -20,7 +20,7 @@ interface productElement {
     stock: number;
     brand: string;
     category: string;
-    thumbnail: string;
+    image: string;
     images: Array<string>;
     quantity?: number;
 }
@@ -97,4 +97,28 @@ interface ProfileData {
     email: string;
     userSub: string;
     name: string;
+}
+
+interface CreateProduct {
+    id?:number;
+    title:string;
+    description: string;
+    price: string;
+    image_url:string;
+    category:string;
+    brand: string;
+}
+
+interface FetchedProductsData {
+    products: {
+        rows: productElement[]
+    }
+}
+
+interface CreateBlog  {
+    id?: number,
+    author: string | null | undefined,
+    title: string
+    description:string
+    image_url:string
 }

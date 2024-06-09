@@ -4,6 +4,8 @@ import Navigation from "./Navigation";
 import LangSwitcher from "./LangSwitcher";
 import DarkMode from "./DarkMode";
 import LogOut from "./LogOut";
+import LoginForm from "./LoginForm";
+import { useUser } from "@auth0/nextjs-auth0/client";
 
 const BurgerMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,6 +18,8 @@ const BurgerMenu = () => {
     setIsOpen(false);
   };
 
+  const { user } = useUser();
+  const userId = user?.sub;
   return (
     <div className="relative block lg:hidden">
       <div
@@ -58,7 +62,7 @@ const BurgerMenu = () => {
           <div className="w-full flex gap-[10%] items-center">
             <LangSwitcher />
             <DarkMode />
-            <LogOut />
+            {userId ? <LogOut /> : <LoginForm />}
           </div>
         </div>
       </div>

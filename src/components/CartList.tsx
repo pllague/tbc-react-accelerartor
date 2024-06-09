@@ -6,7 +6,6 @@ import DecrementButton from "./DecrementButton";
 import RemoveProductButton from "./RemoveProductButton";
 import ClearCartButton from "./ClearCartButton";
 import { useLocale, useTranslations } from "next-intl";
-
 import Link from "next/link";
 import { useCartOptimistic } from "../hooks/useCartOptimistic";
 
@@ -34,8 +33,8 @@ const CartList = () => {
           <table>
             <thead className="[&>tr>th]:pb-3">
               <tr className="[&>th]:text-start">
-                <th>{t("product-image")}</th>
-                <th>{t("product-title")}</th>
+                <th>{t("image")}</th>
+                <th>{t("title")}</th>
                 <th>{t("category")}</th>
                 <th>{t("price")}</th>
                 <th>{t("quantity")}</th>
@@ -57,7 +56,7 @@ const CartList = () => {
                       <Link href={`/${locale}/products/${product.id}`}>
                         <Image
                           className="w-auto object-cover object-center"
-                          src={product.thumbnail}
+                          src={product.image}
                           alt={product.title}
                           width={100}
                           height={100}
