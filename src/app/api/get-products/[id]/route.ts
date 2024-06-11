@@ -6,6 +6,9 @@ export const revalidate = 0;
 export async function GET(_: NextRequest, { params: { id } }: { params: { id: number }}) {
 
   try {
+    if (!id ) {
+      throw new Error('Product not found');
+    }
     const products = await sql`SELECT * FROM products WHERE id = ${Number(id)}`;
     return NextResponse.json({ products }, { status: 200 });
   } catch (error) {

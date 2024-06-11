@@ -15,6 +15,7 @@ import {
   deleteBlog,
   updateBlog,
   addBlog,
+  addReview,
 } from "./api";
 
 export async function createUserAction(formData: FormData) {
@@ -55,41 +56,86 @@ export async function clearCartAction() {
 }
 
 export async function editProfileInfo(formData: ProfileData) {
-  const {name,email,userSub} = formData;
-   revalidatePath("/profile");
-   editProfile(name,email,userSub);
+  const { name, email, userSub } = formData;
+  revalidatePath("/profile");
+  editProfile(name, email, userSub);
 }
 
 export async function addProductAction(productData: CreateProduct) {
   const { title, description, price, image_url, brand, category } = productData;
-  addProduct(title as string, description as string, price as string, image_url as string, brand as string, category as string);
+  addProduct(
+    title as string,
+    description as string,
+    price as string,
+    image_url as string,
+    brand as string,
+    category as string
+  );
   revalidatePath("/admin");
+  revalidatePath("/products");
 }
 
 export async function updateProductAction(productData: CreateProduct) {
-  const { id, title, description, price, image_url, brand, category } = productData;
-  updateProduct(id as number, title as string, description as string, price as string, image_url as string, brand as string, category as string);
+  const { id, title, description, price, image_url, brand, category } =
+    productData;
+  updateProduct(
+    id as number,
+    title as string,
+    description as string,
+    price as string,
+    image_url as string,
+    brand as string,
+    category as string
+  );
   revalidatePath("/admin");
+  revalidatePath(`/products/${id}`);
 }
 
 export async function deleteProductAction(id: number) {
   await deleteProduct(id);
   revalidatePath("/admin");
+  revalidatePath("/products");
 }
 
 export async function deleteBlogAction(id: number) {
   await deleteBlog(id);
   revalidatePath("/admin");
+  revalidatePath("/blog");
 }
 
 export async function updateBlogAction(blogData: CreateBlog) {
   const { id, author, title, description, image_url } = blogData;
-  updateBlog(id as number, author as string, title as string, description as string, image_url as string);
+  updateBlog(
+    id as number,
+    author as string,
+    title as string,
+    description as string,
+    image_url as string
+  );
   revalidatePath("/admin");
+  revalidatePath(`/blog/${id}`);
 }
 
 export async function addBlogAction(blogData: CreateBlog) {
-  const {author, title, description, image_url } = blogData;
-  addBlog(author as string, title as string, description as string, image_url as string);
+  const { author, title, description, image_url } = blogData;
+  addBlog(
+    author as string,
+    title as string,
+    description as string,
+    image_url as string
+  );
   revalidatePath("/admin");
+  revalidatePath("/blog");
+}
+
+export async function addReviewAction(productRate: ProductRate) {
+  const { userId, userName, productId, review, rating } = productRate;
+  addReview(
+    userId as string,
+    userName as string,
+    productId as number,
+    review as string,
+    rating as number
+  );
+  revalidatePath(`/products/${productId}`);
 }
