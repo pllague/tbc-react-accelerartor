@@ -1,29 +1,7 @@
 import Image from "next/image";
 import { unstable_setRequestLocale } from "next-intl/server";
-
-// export async function generateStaticParams() {
-//   // const response = await fetch(
-//   //   process.env.NEXT_PUBLIC_VERCEL_URL + "/api/get-products"
-//   // );
-//   // const data = await response.json();
-//   // console.log(data);
-//   try {
-//     const response = await fetch(
-//       process.env.NEXT_PUBLIC_VERCEL_URL + "/api/get-products"
-//     );
-//     if (!response.ok) {
-//       throw new Error("Failed to fetch data");
-//     }
-//     const data = await response.json();
-//     const paths = data.products.rows.map((product: productElement) => ({
-//       id: `${product.id}`,
-//     }));
-//     console.log(paths);
-//     return paths;
-//   } catch (error) {
-//     console.error("Error fetching data:", error);
-//   }
-// }
+import Rating from "../../../../../components/Rating";
+import { getSession } from "@auth0/nextjs-auth0";
 
 const fetchData = async (productId: number) => {
   try {
@@ -39,12 +17,13 @@ const fetchData = async (productId: number) => {
     console.error("Error fetching data:", error);
   }
 };
-
 const ProductDetails: React.FC<paramsObj> = async ({ params }) => {
   unstable_setRequestLocale(params.locale);
-
   const productId = params.id;
   const productData: productElement = await fetchData(productId);
+  const session = await getSession();
+  const userSub = session?.user?.sub;
+  const userName = session?.user?.name;
   return (
     <section>
       <div className="w-full flex flex-col lg:flex-row gap-7 lg:gap-10 justify-between py-5 px-5 max-w-[1000px] mx-auto my-10 lg:py-10 lg:px-0">
@@ -85,6 +64,9 @@ const ProductDetails: React.FC<paramsObj> = async ({ params }) => {
           </p>
         </div>
       </div>
+      {userSub && (
+        <Rating productId={productId} userId={userSub} userName={userName} />
+      )}
     </section>
   );
 };
