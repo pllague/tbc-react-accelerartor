@@ -31,9 +31,7 @@ const AvatarUpload = ({ userImage }: { userImage: string }) => {
         console.error("Error updating user picture:", error);
       }
     };
-
     setLoader(false);
-
     updateUser();
   }, [blob, user]);
 
@@ -113,7 +111,7 @@ const AvatarUpload = ({ userImage }: { userImage: string }) => {
         className="flex flex-col justify-center items-center gap-3"
         onSubmit={async (event) => {
           event.preventDefault();
-
+          setLoader(true);
           if (!inputFileRef.current?.files) {
             throw new Error("No file selected");
           }

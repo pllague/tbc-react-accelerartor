@@ -139,13 +139,11 @@ interface ProductRate {
   userId: string;
   productId: number;
   review: string;
-  rating: number;
   userName: string;
 }
 interface ReviewObject {
   userId: string;
   review: string;
-  rating: number;
 }
 
 interface ReviewsTable {
@@ -153,4 +151,15 @@ interface ReviewsTable {
   product_id: number;
   review: ReviewObject[];
   added_on: string;
+}
+
+interface RatingObject {
+  userId: string;
+  rating: number;
+}
+
+interface RatingTable {
+  id: number;
+  product_id: number;
+  rating: RatingObject[];
 }

@@ -16,6 +16,7 @@ import {
   updateBlog,
   addBlog,
   addReview,
+  addRating,
 } from "./api";
 
 export async function createUserAction(formData: FormData) {
@@ -129,13 +130,21 @@ export async function addBlogAction(blogData: CreateBlog) {
 }
 
 export async function addReviewAction(productRate: ProductRate) {
-  const { userId, userName, productId, review, rating } = productRate;
+  const { userId, userName, productId, review } = productRate;
   addReview(
     userId as string,
     userName as string,
     productId as number,
-    review as string,
-    rating as number
+    review as string
   );
+  revalidatePath(`/products/${productId}`);
+}
+
+export async function addRatingAction(
+  rating: number,
+  userId: string,
+  productId: number
+) {
+  addRating(rating as number, userId as string, productId as number);
   revalidatePath(`/products/${productId}`);
 }
