@@ -3,9 +3,8 @@ import { NextResponse, NextRequest } from "next/server";
 
 export async function POST(request: NextRequest) {
   try {
-    const { userId, userName, productId, review, rating } =
-      await request.json();
-    const item = JSON.stringify([{ userId, userName, review, rating }]);
+    const { userId, userName, productId, review } = await request.json();
+    const item = JSON.stringify([{ userId, userName, review }]);
 
     if (!userId || !productId || !review)
       throw new Error("user Id, product Id and review fields are required");

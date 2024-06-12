@@ -51,7 +51,6 @@ export async function getDetailedCart() {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        // Cookie: `uid=${JSON.parse(cookies().get(AUTH_COOKIE_KEY)?.value!).id};`,
         Cookie: `uid=${userId};`,
       },
     }
@@ -116,7 +115,6 @@ export async function decrementProductQuantity(id: number) {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        // Cookie: `uid=${JSON.parse(cookies().get(AUTH_COOKIE_KEY)?.value!).id}`,
         Cookie: `uid=${userId};`,
       },
       body: JSON.stringify({ prod_id: id }),
@@ -133,7 +131,6 @@ export async function removeProductFromCart(id: number) {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        // Cookie: `uid=${JSON.parse(cookies().get(AUTH_COOKIE_KEY)?.value!).id}`,
         Cookie: `uid=${userId};`,
       },
       body: JSON.stringify({ prod_id: id }),
@@ -148,7 +145,6 @@ export async function clearCart() {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
-      // Cookie: `uid=${JSON.parse(cookies().get(AUTH_COOKIE_KEY)?.value!).id}`,
       Cookie: `uid=${userId};`,
     },
   });
@@ -317,14 +313,13 @@ export async function addReview(
   userId: string,
   userName: string,
   productId: number,
-  review: string,
-  rating: number
+  review: string
 ) {
   return await fetch(
     process.env.NEXT_PUBLIC_VERCEL_URL + "/api/review/add-review",
     {
       method: "PUT",
-      body: JSON.stringify({ userId, userName, productId, review, rating }),
+      body: JSON.stringify({ userId, userName, productId, review }),
     }
   );
 }
@@ -333,8 +328,7 @@ export async function createReview(
   userId: string,
   userName: string,
   productId: number,
-  review: string,
-  rating: number
+  review: string
 ) {
   return await fetch(
     `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/review/create-review`,
@@ -345,8 +339,63 @@ export async function createReview(
         userName,
         productId,
         review,
-        rating,
       }),
     }
   );
+}
+
+export async function addRating(
+  rating: number,
+  userId: string,
+  productId: number
+) {
+  return await fetch(
+    process.env.NEXT_PUBLIC_VERCEL_URL + "/api/rating/add-rating",
+    {
+      method: "PUT",
+      body: JSON.stringify({ rating, userId, productId }),
+    }
+  );
+}
+
+export async function createRating(
+  rating: number,
+  userId: string,
+  productId: number
+) {
+  return await fetch(
+    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/rating/create-rating`,
+    {
+      method: "POST",
+      body: JSON.stringify({
+        rating,
+        userId,
+        productId,
+      }),
+    }
+  );
+}
+
+export async function getRatings(id: number) {
+  const ratingsData = await fetch(
+    process.env.NEXT_PUBLIC_VERCEL_URL + `/api/rating/get-rating/${id}`,
+    {
+      cache: "no-store",
+    }
+  );
+  const { ratings } = await ratingsData.json();
+  const ratingsAray = ratings?.rows[0]?.rating;
+  return ratingsAray;
+}
+
+export async function getReviews(id: number) {
+  const reviewsData = await fetch(
+    process.env.NEXT_PUBLIC_VERCEL_URL + `/api/review/get-review/${id}`,
+    {
+      cache: "no-store",
+    }
+  );
+  const { reviews } = await reviewsData.json();
+  const ratingsAray = reviews?.rows[0]?.review;
+  return ratingsAray;
 }
