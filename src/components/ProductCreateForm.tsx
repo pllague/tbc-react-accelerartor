@@ -71,7 +71,7 @@ const ProductCreateForm = ({
       <div className="absolute top-0 left-0 w-screen h-screen flex justify-center items-center bg-secondary/80 z-[999]">
         <form
           onSubmit={handleSubmit}
-          className="w-2/5 border-2 border-yellow-600 bg-[#E5E1CC] dark:bg-secondary dark:border-light_blue shadow-xl shadow-red-300 dark:shadow-light_blue p-8 rounded-xl flex flex-col gap-5 justify-center items-center [&>input]:bg-white"
+          className="w-2/5 bg-[#E5E1CC] dark:bg-secondary shadow-xl shadow-white dark:shadow-black p-8 rounded-xl flex flex-col gap-5 justify-center items-center [&>input]:bg-white"
         >
           <div className="w-full [&>input]:bg-white">
             {image_url && (

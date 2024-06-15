@@ -49,6 +49,8 @@
     "author": "Author",
     "post": "Post",
     "comment-is-added": "Comment is added",
-    "comment": "Comment"
+    "comment": "Comment",
+    "subscribers": "Subscribers",
+    "added_on": "Added On"
   }
 }
