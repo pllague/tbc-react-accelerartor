@@ -3,24 +3,26 @@
 import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import LoadingAnimation from "./LoadingAnimation";
-const AllContactsList = ({
+import { formatDate } from "../helpers";
+const AllSubscribersList = ({
   setOpenModal,
 }: {
   setOpenModal: (openModal: boolean) => void;
 }) => {
-  const [contacts, setContacts] = useState<ContactFormData[]>([]);
+  const [subscribers, setSubscribers] = useState<SubscribersData[]>([]);
   const t = useTranslations("Index");
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          process.env.NEXT_PUBLIC_VERCEL_URL + "/api/contacts/get-contacts"
+          process.env.NEXT_PUBLIC_VERCEL_URL +
+            "/api/subscribers/get-subscribers"
         );
         if (!response.ok) {
           throw new Error("Failed to fetch data");
         }
         const data = await response.json();
-        setContacts(data.contacts.rows);
+        setSubscribers(data.subscribers.rows);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -30,38 +32,26 @@ const AllContactsList = ({
   }, []);
   return (
     <div className="absolute top-0 left-0 w-screen h-screen flex justify-center items-center bg-secondary/80 z-[999]">
-      {contacts.length === 0 ? (
+      {subscribers.length === 0 ? (
         <LoadingAnimation />
       ) : (
-        <div className="w-4/5 bg-[#E5E1CC] dark:bg-secondary shadow-xl shadow-white dark:shadow-black p-8 rounded-xl flex flex-col justify-start items-center [&>input]:bg-white h-[80%] max-h-[80%] overflow-x-auto overflow-y-auto">
-          {contacts.length && (
+        <div className="w-2/5 bg-[#E5E1CC] dark:bg-secondary shadow-xl shadow-white dark:shadow-black p-8 rounded-xl flex flex-col justify-start items-center [&>input]:bg-white h-[80%] max-h-[80%] overflow-x-auto overflow-y-auto">
+          {subscribers.length && (
             <div className="w-full px-2 flex justify-between border-b-2 pb-2">
-              <div className="w-[15%] text-left pl-5">{t("firstname")}</div>
-              <div className="w-[15%] text-left pl-5">{t("lastname")}</div>
-              <div className="w-[15%] text-left pl-5">{t("mobile")}</div>
-              <div className="w-[15%] text-left pl-5">{t("email")}</div>
-              <div className="w-[40%] text-left pl-5">{t("comment")}</div>
+              <div className="w-1/2 text-left pl-5">{t("email")}</div>
+              <div className="w-1/2 text-left pl-5">{t("added_on")}</div>
             </div>
           )}
-          {contacts.map((contact) => (
+          {subscribers.map((subscriber) => (
             <div
-              key={contact.id}
+              key={subscriber.id}
               className="w-full px-2 flex justify-between items-start border-b py-2"
             >
-              <div className="w-[15%] text-left pl-5 break-words">
-                {contact.firstname}
+              <div className="w-1/2 text-left pl-5 break-words">
+                {subscriber.email}
               </div>
-              <div className="w-[15%] text-left pl-5 break-words">
-                {contact.lastname}
-              </div>
-              <div className="w-[15%] text-left pl-5 break-words">
-                {contact.mobile}
-              </div>
-              <div className="w-[15%] text-left pl-5 break-words">
-                {contact.email}
-              </div>
-              <div className="w-[40%] text-left pl-5 break-words">
-                {contact.comment}
+              <div className="w-1/2 text-left pl-5 break-words">
+                {formatDate(subscriber.added_on)}
               </div>
             </div>
           ))}
@@ -90,4 +80,4 @@ const AllContactsList = ({
   );
 };
 
-export default AllContactsList;
+export default AllSubscribersList;

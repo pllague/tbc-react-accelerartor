@@ -181,3 +181,9 @@ interface ContactFormData {
   email: string;
   comment: string;
 }
+
+interface SubscribersData {
+  id: number;
+  email: string;
+  added_on: string;
+}

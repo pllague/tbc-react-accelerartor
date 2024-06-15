@@ -18,6 +18,7 @@ import {
   addReview,
   addRating,
   addContact,
+  addSubscriber,
 } from "./api";
 
 export async function createUserAction(formData: FormData) {
@@ -152,5 +153,10 @@ export async function addRatingAction(
 
 export async function addContactAction(contactForm: ContactForm) {
   addContact(contactForm);
+  revalidatePath(`/admin`);
+}
+
+export async function addSubscriberAction(email: string) {
+  addSubscriber(email);
   revalidatePath(`/admin`);
 }

@@ -415,3 +415,13 @@ export async function addContact(contactForm: ContactForm) {
     }
   );
 }
+
+export async function addSubscriber(email: string) {
+  return await fetch(
+    process.env.NEXT_PUBLIC_VERCEL_URL + "/api/subscribers/add-subsciber",
+    {
+      method: "POST",
+      body: JSON.stringify({ email }),
+    }
+  );
+}

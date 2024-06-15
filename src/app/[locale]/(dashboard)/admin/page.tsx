@@ -3,6 +3,7 @@
 import AllBlogsButton from "../../../../components/AllBlogsButton";
 import AllContactsButton from "../../../../components/AllContactsButton";
 import AllProductButton from "../../../../components/AllProductButton";
+import AllSubscribersButton from "../../../../components/AllSubscribersButton";
 import BlogCreateButton from "../../../../components/BlogCreateButton";
 import ProductCreateButton from "../../../../components/ProductCreateButton";
 // import UserCreateButton from "../../../../components/UserCreateButton";
@@ -20,6 +21,7 @@ const AdminPage = async () => {
       <BlogCreateButton />
       <AllBlogsButton />
       <AllContactsButton />
+      <AllSubscribersButton />
       {/* <div className="flex flex-col">
         {users.length ? (
           <div className="grid grid-cols-5 border-b border-t gap-5 py-2 px-2 bg-yellow-600 dark:bg-blue-500">
