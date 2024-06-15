@@ -1,6 +1,7 @@
 // import DeleteUser from "../../../../components/DeleteUser";
 // import { getUsers } from "../../../api";
 import AllBlogsButton from "../../../../components/AllBlogsButton";
+import AllContactsButton from "../../../../components/AllContactsButton";
 import AllProductButton from "../../../../components/AllProductButton";
 import BlogCreateButton from "../../../../components/BlogCreateButton";
 import ProductCreateButton from "../../../../components/ProductCreateButton";
@@ -18,6 +19,7 @@ const AdminPage = async () => {
       <AllProductButton />
       <BlogCreateButton />
       <AllBlogsButton />
+      <AllContactsButton />
       {/* <div className="flex flex-col">
         {users.length ? (
           <div className="grid grid-cols-5 border-b border-t gap-5 py-2 px-2 bg-yellow-600 dark:bg-blue-500">

@@ -48,6 +48,7 @@
     "add-blog": "Add blog",
     "author": "Author",
     "post": "Post",
-    "comment-is-added": "Comment is added"
+    "comment-is-added": "Comment is added",
+    "comment": "Comment"
   }
 }

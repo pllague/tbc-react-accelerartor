@@ -3,7 +3,8 @@ import { unstable_setRequestLocale } from "next-intl/server";
 import Rating from "../../../../../components/Rating";
 import { getSession } from "@auth0/nextjs-auth0";
 import Comment from "../../../../../components/Comment";
-import { getRatings, getReviews } from "../../../../api";
+import { getRatings, getReviews, getUsers } from "../../../../api";
+import SocialShare from "../../../../../components/SocialShare";
 
 const fetchData = async (productId: number) => {
   try {
@@ -19,6 +20,7 @@ const fetchData = async (productId: number) => {
     console.error("Error fetching data:", error);
   }
 };
+
 const ProductDetails: React.FC<paramsObj> = async ({ params }) => {
   unstable_setRequestLocale(params.locale);
   const productId = params.id;
@@ -26,7 +28,7 @@ const ProductDetails: React.FC<paramsObj> = async ({ params }) => {
   const session = await getSession();
   const userSub = session?.user?.sub;
   const userName = session?.user?.name;
-  const ratings = await getRatings(productId);
+  const ratings = await getRatings(productData?.id);
 
   const totalRating =
     ratings !== undefined
@@ -35,15 +37,22 @@ const ProductDetails: React.FC<paramsObj> = async ({ params }) => {
           0
         )
       : 0;
+  const quantityOfRates = ratings !== undefined ? ratings.length : 0;
   const averageRating =
-    totalRating / (ratings !== undefined ? ratings.length : 1);
+    totalRating / (quantityOfRates !== 0 ? quantityOfRates : 1);
 
   const userRatingObject =
     ratings !== undefined
       ? ratings.find((item: { userId: string }) => item.userId === userSub)
       : 0;
 
-  const reviews = await getReviews(productId);
+  function getNameBySub(sub: string, allUsers: User[]) {
+    const user = allUsers.find((item) => item.sub === sub);
+    return user ? user.name : null;
+  }
+
+  const allUsers = await getUsers();
+  const reviews = await getReviews(productData?.id);
 
   return (
     <section>
@@ -56,8 +65,8 @@ const ProductDetails: React.FC<paramsObj> = async ({ params }) => {
             <Image
               src={productData?.image}
               alt={productData?.title}
-              width={1000}
-              height={1000}
+              width={600}
+              height={700}
               className="w-full h-full object-cover object-center"
             />
           </div>
@@ -65,7 +74,7 @@ const ProductDetails: React.FC<paramsObj> = async ({ params }) => {
         <div className="w-full lg:w-1/3 flex flex-col gap-3 justify-center *:text-black *:dark:text-white *:text-[14px] lg:*:text-[16px] [&_span]:text-orange [&_span]:text-[16px] [&_span]:lg:text-[22px]">
           <div className="flex gap-1 items-center">
             <span>Rating: </span>
-            {averageRating}
+            {averageRating} out of 5
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
@@ -75,6 +84,9 @@ const ProductDetails: React.FC<paramsObj> = async ({ params }) => {
             >
               <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
             </svg>
+            <span className="text-black dark:text-white !text-[14px] !lg:text-[16px]">
+              ( {quantityOfRates} )
+            </span>
           </div>
           {userSub && (
             <div className="flex gap-2">
@@ -82,7 +94,7 @@ const ProductDetails: React.FC<paramsObj> = async ({ params }) => {
                 {userRatingObject?.rating ? "Your rate:" : "Rate us:"}
               </span>
               <Rating
-                productId={productId}
+                productId={productData?.id}
                 userId={userSub}
                 tempRatingProps={userRatingObject?.rating}
               />
@@ -108,6 +120,11 @@ const ProductDetails: React.FC<paramsObj> = async ({ params }) => {
             <span>Description: </span>
             <p>{productData?.description}</p>
           </div>
+          <SocialShare
+            path={"/products/"}
+            id={productData?.id}
+            title={productData?.title}
+          />
         </div>
       </div>
       {userSub && (
@@ -121,7 +138,7 @@ const ProductDetails: React.FC<paramsObj> = async ({ params }) => {
               index: number
             ) => (
               <div key={index}>
-                <p>{item.userName}</p>
+                <p>{getNameBySub(item.userId, allUsers)}</p>
                 <p>{item.review}</p>
               </div>
             )

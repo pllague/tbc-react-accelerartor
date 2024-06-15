@@ -54,8 +54,9 @@ interface searchProps {
 interface User {
   id: number;
   name: string;
-  age: string;
+  sub: string;
   email: string;
+  image_url: string;
 }
 
 interface SelectedProduct {
@@ -162,4 +163,21 @@ interface RatingTable {
   id: number;
   product_id: number;
   rating: RatingObject[];
+}
+
+interface ContactForm {
+  firstName: string;
+  lastName: string;
+  mobile: string;
+  email: string;
+  comment: string;
+}
+
+interface ContactFormData {
+  id?: number;
+  firstname: string;
+  lastname: string;
+  mobile: string;
+  email: string;
+  comment: string;
 }

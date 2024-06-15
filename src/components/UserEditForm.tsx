@@ -13,10 +13,9 @@ const UserEditForm = ({
   const [userData, setUserData] = useState({
     name: user.name ? user.name : "",
     email: user.email ? user.email : "",
-    age: user.age ? user.age : "",
   });
 
-  const { name, email, age } = userData;
+  const { name, email } = userData;
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     setUserData((prev) => ({
@@ -67,7 +66,7 @@ const UserEditForm = ({
           onChange={handleChange}
           required
         />
-        <input
+        {/* <input
           className="w-full h-full border-2 border-light_blue py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
           type="text"
           name="age"
@@ -75,7 +74,7 @@ const UserEditForm = ({
           value={age}
           onChange={handleChange}
           required
-        />
+        /> */}
         <div className="w-full flex gap-3">
           <button
             onClick={() => setOpenModal(false)}

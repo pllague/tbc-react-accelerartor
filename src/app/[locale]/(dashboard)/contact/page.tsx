@@ -1,4 +1,5 @@
 import { useTranslations } from "next-intl";
+import ContactForm from "../../../../components/ContactForm";
 
 const Contact = () => {
   const t = useTranslations("Index");
@@ -83,55 +84,7 @@ const Contact = () => {
           </div>
         </div>
 
-        <form className="w-1/3 flex flex-col gap-3 justify-between items-start mx-auto [&>div>input]:bg-white">
-          <div className="w-full flex gap-3 justify-between">
-            <input
-              className="w-2/5 h-full border-2 border-yellow-600 dark:border-light_blue py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
-              maxLength={100}
-              name="firstname"
-              placeholder={t("firstname")}
-              type="text"
-              autoCapitalize="none"
-              autoComplete="off"
-              spellCheck="false"
-            />
-            <input
-              className="w-3/5 h-full border-2 border-yellow-600 dark:border-light_blue  py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
-              maxLength={100}
-              name="lastname"
-              placeholder={t("lastname")}
-              type="text"
-              autoCapitalize="none"
-              autoComplete="off"
-              spellCheck="false"
-            />
-          </div>
-          <div className="w-full flex gap-3 justify-between">
-            <input
-              className="w-2/5 h-full border-2 border-yellow-600 dark:border-light_blue py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
-              maxLength={100}
-              name="mobile"
-              placeholder={t("mobile")}
-              type="text"
-              autoCapitalize="none"
-              autoComplete="off"
-              spellCheck="false"
-            />
-            <input
-              className="w-3/5 h-full border-2 border-yellow-600 dark:border-light_blue py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
-              maxLength={100}
-              name="email"
-              placeholder={t("email")}
-              type="text"
-              autoCapitalize="none"
-              autoComplete="off"
-              spellCheck="false"
-            />
-          </div>
-          <button className="w-full h-full border-0 bg-blue-500 py-3 mx-auto text-white lg:text-[20px] rounded-[5px] hover:bg-orange transition-all transform duration-300 ease-linear">
-            {t("submit")}
-          </button>
-        </form>
+        <ContactForm />
       </div>
     </section>
   );
