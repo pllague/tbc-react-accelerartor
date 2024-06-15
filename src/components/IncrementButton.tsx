@@ -17,7 +17,7 @@ const IncrementButton = ({ item }: Props) => {
       startTransition(() => {
         const newCart = {
           count: optimistic.count + 1,
-          price: optimistic.price + item.price,
+          price: Number(optimistic.price) + Number(item.price),
           products: optimistic.products.map((p) =>
             p.id === item.id ? { ...p, quantity: p.quantity! + 1 } : { ...p }
           ),

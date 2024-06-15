@@ -19,11 +19,12 @@ import {
   addRating,
   addContact,
   addSubscriber,
+  deleteProductFromCart,
 } from "./api";
 
 export async function createUserAction(formData: FormData) {
   const { name, email, age } = Object.fromEntries(formData);
-  createUser(name as string, email as string, age as string);
+  await createUser(name as string, email as string, age as string);
   revalidatePath("/admin");
 }
 
@@ -34,7 +35,12 @@ export async function deleteUserAction(id: number) {
 
 export async function updateUserAction(formData: FormData) {
   const { id, name, email, age } = Object.fromEntries(formData);
-  updateUser(id as string, name as string, email as string, age as string);
+  await updateUser(
+    id as string,
+    name as string,
+    email as string,
+    age as string
+  );
   revalidatePath("/admin");
 }
 
@@ -60,13 +66,13 @@ export async function clearCartAction() {
 
 export async function editProfileInfo(formData: ProfileData) {
   const { name, email, userSub } = formData;
+  await editProfile(name, email, userSub);
   revalidatePath("/profile");
-  editProfile(name, email, userSub);
 }
 
 export async function addProductAction(productData: CreateProduct) {
   const { title, description, price, image_url, brand, category } = productData;
-  addProduct(
+  await addProduct(
     title as string,
     description as string,
     price as string,
@@ -81,7 +87,7 @@ export async function addProductAction(productData: CreateProduct) {
 export async function updateProductAction(productData: CreateProduct) {
   const { id, title, description, price, image_url, brand, category } =
     productData;
-  updateProduct(
+  await updateProduct(
     id as number,
     title as string,
     description as string,
@@ -108,7 +114,7 @@ export async function deleteBlogAction(id: number) {
 
 export async function updateBlogAction(blogData: CreateBlog) {
   const { id, author, title, description, image_url } = blogData;
-  updateBlog(
+  await updateBlog(
     id as number,
     author as string,
     title as string,
@@ -121,7 +127,7 @@ export async function updateBlogAction(blogData: CreateBlog) {
 
 export async function addBlogAction(blogData: CreateBlog) {
   const { author, title, description, image_url } = blogData;
-  addBlog(
+  await addBlog(
     author as string,
     title as string,
     description as string,
@@ -133,7 +139,7 @@ export async function addBlogAction(blogData: CreateBlog) {
 
 export async function addReviewAction(productRate: ProductRate) {
   const { userId, userName, productId, review } = productRate;
-  addReview(
+  await addReview(
     userId as string,
     userName as string,
     productId as number,
@@ -147,16 +153,20 @@ export async function addRatingAction(
   userId: string,
   productId: number
 ) {
-  addRating(rating as number, userId as string, productId as number);
+  await addRating(rating as number, userId as string, productId as number);
   revalidatePath(`/products/${productId}`);
 }
 
 export async function addContactAction(contactForm: ContactForm) {
-  addContact(contactForm);
+  await addContact(contactForm);
   revalidatePath(`/admin`);
 }
 
 export async function addSubscriberAction(email: string) {
-  addSubscriber(email);
+  await addSubscriber(email);
   revalidatePath(`/admin`);
+}
+export async function deleteProductFromCartAction(item_id: number) {
+  await deleteProductFromCart(item_id);
+  revalidatePath(`/cart`);
 }

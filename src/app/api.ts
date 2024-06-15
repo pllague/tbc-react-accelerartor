@@ -425,3 +425,13 @@ export async function addSubscriber(email: string) {
     }
   );
 }
+
+export async function deleteProductFromCart(item_id: number) {
+  return await fetch(
+    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/product/delete-product-from-cart`,
+    {
+      method: "PUT",
+      body: JSON.stringify({ prod_id: item_id }),
+    }
+  );
+}
