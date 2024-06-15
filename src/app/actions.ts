@@ -17,6 +17,7 @@ import {
   addBlog,
   addReview,
   addRating,
+  addContact,
 } from "./api";
 
 export async function createUserAction(formData: FormData) {
@@ -147,4 +148,9 @@ export async function addRatingAction(
 ) {
   addRating(rating as number, userId as string, productId as number);
   revalidatePath(`/products/${productId}`);
+}
+
+export async function addContactAction(contactForm: ContactForm) {
+  addContact(contactForm);
+  revalidatePath(`/admin`);
 }

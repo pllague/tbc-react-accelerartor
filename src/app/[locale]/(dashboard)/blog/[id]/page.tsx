@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { unstable_setRequestLocale } from "next-intl/server";
 import { formatDate } from "../../../../../helpers";
+import SocialShare from "../../../../../components/SocialShare";
 
 const fetchData = async (articleId: number) => {
   try {
@@ -62,6 +63,11 @@ const BlogDetails = async ({ params }: paramsObj) => {
           <p>{articleData.description}</p>
           <div className="flex gap-3">{articleData.author}</div>
         </div>
+        <SocialShare
+          path={"/blog/"}
+          id={articleData?.id}
+          title={articleData?.title}
+        />
       </div>
     </section>
   );

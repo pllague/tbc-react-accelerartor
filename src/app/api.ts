@@ -6,7 +6,7 @@ export async function getUsers() {
     process.env.NEXT_PUBLIC_VERCEL_URL + "/api/get-users"
   );
   const { users } = await response.json();
-  return users.rows;
+  return users?.rows;
 }
 
 export async function createUser(name: string, email: string, age: string) {
@@ -398,4 +398,20 @@ export async function getReviews(id: number) {
   const { reviews } = await reviewsData.json();
   const ratingsAray = reviews?.rows[0]?.review;
   return ratingsAray;
+}
+
+export async function addContact(contactForm: ContactForm) {
+  return await fetch(
+    process.env.NEXT_PUBLIC_VERCEL_URL + "/api/contacts/add-contact",
+    {
+      method: "POST",
+      body: JSON.stringify({
+        firstName: contactForm.firstName,
+        lastName: contactForm.lastName,
+        mobile: contactForm.mobile,
+        email: contactForm.email,
+        comment: contactForm.comment,
+      }),
+    }
+  );
 }
