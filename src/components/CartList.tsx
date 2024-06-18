@@ -8,6 +8,7 @@ import ClearCartButton from "./ClearCartButton";
 import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 import { useCartOptimistic } from "../hooks/useCartOptimistic";
+import CheckoutButton from "./CheckoutButton";
 
 const CartList = () => {
   const { optimistic } = useCartOptimistic();
@@ -98,6 +99,7 @@ const CartList = () => {
               </tr>
             </tbody>
           </table>
+          <CheckoutButton cardsData={cardsData} />
         </div>
       ) : (
         <div className="mt-[25px] lg:mt-[65px] flex justify-center text-[20px] lg:text-[25px]">

@@ -57,7 +57,7 @@ export default function ProfileInfo({ user }: { user: UserInfoDb }) {
           />
         </div>
       )}
-      {editProfileMessage && <p>განახლდაა</p>}
+      {editProfileMessage && <p>Profile updated</p>}
       <button type="submit" className="text-lg leading-6 h-8 mt-4">
         {t("submit")}
       </button>
