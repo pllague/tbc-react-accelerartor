@@ -18,7 +18,8 @@
     "react": "^18",
     "react-dom": "^18",
     "react-share": "^5.1.0",
-    "sharp": "^0.33.4"
+    "sharp": "^0.33.4",
+    "stripe": "^15.11.0"
   },
   "devDependencies": {
     "@types/node": "20.12.7",

@@ -6,9 +6,11 @@ const Contact = () => {
 
   return (
     <section>
-      <div className="w-full flex flex-col gap-10 justify-between items-center">
-        <div className="w-1/3 flex flex-col gap-5 justify-between items-start mx-auto border-b-2 border-yellow-600 dark:border-light_blue pb-2">
-          <h1 className="text-[50px] mx-auto">{t("contactUs")}</h1>
+      <div className="w-full flex flex-col gap-10 justify-between items-center py-10">
+        <div className="w-[90%] lg:w-1/3 flex flex-col gap-5 justify-between items-start mx-auto border-b-2 border-yellow-600 dark:border-light_blue pb-2">
+          <h1 className="text-[30px] lg:text-[50px] mx-auto">
+            {t("contactUs")}
+          </h1>
           <div className="flex flex-col gap-2">
             <div className="flex  gap-5 group">
               <svg
@@ -28,7 +30,7 @@ const Contact = () => {
 
               <a
                 href="mailto:react@example.com"
-                className="text-[30px] group-hover:text-orange transition-all transform duration-300 ease-linear"
+                className="text-[20px] lg:text-[30px] group-hover:text-orange transition-all transform duration-300 ease-linear"
               >
                 react@example.com
               </a>
@@ -54,7 +56,7 @@ const Contact = () => {
                 />
               </svg>
 
-              <span className="text-[30px] group-hover:text-orange transition-all transform duration-300 ease-linear">
+              <span className="text-[20px] lg:text-[30px] group-hover:text-orange transition-all transform duration-300 ease-linear">
                 {t("street")} 77 · 77777 {t("city")} · {t("country")}
               </span>
             </div>
@@ -76,7 +78,7 @@ const Contact = () => {
               </svg>
               <a
                 href="tel:+77777777777"
-                className="text-[30px] group-hover:text-orange transition-all transform duration-300 ease-linear"
+                className="text-[20px] lg:text-[30px] group-hover:text-orange transition-all transform duration-300 ease-linear"
               >
                 0777 777 777 77
               </a>

@@ -98,6 +98,7 @@ interface ProfileData {
   email: string;
   userSub: string;
   name: string;
+  role?: string | Array;
 }
 
 interface CreateProduct {
@@ -186,4 +187,42 @@ interface SubscribersData {
   id: number;
   email: string;
   added_on: string;
+}
+
+interface OrderMetadata {
+  id: string;
+  address: string;
+  city: string;
+  phone: string;
+}
+
+interface LatestCharge {
+  id: string;
+  receipt_url: string;
+  refunded: boolean;
+}
+
+interface Order {
+  amount: number;
+  currency: string;
+  latest_charge: LatestCharge;
+  metadata: OrderMetadata;
+}
+
+interface CheckoutProfile {
+  city: string;
+  address: string;
+  phone: string;
+  sub: string | null | undefined;
+}
+
+interface StripeData {
+  active?: boolean;
+  name?: string;
+  price: string;
+  quantity: number;
+  images?: string[];
+  metadata?: {
+    price: string;
+  };
 }

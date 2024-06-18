@@ -1,42 +1,26 @@
 import { NextResponse, NextRequest } from "next/server";
-// import { AUTH_COOKIE_KEY } from "./constants";
 import createIntlMiddleware from "next-intl/middleware";
-import { getSession } from '@auth0/nextjs-auth0/edge';
+import { getSession } from "@auth0/nextjs-auth0/edge";
 
 const protectedRoutes = [
-  // "/",
-  // "/en",
-  // "/ka",
   "/profile",
-  // "/contact",
-  // "/products",
-  // "/blog",
-  // "/about",
   "/cart",
+  "/orders",
+  "/orders/success",
+  "/orders/cancel",
 ];
 
-const protectedRoutesAdmin = [
-  "/admin",
-];
+const protectedRoutesAdmin = ["/admin"];
 
 const publicRoutes = ["/login", "/ka/login", "/en/login"];
 
 export default async function middleware(request: NextRequest) {
-
   const res = NextResponse.next();
 
   const session = await getSession(request, res);
   const userId = session?.user?.sub;
-  const isAdmin = Array.isArray(session?.user?.role) && session?.user.role.includes("Admin");
-  //Middleware for rout protections
-  // const cookie = request.cookies.get(AUTH_COOKIE_KEY)?.value;
-  // let token = null;
-  // if (cookie) {
-  //   const cookieObject = JSON.parse(cookie);
-  //   if (cookieObject) {
-  //     token = cookieObject?.token;
-  //   }
-  // }
+  const isAdmin =
+    Array.isArray(session?.user?.role) && session?.user.role.includes("Admin");
 
   // const localeValue = request.cookies.get("NEXT_LOCALE")?.value;
 
@@ -56,17 +40,13 @@ export default async function middleware(request: NextRequest) {
   if (isPublicRoute && (userId === undefined || userId)) {
     return NextResponse.redirect(new URL("/", request.nextUrl));
   }
-  // if (path === "/" && token) {
-  //   return NextResponse.redirect(new URL(`/${localeValue}`, request.nextUrl));
-  // }
 
   // const defaultLocale = request.headers.get("ka") || "en";
 
   const i18nRouting = createIntlMiddleware({
     locales: ["en", "ka"],
     defaultLocale: "en",
-    localePrefix: 'never',
-
+    localePrefix: "never",
   });
   const response = i18nRouting(request);
 

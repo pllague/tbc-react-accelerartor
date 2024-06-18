@@ -1,5 +1,6 @@
 "use server";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 import {
   addToCart,
   clearCart,
@@ -169,4 +170,39 @@ export async function addSubscriberAction(email: string) {
 export async function deleteProductFromCartAction(item_id: number) {
   await deleteProductFromCart(item_id);
   revalidatePath(`/cart`);
+}
+
+export async function createRefundAction(chargeId: string) {
+  await fetch(
+    process.env.NEXT_PUBLIC_VERCEL_URL + "/api/orders/create-refund",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ chargeId }),
+    }
+  );
+  revalidatePath("/orders");
+}
+
+export async function checkoutAction(
+  cartProducts: productElement[],
+  profile: CheckoutProfile
+) {
+  await fetch(process.env.NEXT_PUBLIC_VERCEL_URL + "/api/checkout", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ products: cartProducts, profile }),
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((response) => {
+      if (response.url) {
+        redirect(response.url);
+      }
+    });
 }
