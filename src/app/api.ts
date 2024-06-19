@@ -181,16 +181,12 @@ export async function getUserInfo() {
   return userDetail;
 }
 
-export async function editProfile(
-  name: string,
-  email: string,
-  userSub: string
-) {
+export async function editProfile(name: string, userSub: string, role: string) {
   return await fetch(
     process.env.NEXT_PUBLIC_VERCEL_URL + "/api/edit-profileInfo",
     {
-      method: "POST",
-      body: JSON.stringify({ name, email, userSub }),
+      method: "PUT",
+      body: JSON.stringify({ name, userSub, role }),
     }
   );
 }

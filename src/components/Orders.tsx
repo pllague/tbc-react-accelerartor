@@ -1,6 +1,6 @@
 "use client";
 
-// import { useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 // import { AuthUser, Order } from "../../types/profile-types";
 import { createRefundAction } from "../app/actions";
 import { useState } from "react";
@@ -17,7 +17,7 @@ const Orders = ({
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [selectedChargeId, setSelectedChargeId] = useState<string | null>(null);
-  //   const t = useTranslations("orders");
+  const t = useTranslations("Index");
 
   const refundHandler = async () => {
     if (selectedChargeId) {
@@ -40,14 +40,13 @@ const Orders = ({
     setModalIsOpen(true);
     setSelectedChargeId(chargeId);
   };
-
   return (
-    <div className="py-4 m-auto w-full max-w-5xl animate-fade-in-up">
+    <div className="py-4 m-auto w-full max-w-5xl">
       <div className="p-4 flex gap-8 flex-col lg:flex-row lg:items-start items-center">
         <div
           className={
             userOrders.length
-              ? `m-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8`
+              ? `m-auto grid grid-cols-1 lg:grid-cols-3 gap-8`
               : `w-full flex justify-center`
           }
         >
@@ -55,9 +54,14 @@ const Orders = ({
             userOrders.map((order) => (
               <div
                 key={order.latest_charge.id}
-                className="p-6 border border-gray-200 rounded-lg shadow-lg bg-white hover:shadow-xl transition-shadow duration-300"
+                className="flex flex-col gap-5 p-6 border border-gray-200 rounded-lg shadow-lg bg-white hover:shadow-xl transition-shadow duration-300"
               >
-                <div className="mb-4 flex justify-between">
+                <div className="font-semibold text-black">
+                  {`${t("client")}: ${
+                    order.latest_charge.billing_details.email
+                  }`}
+                </div>
+                <div className="flex justify-between">
                   <div>
                     <p className="text-xl font-semibold text-black">
                       price
@@ -78,7 +82,7 @@ const Orders = ({
                     Invoice
                   </a>
                 </div>
-                <div className="space-y-2 flex flex-col justify-between h-auto sm:h-[250px] mb-4">
+                <div className="space-y-2 flex flex-col justify-between ">
                   <p className="text-gray-700">
                     address: {order.metadata.address}
                   </p>

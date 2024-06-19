@@ -52,6 +52,10 @@
     "comment": "Comment",
     "subscribers": "Subscribers",
     "added_on": "Added On",
-    "checkout": "Checkout"
+    "checkout": "Checkout",
+    "user": "User",
+    "client": "Client",
+    "role": "Role",
+    "upload": "Upload"
   }
 }

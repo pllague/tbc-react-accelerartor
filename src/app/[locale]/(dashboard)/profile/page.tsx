@@ -10,14 +10,10 @@ const ProfilePage = async () => {
   const userImage = await getUserImage();
   const userInfo = await getUserInfo();
   return (
-    <div className="px-[4%] pb-24 flex justify-center items-center md:flex-col gap-20 md:gap-12">
-      <div className="flex flex-col gap-3 justify-center items-center">
+    <div className="w-[90%] h-auto lg:h-[400px] lg:w-4/5 py-20 mx-auto">
+      <div className="w-full h-full flex flex-col justify-center items-center lg:flex-row gap-12">
         <AvatarUpload userImage={userImage} />
-      </div>
-      <div className="flex flex-col justify-center gap-8">
-        <div className="flex p-4 rounded-lg gap-8 ">
-          <ProfileInfo user={userInfo} />
-        </div>
+        <ProfileInfo user={userInfo} />
       </div>
     </div>
   );

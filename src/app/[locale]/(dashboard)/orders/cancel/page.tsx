@@ -2,7 +2,7 @@ import { unstable_setRequestLocale } from "next-intl/server";
 import CancelOrder from "../../../../../components/CancelOrder";
 
 export const metadata = {
-  title: "Liquor store - Cancel",
+  title: "Classic Football Shirt - Cancel",
   description: "Cancel page",
 };
 

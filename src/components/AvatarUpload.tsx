@@ -6,6 +6,7 @@ import { useUser } from "@auth0/nextjs-auth0/client";
 import { useEffect } from "react";
 import { uploadUserPicture } from "../app/api";
 import LoadingAnimation from "./LoadingAnimation";
+import { useTranslations } from "next-intl";
 
 const AvatarUpload = ({ userImage }: { userImage: string }) => {
   const inputFileRef = useRef<HTMLInputElement>(null);
@@ -13,6 +14,10 @@ const AvatarUpload = ({ userImage }: { userImage: string }) => {
   const { user } = useUser();
   const [loader, setLoader] = useState(false);
   const [pickedImage, setPickedImage] = useState<any>(null);
+  const t = useTranslations("Index");
+
+  const validImageTypes = ["image/jpeg", "image/png", "image/gif"];
+  const maxFileSize = 1 * 1024 * 1024; // 1MB file
 
   useEffect(() => {
     setLoader(true);
@@ -46,6 +51,21 @@ const AvatarUpload = ({ userImage }: { userImage: string }) => {
       setPickedImage(null);
       return;
     }
+
+    // Restrect to upload non image type files
+    if (!validImageTypes.includes(file.type)) {
+      alert("Please upload a valid image file (jpg, png, gif).");
+      e.target.value = "";
+      return;
+    }
+
+    // Don't give a possibility to upload image more then 1 MB
+    if (file.size > maxFileSize) {
+      alert("File size exceeds 1MB. Please upload a smaller image.");
+      e.target.value = "";
+      return;
+    }
+
     // file reader
     const fileReader = new FileReader();
     fileReader.onload = () => {
@@ -53,7 +73,7 @@ const AvatarUpload = ({ userImage }: { userImage: string }) => {
     };
     fileReader.readAsDataURL(file);
   }
-  let imageSrc: any;
+  let imageSrc: string;
   if (pickedImage) {
     imageSrc = pickedImage;
   } else if (blob) {
@@ -63,7 +83,7 @@ const AvatarUpload = ({ userImage }: { userImage: string }) => {
   }
 
   return (
-    <>
+    <div className=" h-full flex flex-col justify-start items-start gap-6">
       <div className="relative group w-[150px] h-[150px] rounded-full overflow-hidden ">
         {loader && <LoadingAnimation />}
         <Image
@@ -104,11 +124,12 @@ const AvatarUpload = ({ userImage }: { userImage: string }) => {
           ref={inputFileRef}
           type="file"
           id="files"
+          accept="image/*"
           required
         />
       </div>
       <form
-        className="flex flex-col justify-center items-center gap-3"
+        className="w-full flex flex-col justify-center items-center gap-3"
         onSubmit={async (event) => {
           event.preventDefault();
           setLoader(true);
@@ -136,14 +157,14 @@ const AvatarUpload = ({ userImage }: { userImage: string }) => {
       >
         {inputFileRef?.current?.files?.length! > 0 && (
           <button
-            className="bg-blue-500 w-32 text-white text-[12px] py-2 px-4 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+            className="bg-blue-500 w-fit text-white py-2 px-4 text-[16px] rounded-[5px] hover:bg-orange transition-all transform duration-300 ease-linear "
             type="submit"
           >
-            Upload
+            {t("upload")}
           </button>
         )}
       </form>
-    </>
+    </div>
   );
 };
 
