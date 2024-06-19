@@ -226,3 +226,10 @@ interface StripeData {
     price: string;
   };
 }
+
+interface UserInfoDb {
+  name: string;
+  email: string;
+  sub: string;
+  image_url: string;
+}
