@@ -1,18 +1,13 @@
 import { NextResponse, NextRequest } from "next/server";
 import createIntlMiddleware from "next-intl/middleware";
 import { getSession } from "@auth0/nextjs-auth0/edge";
+import { verifyToken } from "./helpers";
 
-const protectedRoutes = [
-  "/profile",
-  "/cart",
-  "/orders",
-  "/orders/success",
-  "/orders/cancel",
-];
+const protectedRoutes = ["/profile", "/cart", "/orders"];
 
 const protectedRoutesAdmin = ["/admin"];
 
-const publicRoutes = ["/login", "/ka/login", "/en/login"];
+// const publicRoutes = ["/login", "/ka/login", "/en/login"];
 
 export default async function middleware(request: NextRequest) {
   const res = NextResponse.next();
@@ -25,11 +20,12 @@ export default async function middleware(request: NextRequest) {
   // const localeValue = request.cookies.get("NEXT_LOCALE")?.value;
 
   const path = request.nextUrl.pathname;
+  const searchParams = request.nextUrl.searchParams;
   const isProtectedRoute = protectedRoutes.includes(path);
 
   const isProtectedRoutesAdmin = protectedRoutesAdmin.includes(path);
 
-  const isPublicRoute = publicRoutes.includes(path);
+  // const isPublicRoute = publicRoutes.includes(path);
 
   if (isProtectedRoute && !userId) {
     return NextResponse.redirect(new URL("/api/auth/login", request.nextUrl));
@@ -37,8 +33,15 @@ export default async function middleware(request: NextRequest) {
   if (isProtectedRoutesAdmin && !isAdmin) {
     return NextResponse.redirect(new URL("/api/auth/login", request.nextUrl));
   }
-  if (isPublicRoute && (userId === undefined || userId)) {
-    return NextResponse.redirect(new URL("/", request.nextUrl));
+  // if (isPublicRoute && (userId === undefined || userId)) {
+  //   return NextResponse.redirect(new URL("/", request.nextUrl));
+  // }
+
+  if (path.startsWith("/orders/success") || path.startsWith("/orders/cancel")) {
+    const token = searchParams.get("token");
+    if (!token || !(await verifyToken(token))) {
+      return NextResponse.redirect(new URL("/", request.nextUrl));
+    }
   }
 
   // const defaultLocale = request.headers.get("ka") || "en";

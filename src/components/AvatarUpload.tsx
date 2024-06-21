@@ -16,7 +16,7 @@ const AvatarUpload = ({ userImage }: { userImage: string }) => {
   const [pickedImage, setPickedImage] = useState<any>(null);
   const t = useTranslations("Index");
 
-  const validImageTypes = ["image/jpeg", "image/png", "image/gif"];
+  const validImageTypes = ["image/jpeg", "image/png", "image/webp"];
   const maxFileSize = 1 * 1024 * 1024; // 1MB file
 
   useEffect(() => {
@@ -54,7 +54,7 @@ const AvatarUpload = ({ userImage }: { userImage: string }) => {
 
     // Restrect to upload non image type files
     if (!validImageTypes.includes(file.type)) {
-      alert("Please upload a valid image file (jpg, png, gif).");
+      alert("Please upload a valid image file (jpg, png, webp).");
       e.target.value = "";
       return;
     }

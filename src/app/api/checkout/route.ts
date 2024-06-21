@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { createToken } from "../../../helpers";
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
@@ -60,6 +61,11 @@ export async function POST(req: NextRequest) {
     }
   }
 
+  // Generate a token
+  const token = await createToken({
+    id: profile.sub,
+  });
+
   const session = await stripe.checkout.sessions.create({
     line_items: stripeItems,
     mode: "payment",
@@ -71,8 +77,8 @@ export async function POST(req: NextRequest) {
         address: profile.address,
       },
     },
-    success_url: `${process.env.NEXT_PUBLIC_VERCEL_URL}/orders/success`,
-    cancel_url: `${process.env.NEXT_PUBLIC_VERCEL_URL}/orders/cancel`,
+    success_url: `${process.env.NEXT_PUBLIC_VERCEL_URL}/orders/success?token=${token}`,
+    cancel_url: `${process.env.NEXT_PUBLIC_VERCEL_URL}/orders/cancel?token=${token}`,
   });
 
   return NextResponse.json({ url: session.url });

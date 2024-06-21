@@ -3,7 +3,7 @@ import {
   FacebookShareButton,
   TwitterShareButton,
   FacebookIcon,
-  TwitterIcon,
+  XIcon,
 } from "react-share";
 
 const SocialShare = ({
@@ -28,7 +28,7 @@ const SocialShare = ({
         url={process.env.NEXT_PUBLIC_VERCEL_URL + `${path}${id}`}
         title={title}
       >
-        <TwitterIcon size={32} round />
+        <XIcon size={32} round />
       </TwitterShareButton>
     </div>
   );

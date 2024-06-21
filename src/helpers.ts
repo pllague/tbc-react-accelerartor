@@ -41,7 +41,7 @@ export function reducer(state: SelectedProduct[], action: Action) {
         count: SelectedProduct.count - 1,
       };
       clone[SelectedProductIdx] = updatedSelectedProduct;
-      if(clone[SelectedProductIdx].count === 0) {
+      if (clone[SelectedProductIdx].count === 0) {
         return state.filter((product) => product.id !== action.payload.id);
       }
       return clone;
@@ -68,4 +68,30 @@ const formatDate = (dateStr: string): string => {
   return `${hours}:${minutes} ${day}-${month}-${year}`;
 };
 
-export {formatDate};
+import { SignJWT, jwtVerify, JWTPayload } from "jose";
+
+const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET!);
+
+interface TokenPayload extends JWTPayload {
+  id: string;
+}
+// Create a JWT token
+const createToken = async (payload: TokenPayload): Promise<string> => {
+  return new SignJWT(payload)
+    .setProtectedHeader({ alg: "HS384" })
+    .setExpirationTime("1h")
+    .sign(JWT_SECRET);
+};
+
+// Verify a JWT token
+const verifyToken = async (token: string): Promise<TokenPayload | null> => {
+  try {
+    const { payload } = await jwtVerify(token, JWT_SECRET);
+    return payload as TokenPayload;
+  } catch (error) {
+    console.error("Token verification failed:", error);
+    return null;
+  }
+};
+
+export { formatDate, createToken, verifyToken };
