@@ -66,8 +66,8 @@ export async function clearCartAction() {
 }
 
 export async function editProfileInfo(formData: ProfileData) {
-  const { name, email, userSub } = formData;
-  await editProfile(name, email, userSub);
+  const { name, userSub, role } = formData;
+  await editProfile(name, userSub, role);
   revalidatePath("/profile");
 }
 

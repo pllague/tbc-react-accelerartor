@@ -95,7 +95,6 @@ interface IStorageCart {
 }
 
 interface ProfileData {
-  email: string;
   userSub: string;
   name: string;
   role?: string | Array;
@@ -200,6 +199,9 @@ interface LatestCharge {
   id: string;
   receipt_url: string;
   refunded: boolean;
+  billing_details: {
+    email: string;
+  };
 }
 
 interface Order {
@@ -232,4 +234,5 @@ interface UserInfoDb {
   email: string;
   sub: string;
   image_url: string;
+  role: string;
 }

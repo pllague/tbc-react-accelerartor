@@ -74,7 +74,7 @@ const ProductDetails: React.FC<paramsObj> = async ({ params }) => {
         <div className="w-full lg:w-1/3 flex flex-col gap-3 justify-center *:text-black *:dark:text-white *:text-[14px] lg:*:text-[16px] [&_span]:text-orange [&_span]:text-[16px] [&_span]:lg:text-[22px]">
           <div className="flex gap-1 items-center">
             <span>Rating: </span>
-            {averageRating} out of 5
+            {averageRating.toFixed(2)} out of 5
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"

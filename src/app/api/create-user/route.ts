@@ -10,12 +10,15 @@ export async function GET(_: NextRequest) {
     const session = await getSession();
 
     if (session?.user) {
-      const { sub, name, email, picture } = session.user;
+      const { sub, name, email, picture, role } = session.user;
+      const isAdmin = Array.isArray(role) && role.includes("Admin");
 
       const user = await sql`SELECT * FROM users WHERE sub = ${sub}`;
 
       if (!user.rows.length) {
-        await sql`INSERT INTO users (name, email, sub, image_url) VALUES ( ${name}, ${email}, ${sub}, ${picture});`;
+        await sql`INSERT INTO users (name, email, sub, image_url, role) VALUES ( ${name}, ${email}, ${sub}, ${picture}, ${
+          isAdmin ? "Admin" : "User"
+        });`;
       }
     }
   } catch (error) {
