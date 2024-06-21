@@ -1,6 +1,11 @@
 import { useTranslations } from "next-intl";
 import ContactForm from "../../../../components/ContactForm";
 
+export const metadata = {
+  title: "Classic Football Shirts - Contact",
+  description: "Contact page",
+};
+
 const Contact = () => {
   const t = useTranslations("Index");
 

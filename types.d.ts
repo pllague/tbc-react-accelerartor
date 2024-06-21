@@ -130,10 +130,10 @@ interface StarRating {
 }
 
 interface StarProps {
-  full: any;
-  onRait: any;
-  onHoverIn: any;
-  onHoverOut: any;
+  full: boolean;
+  onRait: MouseEventHandler<HTMLSpanElement>;
+  onHoverIn: MouseEventHandler<HTMLSpanElement> | undefined;
+  onHoverOut: MouseEventHandler<HTMLSpanElement> | undefined;
 }
 
 interface ProductRate {

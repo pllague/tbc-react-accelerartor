@@ -2,8 +2,8 @@ import AvatarUpload from "../../../../components/AvatarUpload";
 import { getUserImage, getUserInfo } from "../../../api";
 import ProfileInfo from "../../../../components/ProfileInfo";
 export const metadata = {
-  title: "Profile",
-  description: "Profile by Next",
+  title: "Classic Football Shirts - Profile",
+  description: "Profile page",
 };
 
 const ProfilePage = async () => {

@@ -442,3 +442,65 @@ export const getOrders = async () => {
   const orders = await res.json();
   return orders;
 };
+
+export async function getBlogs() {
+  try {
+    const response = await fetch(
+      process.env.NEXT_PUBLIC_VERCEL_URL + "/api/blogs/get-blogs"
+    );
+    if (!response.ok) {
+      throw new Error("Failed to fetch data");
+    }
+    const data = await response.json();
+    return data.blog.rows;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+}
+
+export async function getDetailedBlog(articleId: number) {
+  try {
+    const response = await fetch(
+      process.env.NEXT_PUBLIC_VERCEL_URL + `/api/blogs/get-blogs/${articleId}`
+    );
+    if (!response.ok) {
+      throw new Error("Failed to fetch data");
+    }
+    const data = await response.json();
+    return data.blog.rows[0];
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+}
+
+export async function getProducts(): Promise<productElement[]> {
+  try {
+    const response = await fetch(
+      process.env.NEXT_PUBLIC_VERCEL_URL + "/api/get-products"
+    );
+    if (!response.ok) {
+      throw new Error("Failed to fetch data");
+    }
+    const data = await response.json();
+    return data.products.rows;
+    // setCards(data.products.rows);
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return [];
+  }
+}
+
+export async function getDetailedProduct(productId: number) {
+  try {
+    const response = await fetch(
+      process.env.NEXT_PUBLIC_VERCEL_URL + `/api/get-products/${productId}`
+    );
+    if (!response.ok) {
+      throw new Error("Failed to fetch data");
+    }
+    const data = await response.json();
+    return data.products.rows[0];
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+}

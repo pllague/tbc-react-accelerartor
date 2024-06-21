@@ -1,46 +1,31 @@
 "use client";
 import Card from "./Card";
-// import Cart from "./Cart";
 import { useDebounce } from "../hooks/hooks";
 import { useState, useEffect, useTransition } from "react";
 import { useLocale } from "next-intl";
-// import { reducer } from "../helpers";
 import { addToCartAction } from "../app/actions";
 import LoadingAnimation from "./LoadingAnimation";
 import { useCartOptimistic } from "../hooks/useCartOptimistic";
 import { useUser } from "@auth0/nextjs-auth0/client";
+import { getProducts } from "../app/api";
 
 const Products = ({ isSorted = false, searchQuery = "" }) => {
   const locale = useLocale();
   const { user } = useUser();
   const [cards, setCards] = useState<productElement[]>([]);
 
-  // const [cachedValue, setCachedValue] = useLocalStorage("selectedProducts", []);
-
-  // const [SelectedProducts, dispatch] = useReducer(reducer, cachedValue);
-
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchProducts = async () => {
       try {
-        const response = await fetch(
-          process.env.NEXT_PUBLIC_VERCEL_URL + "/api/get-products"
-        );
-        if (!response.ok) {
-          throw new Error("Failed to fetch data");
-        }
-        const data = await response.json();
-        setCards(data.products.rows);
+        const products = await getProducts(); // Await the promise here
+        setCards(products);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error("Error fetching products:", error);
       }
     };
 
-    fetchData();
+    fetchProducts();
   }, []);
-
-  // useEffect(() => {
-  //   setCachedValue(SelectedProducts);
-  // }, [SelectedProducts, setCachedValue]);
 
   let newCards = isSorted
     ? cards.slice().sort((a, b) => a.title.localeCompare(b.title))
@@ -52,13 +37,6 @@ const Products = ({ isSorted = false, searchQuery = "" }) => {
     product.title.toLowerCase().includes(debouncedSearchQuery.toLowerCase())
   );
 
-  // const handleClick = (card: productElement) => {
-  //   dispatch({ type: "INCREMENT", payload: card });
-  // };
-
-  // const selectedNumber = SelectedProducts.reduce((acc, curr) => {
-  //   return acc + curr.count;
-  // }, 0);
   const [, startTransition] = useTransition();
 
   const { optimistic, addOptimistic } = useCartOptimistic();

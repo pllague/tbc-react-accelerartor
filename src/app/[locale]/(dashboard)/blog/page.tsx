@@ -1,24 +1,15 @@
 import Article from "../../../../components/Article";
 import { useLocale } from "next-intl";
+import { getBlogs } from "../../../api";
 
-const fetchData = async () => {
-  try {
-    const response = await fetch(
-      process.env.NEXT_PUBLIC_VERCEL_URL + "/api/blogs/get-blogs"
-    );
-    if (!response.ok) {
-      throw new Error("Failed to fetch data");
-    }
-    const data = await response.json();
-    return data.blog.rows;
-  } catch (error) {
-    console.error("Error fetching data:", error);
-  }
+export const metadata = {
+  title: "Classic Football Shirts - Blog",
+  description: "Blog page",
 };
 
 const Blog = async () => {
   const locale = useLocale();
-  const articles: postElement[] = await fetchData();
+  const articles: postElement[] = await getBlogs();
 
   return (
     <section className="w-full p-5 pb-[50px] bg-[#E5E1CC]/30 dark:bg-grey">

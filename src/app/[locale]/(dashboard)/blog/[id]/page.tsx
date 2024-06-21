@@ -2,26 +2,22 @@ import Image from "next/image";
 import { unstable_setRequestLocale } from "next-intl/server";
 import { formatDate } from "../../../../../helpers";
 import SocialShare from "../../../../../components/SocialShare";
+import { getBlogs, getDetailedBlog } from "../../../../api";
 
-const fetchData = async (articleId: number) => {
-  try {
-    const response = await fetch(
-      process.env.NEXT_PUBLIC_VERCEL_URL + `/api/blogs/get-blogs/${articleId}`
-    );
-    if (!response.ok) {
-      throw new Error("Failed to fetch data");
-    }
-    const data = await response.json();
-    return data.blog.rows[0];
-  } catch (error) {
-    console.error("Error fetching data:", error);
-  }
-};
+export async function generateMetadata({ params }: { params: params }) {
+  const blogs = await getBlogs();
+  const blog = blogs.find((blog: postElement) => blog.id == params.id);
+
+  return {
+    title: `${blog.title}`,
+    description: `${blog.description}`,
+  };
+}
 
 const BlogDetails = async ({ params }: paramsObj) => {
   unstable_setRequestLocale(params.locale);
   const articleId = params.id;
-  const articleData: postElement = await fetchData(articleId);
+  const articleData: postElement = await getDetailedBlog(articleId);
   const formattedDate = formatDate(articleData.date);
   return (
     <section>
