@@ -13,7 +13,7 @@ const DashboardLayout: React.FC<childrenProps> = async ({ children }) => {
       <NextIntlClientProvider messages={messages}>
         <CartOptimisticContextProvider cart={cart}>
           <Header />
-          <main>{children}</main>
+          <main className="flex-1">{children}</main>
           <Footer />
         </CartOptimisticContextProvider>
       </NextIntlClientProvider>

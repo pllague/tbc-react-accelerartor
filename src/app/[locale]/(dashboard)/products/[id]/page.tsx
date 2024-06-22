@@ -49,9 +49,9 @@ const ProductDetails: React.FC<paramsObj> = async ({ params }) => {
       ? ratings.find((item: { userId: string }) => item.userId === userSub)
       : 0;
 
-  function getNameBySub(sub: string, allUsers: User[]) {
+  function getNameBySub(sub: string, allUsers: User[], userName: string) {
     const user = allUsers.find((item) => item.sub === sub);
-    return user ? user.name : null;
+    return user ? user.name : userName;
   }
 
   const allUsers = await getUsers();
@@ -141,7 +141,7 @@ const ProductDetails: React.FC<paramsObj> = async ({ params }) => {
               index: number
             ) => (
               <div key={index}>
-                <p>{getNameBySub(item.userId, allUsers)}</p>
+                <p>{getNameBySub(item.userId, allUsers, item.userName)}</p>
                 <p>{item.review}</p>
               </div>
             )

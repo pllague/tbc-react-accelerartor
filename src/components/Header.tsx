@@ -19,20 +19,12 @@ const Header = async () => {
   return (
     <header className="w-full h-[70px] lg:h-[85px] bg-[#E5E1CC] dark:bg-secondary/90 sticky top-0 z-10">
       <div className="w-full h-full flex mx-auto justify-between items-center px-10 lg:px-0 lg:max-w-[1400px]">
-        {/* logo */}
         <Link className="w-[120px] lg:w-[150px]" href={`/${locale}`}>
-          {/* <Image
-            src="/logo.svg"
-            priority={true}
-            className="w-full h-full"
-            alt="logo"
-            width={100}
-            height={100}
-          /> */}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 261 80.95"
             className="w-full h-full"
+            name="Home Page"
           >
             <g id="Layer_2" data-name="Layer 2">
               <g id="Layer_3" data-name="Layer 3">
@@ -147,8 +139,12 @@ const Header = async () => {
           <Navigation layout="flex-row" />
         </div>
         <div className="flex gap-6 lg:gap-4 items-center">
-          <Cart />
-          {userId && <Profile />}
+          {userId && (
+            <>
+              <Cart />
+              <Profile />
+            </>
+          )}
           <BurgerMenu />
           <div className="hidden lg:flex gap-4 items-center">
             <LangSwitcher />

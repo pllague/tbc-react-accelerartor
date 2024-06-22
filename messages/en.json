@@ -56,6 +56,14 @@
     "user": "User",
     "client": "Client",
     "role": "Role",
-    "upload": "Upload"
+    "upload": "Upload",
+    "searchPlaceholder": "Type to search ...",
+    "filter": "Filter by category",
+    "All": "All",
+    "Shirt": "Shirt",
+    "Shorts": "Shorts",
+    "brand": "Brand",
+    "stoke": "Stock",
+    "In Stoke": "In Stock"
   }
 }
