@@ -1,39 +1,55 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 const Card: React.FC<cardProps> = ({
-  card: { id, title, description, image, price },
+  card: { id, title, category, image, price, brand, stock },
   handleClick,
 }) => {
   const locale = useLocale();
+  const t = useTranslations("Index");
   // Check if title is more then 25 chars
-  const trimmedTitle = title.length > 26 ? `${title.slice(0, 23)}...` : title;
+  const trimmedTitle = title.length > 20 ? `${title.slice(0, 17)}...` : title;
 
   return (
-    <div className="relative flex flex-col gap-3 w-[250px] h-[370px] rounded-[10px] border border-yellow-600 dark:border-light_blue overflow-hidden lg:w-[300px] lg:h-[470px] hover:scale-105 transition duration-300 ease-linear ">
+    <div className="flex flex-col gap-3 w-[250px] h-[370px] rounded-[10px] overflow-hidden lg:w-[300px] lg:h-[470px] shadow-lg shadow-gray-700  hover:scale-[1.03] transition duration-300 ease-linear ">
       <Link href={`/${locale}/products/${id}`}>
-        <div className="absolute top-0 right-0 w-[80px] dark:bg-light_blue bg-yellow-600 text-center rounded-bl-xl">
-          {price} €
-        </div>
         <div className="flex flex-col gap-3 w-full h-[310px] lg:h-[390px]">
           <div className="w-full min-h-[200px] max-h-[200px] lg:min-h-[250px] lg:max-h-[250px]">
             <Image
               className="w-full h-full "
               src={image}
               alt={title}
-              width={500}
-              height={500}
+              width={300}
+              height={350}
             />
           </div>
           <div className="flex flex-col gap-3 px-[18px] lg:px-[22px]">
-            <h5 className="text-[15px] leading-[24px] lg:text-[18px] lg:leading-[29px] text-center text-yellow-600 dark:text-light_blue">
+            <h3 className="text-[15px] leading-[24px] lg:text-[20px] lg:leading-[29px] text-center text-black dark:text-white">
               {trimmedTitle}
-            </h5>
-            <div className="flex flex-col gap-3 justify-between items-center">
-              <div className="w-full h-[70px] lg:h-[90px] text-[11px] lg:text-[13px] text-wrap">
-                {description}
+            </h3>
+            <div className="flex gap-3 justify-between *:text-[12px] lg:*:text-[14px]">
+              <div className="flex flex-col  gap-2 lg:gap-3">
+                <div>
+                  <span>{t("category")}: </span>
+                  {t(category)}
+                </div>
+                <div>
+                  <span>{t("stoke")}: </span>
+                  {t(stock)}
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-2 lg:gap-3">
+                <div>
+                  <span>{t("brand")}: </span>
+                  {brand}
+                </div>
+                <div>
+                  <span>{t("price")}: </span>
+                  {price} $
+                </div>
               </div>
             </div>
           </div>
@@ -46,7 +62,7 @@ const Card: React.FC<cardProps> = ({
       >
         <button
           onClick={() => handleClick(id)}
-          className={`group w-full flex justify-center gap-3 items-center py-1 lg:py-2 border border-yellow-600 dark:border-light_blue rounded-[10px] lg:rounded-[12px] hover:border-orange dark:hover:border-orange hover:text-orange transition-all duration-300 ease-in-out text-[15px] ${
+          className={`group w-full flex justify-center gap-3 items-center py-1 lg:py-2 border border-black dark:border-white rounded-[10px] lg:rounded-[12px] hover:border-orange dark:hover:border-orange hover:text-orange transition-all duration-300 ease-in-out text-[12px] lg:text-[15px] ${
             locale === "ka" ? "gap-1 lg:gap-3" : ""
           }`}
         >

@@ -1,9 +1,7 @@
 import { unstable_setRequestLocale } from "next-intl/server";
 import { getOrders } from "../../../api";
 import { getSession } from "@auth0/nextjs-auth0";
-// import { getAuthUserAction } from "../../../../lib/actions";
 import Orders from "../../../../components/Orders";
-// import { Order } from "../../../../types/profile-types";
 
 export const metadata = {
   title: "Classic Football Shirts - Orders",

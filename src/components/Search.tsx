@@ -1,29 +1,35 @@
-import { useLocale } from "next-intl";
+import { useTranslations } from "next-intl";
 
-const Search: React.FC<searchProps> = ({
-  isSorted,
-  setIsSorted,
+const categories: Category[] = [
+  { id: "all", name: "All" },
+  { id: "Shirt", name: "Shirt" },
+  { id: "Shorts", name: "Shorts" },
+];
+
+const Search: React.FC<SearchProps> = ({
   searchQuery,
   setSearchQuery,
+  selectedCategory,
+  setSelectedCategory,
+  displayFilter = true,
 }) => {
-  const locale = useLocale();
+  const t = useTranslations("Index");
 
-  function handleClick() {
-    setIsSorted((prev: boolean) => !prev);
+  function handleQueryChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const pattern = /[^a-z0-9]/gi;
+    setSearchQuery(event.target.value.replace(pattern, ""));
   }
 
-  const pattern = /[^a-z0-9]/gi;
-  // set search query
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setSearchQuery(event.target.value)?.replace(pattern, "");
+  function handleCategoryChange(event: React.ChangeEvent<HTMLSelectElement>) {
+    setSelectedCategory(event.target.value);
   }
 
   return (
-    <section className="w-full pt-20">
-      <div className="flex flex-col lg:flex-row max-w-[1400px] mx-auto h-[100px] lg:h-[65px] justify-center items-center gap-3 lg:gap-5 ">
-        <form className="w-[70%] lg:w-[50%] h-[50px] lg:h-[65px] flex items-center bg-white dark:bg-[#121212] rounded-[100px] px-2 lg:px-5">
+    <section className="w-full pt-3">
+      <div className="flex flex-col lg:flex-row max-w-[1400px] mx-auto h-[100px] lg:h-[65px] justify-center items-center gap-3 lg:gap-7 ">
+        <form className="w-[70%] lg:w-[50%] h-[30px] lg:h-[40px] flex items-center bg-white dark:bg-[#121212] rounded-[100px] px-2 lg:px-5">
           <svg
-            className="hidden lg:block w-[15px] h-[15px] lg:w-[25px] lg:h-[25px]"
+            className="hidden lg:block w-[10px] h-[10px] lg:w-[15px] lg:h-[15px]"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 19.641 19.641"
           >
@@ -54,34 +60,37 @@ const Search: React.FC<searchProps> = ({
             </g>
           </svg>
           <input
-            className="w-full h-full border-0 px-2 lg:px-[25px] rounded-[100px] text-secondary lg:text-[22px] focus:border-transparent focus:outline-none dark:text-white"
+            className="w-full h-full border-0 px-2 lg:px-[25px] rounded-[100px] text-secondary lg:text-[16px] focus:border-transparent focus:outline-none dark:text-white"
             maxLength={100}
             name="search"
-            placeholder={locale === "en" ? "Type to search ..." : "ძებნა ..."}
+            placeholder={t("searchPlaceholder")}
             type="search"
             autoCapitalize="none"
             autoComplete="off"
             spellCheck="false"
             value={searchQuery}
-            onChange={handleChange}
+            onChange={handleQueryChange}
           />
         </form>
 
-        <button
-          onClick={handleClick}
-          className={
-            "w-fit lg:h-full bg-yellow-600 dark:bg-blue-500 hover:bg-orange dark:hover:bg-orange rounded-[100px] py-2 lg:py-auto px-7 font-small lg:font-medium cursor-pointer transition-all transform duration-300 ease-linear" +
-            (locale === "ka" ? " lg:text-[14px]" : " lg:text-[16px]")
-          }
-        >
-          {isSorted
-            ? locale === "en"
-              ? "Reset"
-              : "გადატვირთვა"
-            : locale === "en"
-            ? "Sort by title"
-            : "დალაგება სათურით"}
-        </button>
+        {displayFilter && (
+          <div className="w-[70%] lg:w-[25%] h-[30px] lg:h-[40px] flex gap-1 items-center text-secondary dark:text-white">
+            <span className="text-[15px]">{t("filter")}</span>
+            <div className="w-full h-full pr-3 bg-white dark:bg-[#121212] rounded-[100px] cursor-pointer">
+              <select
+                onChange={handleCategoryChange}
+                value={selectedCategory}
+                className="w-full h-full bg-white dark:bg-[#121212] rounded-[100px] px-2 lg:px-5 focus:border-transparent focus:outline-none cursor-pointer"
+              >
+                {categories.map((category) => (
+                  <option key={category.id} value={category.id}>
+                    {t(category.name)}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );

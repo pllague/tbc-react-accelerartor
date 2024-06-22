@@ -17,12 +17,17 @@ interface productElement {
   price: number;
   discountPercentage: number;
   rating: number;
-  stock: number;
+  stock: string;
   brand: string;
   category: string;
   image: string;
   images: Array<string>;
   quantity?: number;
+}
+
+interface ProductsProps {
+  searchQuery: string;
+  selectedCategory: string;
 }
 
 interface cardProps {
@@ -44,11 +49,12 @@ interface childrenProps {
   params: params;
 }
 
-interface searchProps {
-  isSorted: boolean;
-  setIsSorted: Dispatch<SetStateAction<boolean>>;
+interface SearchProps {
   searchQuery: string;
-  setSearchQuery: Dispatch<SetStateAction<string>>;
+  setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
+  selectedCategory: string;
+  setSelectedCategory: React.Dispatch<React.SetStateAction<string>>;
+  displayFilter?: boolean;
 }
 
 interface User {
@@ -130,10 +136,10 @@ interface StarRating {
 }
 
 interface StarProps {
-  full: any;
-  onRait: any;
-  onHoverIn: any;
-  onHoverOut: any;
+  full: boolean;
+  onRait: MouseEventHandler<HTMLSpanElement>;
+  onHoverIn: MouseEventHandler<HTMLSpanElement> | undefined;
+  onHoverOut: MouseEventHandler<HTMLSpanElement> | undefined;
 }
 
 interface ProductRate {
@@ -235,4 +241,9 @@ interface UserInfoDb {
   sub: string;
   image_url: string;
   role: string;
+}
+
+interface Category {
+  id: string;
+  name: string;
 }

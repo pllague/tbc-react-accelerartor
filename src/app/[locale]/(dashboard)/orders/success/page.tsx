@@ -2,7 +2,7 @@ import { unstable_setRequestLocale } from "next-intl/server";
 import SuccessOrder from "../../../../../components/SuccessOrder";
 
 export const metadata = {
-  title: "Liquor store - Success",
+  title: "Classic Football Shirt - Success",
   description: "Succsess page",
 };
 

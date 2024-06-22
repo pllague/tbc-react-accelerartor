@@ -10,6 +10,11 @@ import ProductCreateButton from "../../../../components/ProductCreateButton";
 // import UserEditButton from "../../../../components/UserEditButton";
 // import { getTranslations } from "next-intl/server";
 
+export const metadata = {
+  title: "Classic Football Shirts - Admin",
+  description: "Admin page",
+};
+
 const AdminPage = async () => {
   // const t = await getTranslations("Index");
   // const users = await getUsers();

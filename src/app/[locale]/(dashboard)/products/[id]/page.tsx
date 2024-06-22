@@ -3,28 +3,31 @@ import { unstable_setRequestLocale } from "next-intl/server";
 import Rating from "../../../../../components/Rating";
 import { getSession } from "@auth0/nextjs-auth0";
 import Comment from "../../../../../components/Comment";
-import { getRatings, getReviews, getUsers } from "../../../../api";
+import {
+  getDetailedProduct,
+  getProducts,
+  getRatings,
+  getReviews,
+  getUsers,
+} from "../../../../api";
 import SocialShare from "../../../../../components/SocialShare";
 
-const fetchData = async (productId: number) => {
-  try {
-    const response = await fetch(
-      process.env.NEXT_PUBLIC_VERCEL_URL + `/api/get-products/${productId}`
-    );
-    if (!response.ok) {
-      throw new Error("Failed to fetch data");
-    }
-    const data = await response.json();
-    return data.products.rows[0];
-  } catch (error) {
-    console.error("Error fetching data:", error);
-  }
-};
+export async function generateMetadata({ params }: { params: params }) {
+  const products = await getProducts();
+  const product = products.find(
+    (product: productElement) => product.id == params.id
+  );
+
+  return {
+    title: `${product?.title}`,
+    description: `${product?.description}`,
+  };
+}
 
 const ProductDetails: React.FC<paramsObj> = async ({ params }) => {
   unstable_setRequestLocale(params.locale);
   const productId = params.id;
-  const productData: productElement = await fetchData(productId);
+  const productData: productElement = await getDetailedProduct(productId);
   const session = await getSession();
   const userSub = session?.user?.sub;
   const userName = session?.user?.name;
@@ -46,9 +49,9 @@ const ProductDetails: React.FC<paramsObj> = async ({ params }) => {
       ? ratings.find((item: { userId: string }) => item.userId === userSub)
       : 0;
 
-  function getNameBySub(sub: string, allUsers: User[]) {
+  function getNameBySub(sub: string, allUsers: User[], userName: string) {
     const user = allUsers.find((item) => item.sub === sub);
-    return user ? user.name : null;
+    return user ? user.name : userName;
   }
 
   const allUsers = await getUsers();
@@ -138,7 +141,7 @@ const ProductDetails: React.FC<paramsObj> = async ({ params }) => {
               index: number
             ) => (
               <div key={index}>
-                <p>{getNameBySub(item.userId, allUsers)}</p>
+                <p>{getNameBySub(item.userId, allUsers, item.userName)}</p>
                 <p>{item.review}</p>
               </div>
             )

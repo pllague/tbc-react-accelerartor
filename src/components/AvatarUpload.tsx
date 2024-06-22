@@ -1,26 +1,32 @@
 "use client";
 import type { PutBlobResult } from "@vercel/blob";
-import { useState, useRef } from "react";
+import { useState, useRef, ChangeEvent, useEffect } from "react";
 import Image from "next/image";
 import { useUser } from "@auth0/nextjs-auth0/client";
-import { useEffect } from "react";
 import { uploadUserPicture } from "../app/api";
 import LoadingAnimation from "./LoadingAnimation";
 import { useTranslations } from "next-intl";
 
-const AvatarUpload = ({ userImage }: { userImage: string }) => {
+// Component Props Type
+interface AvatarUploadProps {
+  userImage: string;
+}
+
+// AvatarUpload Component
+const AvatarUpload: React.FC<AvatarUploadProps> = ({ userImage }) => {
   const inputFileRef = useRef<HTMLInputElement>(null);
   const [blob, setBlob] = useState<PutBlobResult | null>(null);
   const { user } = useUser();
-  const [loader, setLoader] = useState(false);
-  const [pickedImage, setPickedImage] = useState<any>(null);
+  const [loader, setLoader] = useState<boolean>(false);
+  const [pickedImage, setPickedImage] = useState<string | ArrayBuffer | null>(
+    null
+  );
   const t = useTranslations("Index");
 
-  const validImageTypes = ["image/jpeg", "image/png", "image/webp"];
-  const maxFileSize = 1 * 1024 * 1024; // 1MB file
+  const validImageTypes: string[] = ["image/jpeg", "image/png", "image/webp"];
+  const maxFileSize: number = 1 * 1024 * 1024; // 1MB file
 
   useEffect(() => {
-    setLoader(true);
     const updateUser = async () => {
       if (!blob || !user) return;
       try {
@@ -34,48 +40,71 @@ const AvatarUpload = ({ userImage }: { userImage: string }) => {
         }
       } catch (error) {
         console.error("Error updating user picture:", error);
+      } finally {
+        setLoader(false);
       }
     };
-    setLoader(false);
+
     updateUser();
   }, [blob, user]);
 
-  function handleClick() {
+  const handleClick = (): void => {
     inputFileRef.current?.click();
-  }
+  };
 
-  // Adding an Image Preview to the Picker
-  function handleImageChange(e: any) {
-    const file = e.target.files[0];
+  const handleImageChange = (e: ChangeEvent<HTMLInputElement>): void => {
+    const file = e.target.files?.[0];
     if (!file) {
       setPickedImage(null);
       return;
     }
 
-    // Restrect to upload non image type files
     if (!validImageTypes.includes(file.type)) {
       alert("Please upload a valid image file (jpg, png, webp).");
       e.target.value = "";
       return;
     }
 
-    // Don't give a possibility to upload image more then 1 MB
     if (file.size > maxFileSize) {
       alert("File size exceeds 1MB. Please upload a smaller image.");
       e.target.value = "";
       return;
     }
 
-    // file reader
     const fileReader = new FileReader();
     fileReader.onload = () => {
       setPickedImage(fileReader.result);
     };
     fileReader.readAsDataURL(file);
-  }
+  };
+
+  const handleSubmit = async (
+    event: React.FormEvent<HTMLFormElement>
+  ): Promise<void> => {
+    event.preventDefault();
+    setLoader(true);
+
+    if (!inputFileRef.current?.files) {
+      throw new Error("No file selected");
+    }
+
+    const file = inputFileRef.current.files[0];
+    const response = await fetch(`/api/avatar/upload?filename=${file.name}`, {
+      method: "POST",
+      body: file,
+    });
+
+    const newBlob = (await response.json()) as PutBlobResult;
+    setBlob(newBlob);
+
+    if (inputFileRef.current) {
+      inputFileRef.current.value = "";
+    }
+  };
+
   let imageSrc: string;
   if (pickedImage) {
-    imageSrc = pickedImage;
+    imageSrc = pickedImage.toString();
   } else if (blob) {
     imageSrc = blob.url;
   } else {
@@ -83,14 +112,14 @@ const AvatarUpload = ({ userImage }: { userImage: string }) => {
   }
 
   return (
-    <div className=" h-full flex flex-col justify-start items-start gap-6">
-      <div className="relative group w-[150px] h-[150px] rounded-full overflow-hidden ">
+    <div className="h-full flex flex-col justify-start items-start gap-6">
+      <div className="relative group w-[150px] h-[150px] rounded-full overflow-hidden">
         {loader && <LoadingAnimation />}
         <Image
           src={imageSrc}
           priority={true}
           alt="user avatar"
-          className="h-auto "
+          className="h-auto"
           width={150}
           height={150}
         />
@@ -130,34 +159,11 @@ const AvatarUpload = ({ userImage }: { userImage: string }) => {
       </div>
       <form
         className="w-full flex flex-col justify-center items-center gap-3"
-        onSubmit={async (event) => {
-          event.preventDefault();
-          setLoader(true);
-          if (!inputFileRef.current?.files) {
-            throw new Error("No file selected");
-          }
-
-          const file = inputFileRef.current.files[0];
-
-          const response = await fetch(
-            `/api/avatar/upload?filename=${file.name}`,
-            {
-              method: "POST",
-              body: file,
-            }
-          );
-
-          const newBlob = (await response.json()) as PutBlobResult;
-
-          setBlob(newBlob);
-          if (inputFileRef.current) {
-            inputFileRef.current.value = "";
-          }
-        }}
+        onSubmit={handleSubmit}
       >
         {inputFileRef?.current?.files?.length! > 0 && (
           <button
-            className="bg-blue-500 w-fit text-white py-2 px-4 text-[16px] rounded-[5px] hover:bg-orange transition-all transform duration-300 ease-linear "
+            className="bg-blue-500 w-fit text-white py-2 px-4 text-[16px] rounded-[5px] hover:bg-orange transition-all transform duration-300 ease-linear"
             type="submit"
           >
             {t("upload")}
