@@ -10,7 +10,7 @@ const BlogEditForm = ({
   blog,
 }: {
   setOpenModal: (openModal: boolean) => void;
-  blog: postElement;
+  blog: PostElement;
 }) => {
   const inputFileRef = useRef<HTMLInputElement>(null);
   const [title, setTitle] = useState<string>(blog.title);

@@ -24,7 +24,6 @@ const Header = async () => {
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 261 80.95"
             className="w-full h-full"
-            name="Home Page"
           >
             <g id="Layer_2" data-name="Layer 2">
               <g id="Layer_3" data-name="Layer 3">

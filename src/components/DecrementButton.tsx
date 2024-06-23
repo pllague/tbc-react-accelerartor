@@ -4,7 +4,7 @@ import { useTransition } from "react";
 import { useCartOptimistic } from "../hooks/useCartOptimistic";
 
 interface Props {
-  item: productElement;
+  item: ProductElement;
 }
 
 const DecrementButton = ({ item }: Props) => {

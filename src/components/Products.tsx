@@ -15,7 +15,7 @@ const Products: React.FC<ProductsProps> = ({
 }) => {
   const locale = useLocale();
   const { user } = useUser();
-  const [cards, setCards] = useState<productElement[]>([]);
+  const [cards, setCards] = useState<ProductElement[]>([]);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -54,7 +54,7 @@ const Products: React.FC<ProductsProps> = ({
 
   const { optimistic, addOptimistic } = useCartOptimistic();
 
-  const addToCart = async (card: productElement) => {
+  const addToCart = async (card: ProductElement) => {
     if (user?.sub && addOptimistic && optimistic) {
       startTransition(() => {
         const newCart = {

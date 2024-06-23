@@ -8,7 +8,7 @@ import LoadingAnimation from "./LoadingAnimation";
 
 const Blogs = ({ searchQuery = "" }) => {
   const locale = useLocale();
-  const [articles, setArticles] = useState<postElement[]>([]);
+  const [articles, setArticles] = useState<PostElement[]>([]);
 
   useEffect(() => {
     const fetchProducts = async () => {

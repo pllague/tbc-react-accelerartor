@@ -15,7 +15,7 @@ import SocialShare from "../../../../../components/SocialShare";
 export async function generateMetadata({ params }: { params: params }) {
   const products = await getProducts();
   const product = products.find(
-    (product: productElement) => product.id == params.id
+    (product: ProductElement) => product.id == params.id
   );
 
   return {
@@ -24,10 +24,10 @@ export async function generateMetadata({ params }: { params: params }) {
   };
 }
 
-const ProductDetails: React.FC<paramsObj> = async ({ params }) => {
+const ProductDetails: React.FC<ParamsObj> = async ({ params }) => {
   unstable_setRequestLocale(params.locale);
   const productId = params.id;
-  const productData: productElement = await getDetailedProduct(productId);
+  const productData: ProductElement = await getDetailedProduct(productId);
   const session = await getSession();
   const userSub = session?.user?.sub;
   const userName = session?.user?.name;

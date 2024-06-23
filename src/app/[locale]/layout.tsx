@@ -11,7 +11,7 @@ export const metadata = {
     "Classic Football Shirts Buy Classic Football Jarseys For Your Collection ",
 };
 
-const RootLayout: React.FC<childrenProps> = ({
+const RootLayout: React.FC<ChildrenProps> = ({
   children,
   params: { locale },
 }) => {

@@ -2,7 +2,7 @@
 import { useState } from "react";
 import ProductEditForm from "./ProductEditForm";
 
-const ProductEditButton = ({ product }: { product: productElement }) => {
+const ProductEditButton = ({ product }: { product: ProductElement }) => {
   const [openModal, setOpenModal] = useState(false);
 
   return (

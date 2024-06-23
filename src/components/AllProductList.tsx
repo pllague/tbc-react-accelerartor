@@ -12,7 +12,7 @@ const AllProductList = ({
 }: {
   setOpenModal: (openModal: boolean) => void;
 }) => {
-  const [products, setProducts] = useState<productElement[]>([]);
+  const [products, setProducts] = useState<ProductElement[]>([]);
   const t = useTranslations("Index");
   useEffect(() => {
     const fetchData = async () => {

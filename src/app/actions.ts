@@ -187,7 +187,7 @@ export async function createRefundAction(chargeId: string) {
 }
 
 export async function checkoutAction(
-  cartProducts: productElement[],
+  cartProducts: ProductElement[],
   profile: CheckoutProfile
 ) {
   await fetch(process.env.NEXT_PUBLIC_VERCEL_URL + "/api/checkout", {

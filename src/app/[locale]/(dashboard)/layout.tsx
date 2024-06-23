@@ -5,7 +5,7 @@ import Footer from "../../../components/Footer";
 import { CartOptimisticContextProvider } from "../../../providers/CartOptimisticProvider";
 import { getDetailedCart } from "../../api";
 
-const DashboardLayout: React.FC<childrenProps> = async ({ children }) => {
+const DashboardLayout: React.FC<ChildrenProps> = async ({ children }) => {
   const messages = await getMessages();
   const cart = await getDetailedCart();
   return (
