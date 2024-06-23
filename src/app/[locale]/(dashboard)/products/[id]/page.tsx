@@ -68,8 +68,8 @@ const ProductDetails: React.FC<ParamsObj> = async ({ params }) => {
             <Image
               src={productData?.image}
               alt={productData?.title}
-              width={600}
-              height={700}
+              width={300}
+              height={300}
               className="w-full h-full object-cover object-center"
             />
           </div>
