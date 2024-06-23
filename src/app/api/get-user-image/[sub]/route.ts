@@ -8,8 +8,7 @@ export async function GET(
   { params: { sub } }: { params: { sub: string } }
 ) {
   try {
-    const userImage =
-      await sql`SELECT image_url FROM users WHERE sub = ${sub}`;
+    const userImage = await sql`SELECT image_url FROM users WHERE sub = ${sub}`;
     return NextResponse.json({ userImage }, { status: 200 });
   } catch (error) {
     return NextResponse.json({ error }, { status: 500 });

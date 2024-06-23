@@ -1,8 +1,8 @@
 const initialState: SelectedProduct[] = [];
 type Action =
-  | { type: "INCREMENT"; payload: productElement }
-  | { type: "DECREMENT"; payload: productElement }
-  | { type: "REMOVE"; payload: productElement }
+  | { type: "INCREMENT"; payload: ProductElement }
+  | { type: "DECREMENT"; payload: ProductElement }
+  | { type: "REMOVE"; payload: ProductElement }
   | { type: "RESET" };
 
 export function reducer(state: SelectedProduct[], action: Action) {

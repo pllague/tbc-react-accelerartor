@@ -21,12 +21,12 @@ export async function GET(req: NextRequest) {
     const data: FetchedProductsData = await fetchDataFromApi(
       process.env.NEXT_PUBLIC_VERCEL_URL + "/api/get-products"
     );
-    const products: productElement[] = data.products.rows;
+    const products: ProductElement[] = data.products.rows;
     if (cart.rows.length) {
       const userCart = cart.rows[0].products;
 
       const productMap = products.reduce(
-        (acc: { [key: string]: productElement }, item) => {
+        (acc: { [key: string]: ProductElement }, item) => {
           acc[item.id] = item;
           return acc;
         },

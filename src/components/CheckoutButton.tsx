@@ -3,7 +3,7 @@ import { useState } from "react";
 import CheckoutForm from "./CheckoutForm";
 import { useTranslations } from "next-intl";
 
-const CheckoutButton = ({ cardsData }: { cardsData: productElement[] }) => {
+const CheckoutButton = ({ cardsData }: { cardsData: ProductElement[] }) => {
   const [openModal, setOpenModal] = useState(false);
   const t = useTranslations("Index");
   return (

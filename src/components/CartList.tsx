@@ -45,7 +45,7 @@ const CartList = () => {
               </tr>
             </thead>
             <tbody className="[&>tr>td]:p-2 ">
-              {cardsData.map((product: productElement, index: number) => (
+              {cardsData.map((product: ProductElement, index: number) => (
                 <tr
                   key={product.id}
                   className={`${

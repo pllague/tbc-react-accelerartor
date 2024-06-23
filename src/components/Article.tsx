@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import { useLocale } from "next-intl";
 import { formatDate } from "../helpers";
 
-const Article: React.FC<articleProps> = ({
+const Article: React.FC<ArticleProps> = ({
   article: { id, title, description, image, date, author },
 }) => {
   const t = useTranslations("Index");

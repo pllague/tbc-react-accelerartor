@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
 
 const categories: Category[] = [
-  { id: "all", name: "All" },
+  { id: "all", name: "All Category" },
   { id: "Shirt", name: "Shirt" },
   { id: "Shorts", name: "Shorts" },
 ];
@@ -75,7 +75,6 @@ const Search: React.FC<SearchProps> = ({
 
         {displayFilter && (
           <div className="w-[70%] lg:w-[25%] h-[30px] lg:h-[40px] flex gap-1 items-center text-secondary dark:text-white">
-            <span className="text-[15px]">{t("filter")}</span>
             <div className="w-full h-full pr-3 bg-white dark:bg-[#121212] rounded-[100px] cursor-pointer">
               <select
                 onChange={handleCategoryChange}

@@ -473,7 +473,7 @@ export async function getDetailedBlog(articleId: number) {
   }
 }
 
-export async function getProducts(): Promise<productElement[]> {
+export async function getProducts(): Promise<ProductElement[]> {
   try {
     const response = await fetch(
       process.env.NEXT_PUBLIC_VERCEL_URL + "/api/get-products"

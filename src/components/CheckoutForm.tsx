@@ -13,10 +13,10 @@ const Checkout = ({
   selectedProducts,
   setOpenModal,
 }: {
-  selectedProducts: productElement[];
+  selectedProducts: ProductElement[];
   setOpenModal: (openModal: boolean) => void;
 }) => {
-  //   const [cartProducts, setCartProducts] = useState<productElement[] | []>([]);
+  //   const [cartProducts, setCartProducts] = useState<ProductElement[] | []>([]);
   const { user } = useUser();
   const [profile, setProfile] = useState<CheckoutProfile>({
     city: "",
@@ -57,7 +57,7 @@ const Checkout = ({
   };
 
   const countSubtotal = selectedProducts.reduce(
-    (curr: number, acc: productElement) => {
+    (curr: number, acc: ProductElement) => {
       return curr + acc.quantity! * acc.price;
     },
     0

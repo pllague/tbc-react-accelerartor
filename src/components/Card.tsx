@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 
-const Card: React.FC<cardProps> = ({
+const Card: React.FC<CardProps> = ({
   card: { id, title, category, image, price, brand, stock },
   handleClick,
 }) => {

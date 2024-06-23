@@ -2,7 +2,7 @@
 import { useState } from "react";
 import BlogEditForm from "./BlogEditForm";
 
-const BlogEditButton = ({ blog }: { blog: postElement }) => {
+const BlogEditButton = ({ blog }: { blog: PostElement }) => {
   const [openModal, setOpenModal] = useState(false);
 
   return (

@@ -6,7 +6,7 @@ import { getBlogs, getDetailedBlog } from "../../../../api";
 
 export async function generateMetadata({ params }: { params: params }) {
   const blogs = await getBlogs();
-  const blog = blogs.find((blog: postElement) => blog.id == params.id);
+  const blog = blogs.find((blog: PostElement) => blog.id == params.id);
 
   return {
     title: `${blog.title}`,
@@ -14,10 +14,10 @@ export async function generateMetadata({ params }: { params: params }) {
   };
 }
 
-const BlogDetails = async ({ params }: paramsObj) => {
+const BlogDetails = async ({ params }: ParamsObj) => {
   unstable_setRequestLocale(params.locale);
   const articleId = params.id;
-  const articleData: postElement = await getDetailedBlog(articleId);
+  const articleData: PostElement = await getDetailedBlog(articleId);
   const formattedDate = formatDate(articleData.date);
   return (
     <section>

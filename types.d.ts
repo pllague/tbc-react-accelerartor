@@ -1,4 +1,4 @@
-interface postElement {
+interface PostElement {
   id: number;
   title: string;
   description: string;
@@ -7,10 +7,10 @@ interface postElement {
   date: string;
 }
 
-interface articleProps {
-  article: postElement;
+interface ArticleProps {
+  article: PostElement;
 }
-interface productElement {
+interface ProductElement {
   id: number;
   title: string;
   description: string;
@@ -30,8 +30,8 @@ interface ProductsProps {
   selectedCategory: string;
 }
 
-interface cardProps {
-  card: productElement;
+interface CardProps {
+  card: ProductElement;
   handleClick: (productId: number) => void;
 }
 
@@ -40,11 +40,11 @@ interface params {
   locale: string;
 }
 
-interface paramsObj {
+interface ParamsObj {
   params: params;
 }
 
-interface childrenProps {
+interface ChildrenProps {
   children: React.ReactNode;
   params: params;
 }
@@ -68,7 +68,7 @@ interface User {
 interface SelectedProduct {
   id: number;
   count: number;
-  selectedCard: productElement;
+  selectedCard: ProductElement;
 }
 
 interface ProductObject {
@@ -91,13 +91,13 @@ interface NavigationProps {
 interface CartWithProducts {
   count: number;
   price: number;
-  products: productElement[];
+  products: ProductElement[];
 }
 
 interface IStorageCart {
   count: number;
   price: number;
-  products: productElement[];
+  products: ProductElement[];
 }
 
 interface ProfileData {
@@ -118,7 +118,7 @@ interface CreateProduct {
 
 interface FetchedProductsData {
   products: {
-    rows: productElement[];
+    rows: ProductElement[];
   };
 }
 

@@ -9,7 +9,7 @@ const ProductEditForm = ({
   product,
 }: {
   setOpenModal: (openModal: boolean) => void;
-  product: productElement;
+  product: ProductElement;
 }) => {
   const inputFileRef = useRef<HTMLInputElement>(null);
   const [title, setTitle] = useState<string>(product.title);
