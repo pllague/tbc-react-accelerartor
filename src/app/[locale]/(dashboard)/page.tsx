@@ -68,7 +68,7 @@ const Home = () => {
           <Image
             src="/assets/adidas-euro-2024-kit.avif"
             alt="Hero image"
-            width={400}
+            width={800}
             height={200}
             className="w-full h-full object-cover object-center"
             priority
