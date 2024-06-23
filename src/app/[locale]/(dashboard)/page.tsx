@@ -68,7 +68,7 @@ const Home = () => {
           <Image
             src="/assets/adidas-euro-2024-kit.avif"
             alt="Hero image"
-            width={800}
+            width={700}
             height={200}
             className="w-full h-full object-cover object-center"
             priority
@@ -76,7 +76,7 @@ const Home = () => {
         </div>
       </div>
       {/* Embrace Greatness */}
-      <div className="w-[96%] mx-auto mt-10 flex flex-col gap-4 *:text-white">
+      <div className="w-[96%] mx-auto mt-10 flex flex-col gap-4">
         <div className="flex justify-between">
           <h2 className="text-[18px] lg:text-[30px]">
             {t("embraceGreatness")}
@@ -102,7 +102,7 @@ const Home = () => {
             </svg>
           </Link>
         </div>
-        <div className="w-full flex justify-between gap-5">
+        <div className="w-full flex justify-between gap-5 *:text-white">
           <div className="relative w-[32%] max-h-[486px]">
             <Image
               src="/assets/messi-embrace-greatness.webp"
