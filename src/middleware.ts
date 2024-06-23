@@ -20,7 +20,7 @@ export default async function middleware(request: NextRequest) {
   // const localeValue = request.cookies.get("NEXT_LOCALE")?.value;
 
   const path = request.nextUrl.pathname;
-  const searchparams = request.nextUrl.searchparams;
+  const searchParams = request.nextUrl.searchParams;
   const isProtectedRoute = protectedRoutes.includes(path);
 
   const isProtectedRoutesAdmin = protectedRoutesAdmin.includes(path);
@@ -38,7 +38,7 @@ export default async function middleware(request: NextRequest) {
   // }
 
   if (path.startsWith("/orders/success") || path.startsWith("/orders/cancel")) {
-    const token = searchparams.get("token");
+    const token = searchParams.get("token");
     if (!token || !(await verifyToken(token))) {
       return NextResponse.redirect(new URL("/", request.nextUrl));
     }
