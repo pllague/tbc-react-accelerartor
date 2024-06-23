@@ -19,15 +19,6 @@ const Navigation: React.FC<NavigationProps> = ({ layout, setIsOpen }) => {
         <li className="cursor-pointer">
           <Link
             onClick={() => setIsOpen && setIsOpen(false)}
-            href={`/${locale}`}
-            className="hover:text-orange leading-[25px] transition duration-300 ease-linear"
-          >
-            {t("home")}
-          </Link>
-        </li>
-        <li className="cursor-pointer">
-          <Link
-            onClick={() => setIsOpen && setIsOpen(false)}
             href={`/${locale}/products`}
             className="hover:text-orange leading-[25px] transition duration-300 ease-linear"
           >

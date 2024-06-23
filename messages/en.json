@@ -65,7 +65,11 @@
     "brand": "Brand",
     "stoke": "Stock",
     "In Stoke": "In Stock",
-    "heroText": "Buy Classic Football Jersey For Your Collection",
-    "popularBrands": "Popular Brands"
+    "heroText1": "Buy Classic Football Jersey",
+    "heroText2": "For Your Collection",
+    "popularBrands": "Popular Brands",
+    "shopNow": "Shop Now",
+    "embraceGreatness": "Embrace Greatness",
+    "seeAll": "See All"
   }
 }

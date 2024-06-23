@@ -3,6 +3,7 @@ import { unstable_setRequestLocale } from "next-intl/server";
 import { formatDate } from "../../../../../helpers";
 import SocialShare from "../../../../../components/SocialShare";
 import { getBlogs, getDetailedBlog } from "../../../../api";
+// import { useTranslations } from "next-intl";
 
 export async function generateMetadata({ params }: { params: params }) {
   const blogs = await getBlogs();
@@ -19,25 +20,30 @@ const BlogDetails = async ({ params }: ParamsObj) => {
   const articleId = params.id;
   const articleData: PostElement = await getDetailedBlog(articleId);
   const formattedDate = formatDate(articleData.date);
+  // const t = useTranslations("Index");
   return (
-    <section>
-      <div className="w-full flex flex-col lg:flex-row gap-7 lg:gap-10 justify-between py-5 px-5 max-w-[1600px] mx-auto my-10 lg:py-10 lg:px-0">
-        <div className="w-full lg:w-1/2 flex flex-col gap-5 lg:gap-7">
+    <section className="w-full">
+      <div className="w-full lg:w-1/2 flex flex-col gap-7 lg:gap-10 justify-between py-5 px-5 max-w-[1600px] mx-auto my-10 lg:py-10 lg:px-0">
+        <h1 className="text-[25px] leading-[25px] lg:text-[40px] lg:leading-[45px] text-start">
+          {articleData.title}
+        </h1>
+        <div className="w-full flex flex-col gap-5 lg:gap-7">
           <div className="w-full rounded-2xl overflow-hidden">
             <Image
               src={articleData.image}
               alt={articleData.title}
-              width={700}
-              height={700}
+              width={300}
+              height={300}
               className="w-full h-full object-cover object-center"
             />
           </div>
         </div>
-        <div className="w-full lg:w-1/2 flex flex-col gap-5 lg:gap-10 justify-start dark:text-white text-[14px] lg:text-[16px]">
-          <div className="w-full flex flex-col gap-3">
-            <h2 className="text-[25px] leading-[25px] lg:text-[40px] lg:leading-[45px] text-start">
-              {articleData.title}
-            </h2>
+        <div className="w-full flex flex-col gap-5 lg:gap-10 justify-start dark:text-white text-[14px] lg:text-[16px]">
+          <div className="w-full flex justify-between italic text-gray-400">
+            <div className="flex gap-3">
+              <span>Author:</span>
+              {articleData.author}
+            </div>
             <div className="flex gap-3">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -53,17 +59,18 @@ const BlogDetails = async ({ params }: ParamsObj) => {
                   d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
                 />
               </svg>
-              <span className="dark:text-white">{formattedDate}</span>
+              <span>{formattedDate}</span>
             </div>
           </div>
-          <p>{articleData.description}</p>
-          <div className="flex gap-3">{articleData.author}</div>
+          <p className="text-justify leading-6">{articleData.description}</p>
         </div>
-        <SocialShare
-          path={"/blog/"}
-          id={articleData?.id}
-          title={articleData?.title}
-        />
+        <div className="flex justify-end border-t pt-4 border-gray-700">
+          <SocialShare
+            path={"/blog/"}
+            id={articleData?.id}
+            title={articleData?.title}
+          />
+        </div>
       </div>
     </section>
   );

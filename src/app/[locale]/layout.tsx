@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
   title: "Classic Football Shirts",
   description:
-    "Classic Football Shirts Buy Classic Football Jarseys For Your Collection ",
+    "Classic Football Shirts - Buy Classic Football Jarseys For Your Collection ",
 };
 
 const RootLayout: React.FC<ChildrenProps> = ({
