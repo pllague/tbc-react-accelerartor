@@ -27,10 +27,11 @@ const Blogs = ({ searchQuery = "" }) => {
 
   let newBlogs = articles.filter(
     (blog) =>
-      blog.title.toLowerCase().includes(debouncedSearchQuery.toLowerCase()) ||
-      blog.description
-        .toLowerCase()
-        .includes(debouncedSearchQuery.toLowerCase())
+      blog.title.toLowerCase().includes(debouncedSearchQuery.toLowerCase())
+    // ||
+    // blog.description
+    //   .toLowerCase()
+    //   .includes(debouncedSearchQuery.toLowerCase())
   );
 
   return (
@@ -38,7 +39,7 @@ const Blogs = ({ searchQuery = "" }) => {
       {articles.length === 0 ? (
         <LoadingAnimation />
       ) : (
-        <div className="max-w-[1400px] mx-auto w-full pt-[30px] ">
+        <div className="flex flex-wrap justify-between w-full max-w-[1040px] mx-auto mt-0 lg:mt-10 border border-gray-700 rounded-xl p-5">
           {newBlogs.length === 0 ? (
             <div className="text-center text-xl mt-10">
               {locale === "en" ? "Blog not found" : "ბლოგი არ მოიძებნა"}

@@ -7,11 +7,11 @@ import { getBlogs, getDetailedBlog } from "../../../../api";
 
 export async function generateMetadata({ params }: { params: params }) {
   const blogs = await getBlogs();
-  const blog = blogs.find((blog: PostElement) => blog.id == params.id);
+  const blog = blogs.find((blog: PostElement) => blog?.id == params.id);
 
   return {
-    title: `${blog.title}`,
-    description: `${blog.description}`,
+    title: `${blog?.title}`,
+    description: `${blog?.description}`,
   };
 }
 
@@ -25,15 +25,15 @@ const BlogDetails = async ({ params }: ParamsObj) => {
     <section className="w-full">
       <div className="w-full lg:w-1/2 flex flex-col gap-7 lg:gap-10 justify-between py-5 px-5 max-w-[1600px] mx-auto my-10 lg:py-10 lg:px-0">
         <h1 className="text-[25px] leading-[25px] lg:text-[40px] lg:leading-[45px] text-start">
-          {articleData.title}
+          {articleData?.title}
         </h1>
         <div className="w-full flex flex-col gap-5 lg:gap-7">
           <div className="w-full rounded-2xl overflow-hidden">
             <Image
-              src={articleData.image}
-              alt={articleData.title}
-              width={300}
-              height={300}
+              src={articleData?.image}
+              alt={articleData?.title}
+              width={700}
+              height={400}
               className="w-full h-full object-cover object-center"
             />
           </div>
@@ -62,7 +62,7 @@ const BlogDetails = async ({ params }: ParamsObj) => {
               <span>{formattedDate}</span>
             </div>
           </div>
-          <p className="text-justify leading-6">{articleData.description}</p>
+          <p className="text-justify leading-6">{articleData?.description}</p>
         </div>
         <div className="flex justify-end border-t pt-4 border-gray-700">
           <SocialShare
