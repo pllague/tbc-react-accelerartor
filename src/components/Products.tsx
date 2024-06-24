@@ -35,12 +35,11 @@ const Products: React.FC<ProductsProps> = ({
   // Filter by searchQuery
   let newCards = cards.filter(
     (product) =>
-      product.title
-        .toLowerCase()
-        .includes(debouncedSearchQuery.toLowerCase()) ||
-      product.description
-        .toLowerCase()
-        .includes(debouncedSearchQuery.toLowerCase())
+      product.title.toLowerCase().includes(debouncedSearchQuery.toLowerCase())
+    //   ||
+    // product.description
+    //   .toLowerCase()
+    //   .includes(debouncedSearchQuery.toLowerCase())
   );
 
   // Filter by selectedCategory

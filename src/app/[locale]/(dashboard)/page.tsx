@@ -40,13 +40,13 @@ const Home = () => {
   return (
     <section className="w-full flex-col justify-center items-center">
       <div className="relative w-full *:text-white">
-        <h1 className="absolute top-0 lg:top-[70px] left-0 lg:left-10 text-[25px] lg:text-[40px] p-5 lg:p-10 flex flex-col">
+        <h1 className="absolute top-0 lg:top-[70px] left-0 lg:left-10 text-[20px] lg:text-[40px] p-5 lg:p-10 flex flex-col">
           <span>{t("heroText1")}</span>
           <span className="ml-0 lg:ml-[160px]">{t("heroText2")}</span>
         </h1>
         <Link
           href={`/${locale}/products`}
-          className="absolute group bottom-0 right-0 lg:bottom-10 lg:right-[60px] transform -translate-x-1/2 -translate-y-1/2 text-[18px] lg:text-[25px]"
+          className="absolute group bottom-0 right-0 lg:bottom-10 lg:right-[60px] transform -translate-x-1/2 -translate-y-1/2 text-[15px] lg:text-[25px]"
         >
           {t("shopNow")}
           <svg
@@ -55,7 +55,7 @@ const Home = () => {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="size-6 inline-block ml-1 transition-transform transform group-hover:translate-x-1.5 duration-300 ease-in-out"
+            className="size-4 lg:size-6 inline-block ml-1 transition-transform transform group-hover:translate-x-1.5 duration-300 ease-in-out"
           >
             <path
               strokeLinecap="round"
@@ -68,8 +68,8 @@ const Home = () => {
           <Image
             src="/assets/adidas-euro-2024-kit.avif"
             alt="Hero image"
-            width={700}
-            height={200}
+            width={1200}
+            height={400}
             className="w-full h-full object-cover object-center"
             priority
           />
@@ -83,7 +83,7 @@ const Home = () => {
           </h2>
           <Link
             href={`/${locale}/blog`}
-            className="group text-[15px] lg:text-[18px]"
+            className="group text-[15px] lg:text-[20px]"
           >
             {t("seeAll")}
             <svg
@@ -107,15 +107,15 @@ const Home = () => {
             <Image
               src="/assets/messi-embrace-greatness.webp"
               alt="Messi embrace greatness"
-              width={200}
-              height={200}
+              width={400}
+              height={400}
               className="w-full h-full object-cover object-center"
               priority
             />
             <div className="absolute top-0 left-0 w-full h-full bg-black/40"></div>
             <Link
               href={`/${locale}/blog/2`}
-              className="absolute group bottom-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 group text-[15px] lg:text-[18px]"
+              className="absolute group bottom-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 group text-[12px] lg:text-[18px]"
             >
               {`MESSI (${t("blog")})`}
               <svg
@@ -124,7 +124,7 @@ const Home = () => {
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="size-4 inline-block ml-1 transition-transform transform group-hover:translate-x-1.5 duration-300 ease-in-out"
+                className="size-3 lg:size-4 inline-block ml-1 transition-transform transform group-hover:translate-x-1.5 duration-300 ease-in-out"
               >
                 <path
                   strokeLinecap="round"
@@ -138,15 +138,15 @@ const Home = () => {
             <Image
               src="/assets/ronaldo-embrace-greatness.webp"
               alt="Ronaldo embrace greatness"
-              width={200}
-              height={200}
+              width={400}
+              height={400}
               className="w-full h-full object-cover object-center"
               priority
             />
             <div className="absolute top-0 left-0 w-full h-full bg-black/40"></div>
             <Link
               href={`/${locale}/blog/3`}
-              className="absolute group bottom-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 group text-[15px] lg:text-[18px]"
+              className="absolute group bottom-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 group text-[12px] lg:text-[18px]"
             >
               {`RONALDO (${t("blog")})`}
               <svg
@@ -155,7 +155,7 @@ const Home = () => {
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="size-4 inline-block ml-1 transition-transform transform group-hover:translate-x-1.5 duration-300 ease-in-out"
+                className="size-3 lg:size-4 inline-block ml-1 transition-transform transform group-hover:translate-x-1.5 duration-300 ease-in-out"
               >
                 <path
                   strokeLinecap="round"
@@ -169,15 +169,15 @@ const Home = () => {
             <Image
               src="/assets/ronaldinho-embrace-greatness.webp"
               alt="Ronaldinho embrace greatness"
-              width={200}
-              height={200}
+              width={400}
+              height={400}
               className="w-full h-full object-cover object-center"
               priority
             />
             <div className="absolute top-0 left-0 w-full h-full bg-black/40"></div>
             <Link
               href={`/${locale}/blog/4`}
-              className="absolute group bottom-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 group text-[15px] lg:text-[18px]"
+              className="absolute group bottom-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 group text-[12px] lg:text-[18px]"
             >
               {`RONALDINHO (${t("blog")})`}
               <svg
@@ -186,7 +186,7 @@ const Home = () => {
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="size-4 inline-block ml-1 transition-transform transform group-hover:translate-x-1.5 duration-300 ease-in-out"
+                className="size-3 lg:size-4 inline-block ml-1 transition-transform transform group-hover:translate-x-1.5 duration-300 ease-in-out"
               >
                 <path
                   strokeLinecap="round"
@@ -202,19 +202,19 @@ const Home = () => {
         <Image
           src="/assets/shop-black-white.avif"
           alt="New York Pop-Up Shop"
-          width={200}
-          height={200}
+          width={1000}
+          height={400}
           className="w-full h-full object-cover object-center"
           priority
         />
         <div className="absolute top-0 left-0 w-full h-full bg-black/40"></div>
         <Link
           href="https://classicfootballshirtssupport.zendesk.com/hc/en-us/articles/24942025743377-New-York-Summer-Pop-Up?utm_source=homepage&utm_medium=nyc-shop-banner&utm_campaign=04_06_24_usa"
-          className="group absolute top-1/2 right-[200px] flex flex-col items-end *:text-white"
+          className="group absolute top-5 lg:top-1/2 right-5 lg:right-[200px] flex flex-col items-end *:text-white"
         >
-          <p className="text-[15px] lg:text-[18px]">NOW LIVE</p>
-          <h2 className="text-[18px] lg:text-[30px]">New York Pop-Up Shop</h2>
-          <p className="text-[15px] lg:text-[18px] mt-2">
+          <p className="text-[12px] lg:text-[18px]">NOW LIVE</p>
+          <h2 className="text-[15px] lg:text-[30px]">New York Pop-Up Shop</h2>
+          <p className="text-[12px] lg:text-[18px] mt-0 lg:mt-2">
             323 CANAL ST, NEW YORK, NY 10013, USA
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -246,8 +246,8 @@ const Home = () => {
                 <Image
                   src={brand[0]}
                   alt={brand[2]}
-                  width={100}
-                  height={70}
+                  width={200}
+                  height={1400}
                   className="w-full h-full object-cover object-center"
                   priority
                 />

@@ -4,6 +4,8 @@ import {
   TwitterShareButton,
   FacebookIcon,
   XIcon,
+  LinkedinShareButton,
+  LinkedinIcon,
 } from "react-share";
 
 const SocialShare = ({
@@ -21,15 +23,22 @@ const SocialShare = ({
         url={process.env.NEXT_PUBLIC_VERCEL_URL + `${path}${id}`}
         title={title}
       >
-        <FacebookIcon size={32} round />
+        <FacebookIcon size={40} round />
       </FacebookShareButton>
 
       <TwitterShareButton
         url={process.env.NEXT_PUBLIC_VERCEL_URL + `${path}${id}`}
         title={title}
       >
-        <XIcon size={32} round />
+        <XIcon size={40} round />
       </TwitterShareButton>
+
+      <LinkedinShareButton
+        url={process.env.NEXT_PUBLIC_VERCEL_URL + `${path}${id}`}
+        title={title}
+      >
+        <LinkedinIcon size={40} round />
+      </LinkedinShareButton>
     </div>
   );
 };
