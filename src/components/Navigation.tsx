@@ -43,7 +43,7 @@ const Navigation: React.FC<NavigationProps> = ({ layout, setIsOpen }) => {
             {t("contact")}
           </Link>
         </li>
-        {isAdmin ? (
+        {isAdmin && (
           <li className="cursor-pointer">
             <Link
               onClick={() => setIsOpen && setIsOpen(false)}
@@ -53,7 +53,8 @@ const Navigation: React.FC<NavigationProps> = ({ layout, setIsOpen }) => {
               {t("admin")}
             </Link>
           </li>
-        ) : (
+        )}{" "}
+        {user?.sub && !isAdmin && (
           <li className="cursor-pointer">
             <Link
               onClick={() => setIsOpen && setIsOpen(false)}
