@@ -34,12 +34,12 @@ export default function ProfileInfo({ user }: { user: UserInfoDb }) {
   return (
     <div className="w-full lg:w-1/4 lg:h-full relative flex flex-col gap-5 justify-center items-center">
       {user?.email && (
-        <div className="w-2/3 lg:w-full flex ">
+        <div className="w-full flex gap-2 lg:gap-0">
           <p className="w-1/3">{t("email")} :</p>
           <p>{user?.email}</p>
         </div>
       )}
-      <div className="w-2/3 lg:w-full flex">
+      <div className="w-full flex">
         <p className="w-1/3">{t("role")} :</p>
         <p>{isAdmin ? "Admin" : "User"}</p>
       </div>
@@ -48,7 +48,7 @@ export default function ProfileInfo({ user }: { user: UserInfoDb }) {
         onSubmit={handleSubmit}
       >
         {name && (
-          <div className="w-2/3 lg:w-full flex">
+          <div className="w-full flex">
             <label
               htmlFor="profileInfoName"
               className="w-1/3 whitespace-nowrap"
@@ -66,7 +66,7 @@ export default function ProfileInfo({ user }: { user: UserInfoDb }) {
         )}
         <button
           type="submit"
-          className="w-fit text-lg px-4 py-2 text-[16px] rounded bg-blue-500 hover:bg-orange transition-all transform duration-300 ease-linear "
+          className="w-fit text-lg px-4 py-2 text-[16px] rounded bg-blue-500 hover:bg-orange transition-all transform duration-300 ease-linear text-white"
         >
           {t("submit")}
         </button>

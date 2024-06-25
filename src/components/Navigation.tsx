@@ -20,7 +20,7 @@ const Navigation: React.FC<NavigationProps> = ({ layout, setIsOpen }) => {
           <Link
             onClick={() => setIsOpen && setIsOpen(false)}
             href={`/${locale}/products`}
-            className="hover:text-orange leading-[25px] transition duration-300 ease-linear"
+            className="hover:text-orange leading-[25px] transition duration-300 ease-linear uppercase"
           >
             {t("products")}
           </Link>
@@ -29,7 +29,7 @@ const Navigation: React.FC<NavigationProps> = ({ layout, setIsOpen }) => {
           <Link
             onClick={() => setIsOpen && setIsOpen(false)}
             href={`/${locale}/blog`}
-            className="hover:text-orange leading-[25px] transition duration-300 ease-linear"
+            className="hover:text-orange leading-[25px] transition duration-300 ease-linear uppercase"
           >
             {t("blog")}
           </Link>
@@ -38,19 +38,29 @@ const Navigation: React.FC<NavigationProps> = ({ layout, setIsOpen }) => {
           <Link
             onClick={() => setIsOpen && setIsOpen(false)}
             href={`/${locale}/contact`}
-            className="hover:text-orange leading-[25px] transition duration-300 ease-linear"
+            className="hover:text-orange leading-[25px] transition duration-300 ease-linear uppercase"
           >
             {t("contact")}
           </Link>
         </li>
-        {isAdmin && (
+        {isAdmin ? (
           <li className="cursor-pointer">
             <Link
               onClick={() => setIsOpen && setIsOpen(false)}
               href={`/${locale}/admin`}
-              className="hover:text-orange leading-[25px] transition duration-300 ease-linear"
+              className="hover:text-orange leading-[25px] transition duration-300 ease-linear uppercase"
             >
               {t("admin")}
+            </Link>
+          </li>
+        ) : (
+          <li className="cursor-pointer">
+            <Link
+              onClick={() => setIsOpen && setIsOpen(false)}
+              href={`/${locale}/orders`}
+              className="hover:text-orange leading-[25px] transition duration-300 ease-linear uppercase"
+            >
+              {t("orders")}
             </Link>
           </li>
         )}

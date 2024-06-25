@@ -4,7 +4,7 @@ const LogOut = () => {
   const t = useTranslations("Index");
   return (
     <form action="/api/auth/logout" method="GET">
-      <button className="flex items-center gap-2 p-2 rounded-md bg-blue-500 whitespace-nowrap hover:bg-orange transform transition-all duration-300 ease-in-out ">
+      <button className="flex items-center gap-2 p-2 rounded-md bg-blue-500 whitespace-nowrap hover:bg-orange transform transition-all duration-300 ease-in-out text-white">
         <span className="text-[14px] ">{t("log-out")}</span>
         <svg
           xmlns="http://www.w3.org/2000/svg"

@@ -52,7 +52,7 @@ const Comment = ({
           required
         />
         <button
-          className="w-fit border-0 bg-blue-500 hover:bg-orange dark:hover:bg-orange rounded-[5px] py-3 lg:py-auto px-7 font-small lg:text-[20px] lg:font-medium cursor-pointer transition-all transform duration-300 ease-linear"
+          className="w-fit border-0 bg-blue-500 hover:bg-orange dark:hover:bg-orange rounded-[5px] py-3 lg:py-auto px-7 font-small lg:text-[20px] lg:font-medium cursor-pointer transition-all transform duration-300 ease-linear text-white"
           type="submit"
         >
           {t("post")}

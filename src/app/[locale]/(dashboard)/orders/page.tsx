@@ -34,26 +34,28 @@ const OrdersPage = async ({
   return (
     <section className="py-[60px] dark:bg-gray">
       <div className="w-[75%] m-auto">
-        <Link
-          href={`/${locale}/admin`}
-          className="w-fit group flex items-center gap-2 hover:text-orange transition-all transform duration-300 ease-linear text-center"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="size-4 group-hover:stroke-orange transition-all transform duration-300 ease-linear text-center"
+        {isAdmin && (
+          <Link
+            href={`/${locale}/admin`}
+            className="w-fit group flex items-center gap-2 hover:text-orange transition-all transform duration-300 ease-linear text-center"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
-            />
-          </svg>
-          {t("backToAdmin")}
-        </Link>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="size-4 group-hover:stroke-orange transition-all transform duration-300 ease-linear text-center"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
+              />
+            </svg>
+            {t("backToAdmin")}
+          </Link>
+        )}
         <Orders
           authUser={auth_user}
           userOrders={auth_user?.role == "admin" ? orders : userOrders}
