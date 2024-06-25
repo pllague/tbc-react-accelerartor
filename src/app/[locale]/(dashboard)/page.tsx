@@ -46,7 +46,7 @@ const Home = () => {
         </h1>
         <Link
           href={`/${locale}/products`}
-          className="absolute group bottom-0 right-0 lg:bottom-10 lg:right-[60px] transform -translate-x-1/2 -translate-y-1/2 text-[15px] lg:text-[25px]"
+          className="absolute group bottom-0 right-0 lg:bottom-10 lg:right-[60px] transform -translate-x-1/2 -translate-y-1/2 text-[15px] lg:text-[25px] hover:text-orange transition-all duration-300 ease-in-out"
         >
           {t("shopNow")}
           <svg
@@ -83,7 +83,7 @@ const Home = () => {
           </h2>
           <Link
             href={`/${locale}/blog`}
-            className="group text-[15px] lg:text-[20px]"
+            className="group text-[15px] lg:text-[20px] hover:text-orange transition-all duration-300 ease-in-out"
           >
             {t("seeAll")}
             <svg
@@ -115,7 +115,7 @@ const Home = () => {
             <div className="absolute top-0 left-0 w-full h-full bg-black/40"></div>
             <Link
               href={`/${locale}/blog/2`}
-              className="absolute group bottom-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 group text-[12px] lg:text-[18px]"
+              className="absolute group bottom-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 group text-[12px] lg:text-[18px] hover:text-orange transition-all duration-300 ease-in-out"
             >
               {`MESSI (${t("blog")})`}
               <svg
@@ -146,7 +146,7 @@ const Home = () => {
             <div className="absolute top-0 left-0 w-full h-full bg-black/40"></div>
             <Link
               href={`/${locale}/blog/3`}
-              className="absolute group bottom-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 group text-[12px] lg:text-[18px]"
+              className="absolute group bottom-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 group text-[12px] lg:text-[18px] hover:text-orange transition-all duration-300 ease-in-out"
             >
               {`RONALDO (${t("blog")})`}
               <svg
@@ -177,7 +177,7 @@ const Home = () => {
             <div className="absolute top-0 left-0 w-full h-full bg-black/40"></div>
             <Link
               href={`/${locale}/blog/4`}
-              className="absolute group bottom-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 group text-[12px] lg:text-[18px]"
+              className="absolute group bottom-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 group text-[12px] lg:text-[18px] hover:text-orange transition-all duration-300 ease-in-out"
             >
               {`RONALDINHO (${t("blog")})`}
               <svg
@@ -212,9 +212,13 @@ const Home = () => {
           href="https://classicfootballshirtssupport.zendesk.com/hc/en-us/articles/24942025743377-New-York-Summer-Pop-Up?utm_source=homepage&utm_medium=nyc-shop-banner&utm_campaign=04_06_24_usa"
           className="group absolute top-5 lg:top-1/2 right-5 lg:right-[200px] flex flex-col items-end *:text-white"
         >
-          <p className="text-[12px] lg:text-[18px]">NOW LIVE</p>
-          <h2 className="text-[15px] lg:text-[30px]">New York Pop-Up Shop</h2>
-          <p className="text-[12px] lg:text-[18px] mt-0 lg:mt-2">
+          <p className="text-[12px] lg:text-[18px] group-hover:text-orange transition-all duration-300 ease-in-out">
+            NOW LIVE
+          </p>
+          <h2 className="text-[15px] lg:text-[30px] group-hover:text-orange transition-all duration-300 ease-in-out">
+            New York Pop-Up Shop
+          </h2>
+          <p className="text-[12px] lg:text-[18px] mt-0 lg:mt-2 group-hover:text-orange transition-all duration-300 ease-in-out">
             323 CANAL ST, NEW YORK, NY 10013, USA
             <svg
               xmlns="http://www.w3.org/2000/svg"
