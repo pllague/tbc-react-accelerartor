@@ -39,20 +39,20 @@ const Comment = ({
     router.refresh();
   };
   return (
-    <div className="relative flex flex-col gap-2">
+    <div className="relative flex flex-col gap-2 w-full lg:w-2/3 mx-auto mb-5 lg:mb-10">
       <form
         onSubmit={handleSubmit}
-        className="w-2/5 px-8 rounded-xl flex flex-col gap-5 justify-center items-end"
+        className="w-[90%] mx-auto lg:mx-0 lg:w-3/5 rounded-xl flex flex-col gap-5 justify-center items-end"
       >
         <textarea
-          className="w-full h-[75px] lg:h-[150px] bg-gray-700 border-2 border-light_blue p-3 text-white lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
-          placeholder="Add your comment ..."
+          className="w-full h-[75px] lg:h-[150px] bg-white dark:bg-gray-700 border-2 border-blue-500 p-3 text-white lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
+          placeholder={t("AddYourComment")}
           value={review}
           onChange={(e) => setReview(e.target.value)}
           required
         />
         <button
-          className="w-fit border-0 bg-yellow-600 dark:bg-blue-500 hover:bg-orange dark:hover:bg-orange rounded-[5px] py-3 lg:py-auto px-7 font-small lg:text-[20px] lg:font-medium cursor-pointer transition-all transform duration-300 ease-linear"
+          className="w-fit border-0 bg-blue-500 hover:bg-orange dark:hover:bg-orange rounded-[5px] py-3 lg:py-auto px-7 font-small lg:text-[20px] lg:font-medium cursor-pointer transition-all transform duration-300 ease-linear"
           type="submit"
         >
           {t("post")}

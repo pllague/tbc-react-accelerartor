@@ -41,12 +41,12 @@ const Orders = ({
     setSelectedChargeId(chargeId);
   };
   return (
-    <div className="py-4 m-auto w-full max-w-5xl">
+    <div className="py-4 m-auto w-full max-w-[1600px]">
       <div className="p-4 flex gap-8 flex-col lg:flex-row lg:items-start items-center">
         <div
           className={
             userOrders.length
-              ? `m-auto grid grid-cols-1 lg:grid-cols-3 gap-8`
+              ? `m-auto grid grid-cols-1 lg:grid-cols-4 gap-8`
               : `w-full flex justify-center`
           }
         >
@@ -64,13 +64,13 @@ const Orders = ({
                 <div className="flex justify-between">
                   <div>
                     <p className="text-xl font-semibold text-black">
-                      price
+                      {t("price")}
                       <span className="text-black">
                         ${(order.amount / 100).toFixed(2)}
                       </span>
                     </p>
-                    <p className="text-sm text-gray-500">
-                      currency: {order.currency.toUpperCase()}
+                    <p className="text-sm text-black">
+                      {t("currency")}: {order.currency.toUpperCase()}
                     </p>
                   </div>
                   <a
@@ -79,17 +79,21 @@ const Orders = ({
                     target="_blank"
                     className="text-black underline"
                   >
-                    Invoice
+                    {t("invoice")}
                   </a>
                 </div>
                 <div className="space-y-2 flex flex-col justify-between ">
-                  <p className="text-gray-700">
-                    address: {order.metadata.address}
+                  <p className="text-black">
+                    {t("address")}: {order.metadata.address}
                   </p>
-                  <p className="text-gray-700">city: {order.metadata.city}</p>
-                  <p className="text-gray-700">phone: {order.metadata.phone}</p>
-                  <p className="text-gray-700">
-                    status:
+                  <p className="text-black">
+                    {t("city")}: {order.metadata.city}
+                  </p>
+                  <p className="text-black">
+                    {t("phone")}: {order.metadata.phone}
+                  </p>
+                  <p className="text-black">
+                    {t("status")}:
                     <span
                       className={`font-bold ${
                         order.latest_charge.refunded === true
@@ -98,20 +102,22 @@ const Orders = ({
                       }`}
                     >
                       {order.latest_charge.refunded === true
-                        ? "refunded"
-                        : "paid"}
+                        ? ` ${t("refunded")}`
+                        : ` ${t("paid")}`}
                     </span>
                   </p>
                 </div>
                 {authUser.role === "admin" &&
                   order.latest_charge.refunded === false && (
-                    <button
-                      onClick={() => isOpen(order.latest_charge.id)}
-                      type="button"
-                      className="p-1 px-[25px] border border-solid border-red text-[18px] text-black font-medium align-middle duration-300 uppercase flex items-center justify-center gap-2 bg-red hover:bg-lightred w-[150px]"
-                    >
-                      refund
-                    </button>
+                    <div className="w-full flex justify-center">
+                      <button
+                        onClick={() => isOpen(order.latest_charge.id)}
+                        type="button"
+                        className="w-fit px-4 py-2 bg-blue-500 hover:bg-orange transform transition-all duration-300 ease-in-out rounded-md"
+                      >
+                        {t("refund")}
+                      </button>
+                    </div>
                   )}
               </div>
             ))
@@ -126,11 +132,11 @@ const Orders = ({
               >
                 <div
                   onClick={(e) => e.stopPropagation()}
-                  className="relative z-50 p-8 border border-red rounded-xl bg-red dark:bg-gray dark:border-black mx-2"
+                  className="relative z-50 p-8 bg-primary shadow-black shadow-xl rounded-xl bg-red dark:bg-gray mx-2"
                 >
                   <div className="flex items-center flex-col justify-center">
                     <h2 className="text-white tracking-widest mb-6 dark:text-white text-center max-w-[400px]">
-                      Modal Text
+                      {t("refundORder")}
                     </h2>
                     {loading ? (
                       <LoadingAnimation />
@@ -139,16 +145,16 @@ const Orders = ({
                         <button
                           type="button"
                           onClick={refundHandler}
-                          className="p-2 px-6 text-lg bg-white text-red dark:text-black font-medium align-middle duration-300 uppercase flex items-center gap-2 w-[100px] justify-center"
+                          className="flex p-2 px-6 text-lg bg-blue-500 text-white font-medium align-middle  uppercase  items-center gap-2 w-[100px] justify-center rounded-md hover:bg-orange transform transition-all duration-300 ease-in-out"
                         >
-                          yes
+                          {t("yes")}
                         </button>
                         <button
                           type="button"
                           onClick={isClose}
-                          className="p-2 px-6 text-lg bg-white text-red dark:text-black font-medium align-middle duration-300 uppercase flex items-center gap-2 w-[100px] justify-center"
+                          className="flex p-2 px-6 text-lg bg-blue-500 text-white font-medium align-middle  uppercase  items-center gap-2 w-[100px] justify-center rounded-md hover:bg-orange transform transition-all duration-300 ease-in-out"
                         >
-                          no
+                          {t("no")}
                         </button>
                       </div>
                     )}

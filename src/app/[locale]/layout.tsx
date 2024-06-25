@@ -19,7 +19,7 @@ const RootLayout: React.FC<ChildrenProps> = ({
     <html lang={locale} suppressHydrationWarning>
       <UserProvider>
         <body className={inter.className}>
-          <div className="bg-[#E5E1CC]/30 dark:bg-primary text-primary dark:text-white min-h-screen flex flex-col">
+          <div className="bg-[#eeedf7] dark:bg-primary text-primary dark:text-white min-h-screen flex flex-col">
             <Providers>{children}</Providers>
           </div>
         </body>

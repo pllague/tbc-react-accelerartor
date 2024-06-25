@@ -1,9 +1,9 @@
 "use client";
 import { useState } from "react";
-import AllBlogsList from "./AllBlogsList";
+import AllUsersList from "./AllUsersList";
 import { useTranslations } from "next-intl";
 
-const AllBlogsButton = () => {
+const AllUsersButton = () => {
   const [openModal, setOpenModal] = useState(false);
   const t = useTranslations("Index");
   return (
@@ -12,11 +12,11 @@ const AllBlogsButton = () => {
         onClick={() => setOpenModal(!openModal)}
         className="w-[150px] lg:w-[200px] bg-blue-500 hover:bg-orange rounded-md py-3 font-small lg:font-medium cursor-pointer transition-all transform duration-300 ease-linear "
       >
-        {t("blog")}
+        {t("users")}
       </button>
-      {openModal ? <AllBlogsList setOpenModal={setOpenModal} /> : ""}
+      {openModal ? <AllUsersList setOpenModal={setOpenModal} /> : ""}
     </>
   );
 };
 
-export default AllBlogsButton;
+export default AllUsersButton;

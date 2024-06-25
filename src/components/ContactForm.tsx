@@ -43,7 +43,7 @@ const ContactForm = () => {
       >
         <div className="w-full flex gap-3 justify-between">
           <input
-            className="w-2/5 h-full border-2 border-yellow-600 dark:border-light_blue py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
+            className="w-2/5 h-full border-2 border-blue-500 py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
             maxLength={100}
             name="firstName"
             placeholder={t("firstname")}
@@ -61,7 +61,7 @@ const ContactForm = () => {
             required
           />
           <input
-            className="w-3/5 h-full border-2 border-yellow-600 dark:border-light_blue  py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
+            className="w-3/5 h-full border-2 border-blue-500 py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
             maxLength={100}
             name="lastName"
             placeholder={t("lastname")}
@@ -81,7 +81,7 @@ const ContactForm = () => {
         </div>
         <div className="w-full flex gap-3 justify-between">
           <input
-            className="w-2/5 h-full border-2 border-yellow-600 dark:border-light_blue py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
+            className="w-2/5 h-full border-2 border-blue-500 py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
             maxLength={100}
             name="mobile"
             placeholder={t("mobile")}
@@ -99,7 +99,7 @@ const ContactForm = () => {
             required
           />
           <input
-            className="w-3/5 h-full border-2 border-yellow-600 dark:border-light_blue py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
+            className="w-3/5 h-full border-2 border-blue-500 py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
             maxLength={100}
             name="email"
             placeholder={t("email")}
@@ -118,8 +118,8 @@ const ContactForm = () => {
           />
         </div>
         <textarea
-          className="w-full h-[75px] lg:h-[150px] border-2 border-light_blue p-3 bg-white text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
-          placeholder="Add your comment ..."
+          className="w-full h-[75px] lg:h-[150px] border-2 border-blue-500 p-3 bg-white text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
+          placeholder={t("AddYourComment")}
           name="comment"
           value={formContact.comment}
           onChange={(e) =>

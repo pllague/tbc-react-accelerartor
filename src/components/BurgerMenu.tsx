@@ -37,7 +37,7 @@ const BurgerMenu = () => {
         onClick={closeMenu}
       ></div>
       <div
-        className={`fixed top-0 right-0 h-screen w-1/2 bg-[#E5E1CC] dark:bg-primary shadow-md p-4 transition-transform duration-300 transform ${
+        className={`fixed top-0 right-0 h-screen w-1/2 bg-white dark:bg-primary shadow-md p-4 transition-transform duration-300 transform ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -57,12 +57,16 @@ const BurgerMenu = () => {
             />
           </svg>
         </button>
-        <div className="py-10 h-screen flex flex-col justify-between">
-          <Navigation layout="flex-col text-[20px]" setIsOpen={setIsOpen} />
-          <div className="w-full flex gap-[10%] items-center">
-            <LangSwitcher />
-            <DarkMode />
+        <div className="pb-10 h-screen flex flex-col justify-between">
+          <div className="flex flex-col gap-10">
             {userId ? <LogOut /> : <LoginForm />}
+            <Navigation layout="flex-col text-[20px]" setIsOpen={setIsOpen} />
+          </div>
+          <div className="w-full flex flex-col gap-6 items-start">
+            <div className="flex gap-4">
+              <LangSwitcher />
+              <DarkMode />
+            </div>
           </div>
         </div>
       </div>

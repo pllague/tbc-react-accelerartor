@@ -35,13 +35,8 @@ export async function deleteUserAction(id: number) {
 }
 
 export async function updateUserAction(formData: FormData) {
-  const { id, name, email, age } = Object.fromEntries(formData);
-  await updateUser(
-    id as string,
-    name as string,
-    email as string,
-    age as string
-  );
+  const { id, name, email } = Object.fromEntries(formData);
+  await updateUser(id as string, name as string, email as string);
   revalidatePath("/admin");
 }
 

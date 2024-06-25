@@ -24,7 +24,7 @@ const UserCreateForm = ({
       <form
         // action={createUserAction}
         onSubmit={handleSubmit}
-        className="w-1/5 border-2 border-yellow-600 bg-[#E5E1CC] dark:bg-secondary dark:border-light_blue shadow-xl shadow-red-300 dark:shadow-light_blue p-8 rounded-xl flex flex-col gap-5 justify-center items-center [&>input]:bg-white"
+        className="w-1/5 border-2 border-blue-500 bg-white dark:bg-secondary dark:border-light_blue shadow-xl shadow-red-300 dark:shadow-light_blue p-8 rounded-xl flex flex-col gap-5 justify-center items-center [&>input]:bg-white"
       >
         <input
           className="w-full h-full border-2 border-light_blue py-3 pl-1 text-secondary lg:text-[16px] rounded-[5px] focus:border-orange focus:outline-orange"
@@ -55,7 +55,7 @@ const UserCreateForm = ({
             Cancel
           </button>
           <button
-            className="w-full h-full border-0 bg-yellow-600 dark:bg-blue-500 hover:bg-orange dark:hover:bg-orange rounded-[5px] py-3 lg:py-auto px-7 font-small lg:text-[20px] lg:font-medium cursor-pointer transition-all transform duration-300 ease-linear"
+            className="w-full h-full border-0 bg-blue-500 dark:bg-blue-500 hover:bg-orange dark:hover:bg-orange rounded-[5px] py-3 lg:py-auto px-7 font-small lg:text-[20px] lg:font-medium cursor-pointer transition-all transform duration-300 ease-linear"
             type="submit"
           >
             Save

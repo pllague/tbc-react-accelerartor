@@ -19,21 +19,17 @@ const CartList = () => {
   return (
     <div className="w-full py-5 px-5 max-w-[1400px] mx-auto my-10 lg:py-10 lg:px-0 ">
       {cardsData?.length > 0 ? (
-        <h2
-          className={`text-[40px] leading-[25px] text-center ${
-            cardsData.length < 2 ? "lg:-mt-[200px]" : ""
-          } ${cardsData.length < 2 ? "-mt-[50px]" : ""}`}
-        >
+        <h2 className={`text-[40px] leading-[25px] text-center `}>
           {t("cart")}
         </h2>
       ) : (
         ""
       )}
       {cardsData?.length > 0 ? (
-        <div className="w-full lg:w-4/5 flex flex-col mt-[25px] lg:mt-[65px] gap-[25px] lg:gap-10 mx-auto">
-          <table>
+        <div className="w-[90%] lg:w-4/5 flex flex-col mt-[25px] lg:mt-[65px] gap-[25px] lg:gap-10 mx-auto overflow-x-auto">
+          <table className="min-w-[700px]">
             <thead className="[&>tr>th]:pb-3">
-              <tr className="[&>th]:text-start">
+              <tr className="[&>th]:text-start ">
                 <th>{t("image")}</th>
                 <th>{t("title")}</th>
                 <th>{t("category")}</th>
@@ -45,13 +41,8 @@ const CartList = () => {
               </tr>
             </thead>
             <tbody className="[&>tr>td]:p-2 ">
-              {cardsData.map((product: ProductElement, index: number) => (
-                <tr
-                  key={product.id}
-                  className={`${
-                    index === cardsData.length - 1 ? "[&>td>div]:pb-5" : ""
-                  }`}
-                >
+              {cardsData.map((product: ProductElement) => (
+                <tr key={product.id}>
                   <td>
                     <div className="w-full max-h-[100px] lg:max-h-[150px] overflow-hidden">
                       <Link href={`/${locale}/products/${product.id}`}>
@@ -67,7 +58,7 @@ const CartList = () => {
                   </td>
                   <td>{product.title}</td>
                   <td>{product.category}</td>
-                  <td>{product.price} €</td>
+                  <td>{product.price} $</td>
 
                   <td>
                     <p className="flex gap-3 items-center">
@@ -83,23 +74,23 @@ const CartList = () => {
                   </td>
                 </tr>
               ))}
-              <tr className="mt-5 border-t-2 border-orange dark:border-light_blue ">
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td className="text-[20px] font-bold ">
-                  <div className="w-full">{t("total-items")} :</div>
-                  <div className="w-full">{t("total-price")} :</div>
-                </td>
-                <td className="text-[20px] font-bold text-center ">
-                  <div className="w-full">{optimistic?.count}</div>
-                  <div className="w-full">{optimistic?.price} €</div>
-                </td>
-              </tr>
             </tbody>
           </table>
-          <CheckoutButton cardsData={cardsData} />
+          <div className="w-full min-w-[700px] flex flex-col border-t-2 border-blue-500 items-end gap-2 *:text-[15px] lg:*:text-[20px]">
+            <div className="flex flex-col gap-2 w-1/4 border-2 border-t-0 border-blue-500 p-4 rounded-b-md">
+              <div className="flex gap-6 ">
+                <p className="w-[150px]">{t("total-items")}</p>
+                <p className="w-[100px]">{optimistic?.count}</p>
+              </div>
+              <div className="flex gap-6 ">
+                <p className="w-[150px]">{t("total-price")}</p>
+                <p className="w-[100px]">{optimistic?.price} $</p>
+              </div>
+              <div className="flex w-full justify-center mt-2">
+                <CheckoutButton cardsData={cardsData} />
+              </div>
+            </div>
+          </div>
         </div>
       ) : (
         <div className="mt-[25px] lg:mt-[65px] flex justify-center text-[20px] lg:text-[25px]">

@@ -18,7 +18,7 @@ const LangSwitcher = () => {
       <button
         onClick={() => handleClick("en")}
         className={`pr-2 text-[18px] hover:text-orange transition-all transform duration-300 ease-linear ${
-          locale === "en" ? "text-orange dark:text-light_blue" : ""
+          locale === "en" ? "text-blue-500" : ""
         }`}
       >
         en
@@ -27,7 +27,7 @@ const LangSwitcher = () => {
       <button
         onClick={() => handleClick("ka")}
         className={`pl-2 text-[18px] hover:text-orange transition-all transform duration-300 ease-linear ${
-          locale === "ka" ? "text-orange dark:text-light_blue" : ""
+          locale === "ka" ? "text-blue-500" : ""
         }`}
       >
         ka

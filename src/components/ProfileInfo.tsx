@@ -59,7 +59,7 @@ export default function ProfileInfo({ user }: { user: UserInfoDb }) {
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="bg-white border-2 border-yellow-600 dark:border-light_blue pl-1 text-secondary rounded-[5px] focus:border-orange focus:outline-orange "
+              className="bg-white border-2 border-blue-500 dark:border-light_blue pl-1 text-secondary rounded-[5px] focus:border-orange focus:outline-orange "
               id="profileInfoName"
             />
           </div>

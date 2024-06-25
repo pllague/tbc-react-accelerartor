@@ -63,6 +63,7 @@ interface User {
   sub: string;
   email: string;
   image_url: string;
+  role?: string;
 }
 
 interface SelectedProduct {
@@ -236,6 +237,7 @@ interface StripeData {
 }
 
 interface UserInfoDb {
+  id?: number;
   name: string;
   email: string;
   sub: string;
