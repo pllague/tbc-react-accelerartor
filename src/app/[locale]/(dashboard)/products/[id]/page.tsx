@@ -136,7 +136,11 @@ const ProductDetails: React.FC<ParamsObj> = async ({ params }) => {
       {userSub && (
         <Comment productId={productId} userName={userName} userId={userSub} />
       )}
-      <div className="relative flex flex-col gap-10 w-[90%] lg:w-2/3 border border-gray-700 p-6 rounded-xl mx-auto mb-5 lg:pb-10">
+      <div
+        className={`relative flex flex-col gap-10 w-[90%] lg:w-2/3 ${
+          reviews ? "border" : "border-0"
+        } border-gray-700 p-6 rounded-xl mx-auto mb-5 lg:pb-10`}
+      >
         {reviews && (
           <>
             <div className="absolute top-0 left-10 text-[15px] lg:text-[20px] transform -translate-y-1/2 px-4 bg-[#eeedf7]  dark:bg-primary text-blue-500 font-medium">

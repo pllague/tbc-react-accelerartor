@@ -209,7 +209,7 @@ const Home = () => {
         />
         <div className="absolute top-0 left-0 w-full h-full bg-black/40"></div>
         <Link
-          href="https://classicfootballshirtssupport.zendesk.com/hc/en-us/articles/24942025743377-New-York-Summer-Pop-Up?utm_source=homepage&utm_medium=nyc-shop-banner&utm_campaign=04_06_24_usa"
+          href="https://tbc-react-accelerartor-pllagues-projects.vercel.app/contact"
           className="group absolute top-5 lg:top-1/2 right-5 lg:right-[200px] flex flex-col items-end *:text-white"
         >
           <p className="text-[12px] lg:text-[18px] group-hover:text-orange transition-all duration-300 ease-in-out">
