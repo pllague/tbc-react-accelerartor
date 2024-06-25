@@ -10,7 +10,7 @@ const Card: React.FC<CardProps> = ({
   const locale = useLocale();
   const t = useTranslations("Index");
   // Check if title is more then 25 chars
-  const trimmedTitle = title.length > 20 ? `${title.slice(0, 17)}...` : title;
+  const trimmedTitle = title.length > 43 ? `${title.slice(0, 40)}...` : title;
 
   return (
     <div className="flex flex-col gap-3 w-[250px] h-[370px] rounded-[10px] overflow-hidden lg:w-[300px] lg:h-[470px] shadow-lg shadow-gray-700  hover:scale-[1.03] transition duration-300 ease-linear ">
