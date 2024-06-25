@@ -71,7 +71,7 @@ const ProductCreateForm = ({
       <div className="absolute top-0 left-0 w-screen h-screen flex justify-center items-center bg-secondary/80 z-[999]">
         <form
           onSubmit={handleSubmit}
-          className="w-2/5 bg-[#E5E1CC] dark:bg-secondary shadow-xl shadow-white dark:shadow-black p-8 rounded-xl flex flex-col gap-5 justify-center items-center [&>input]:bg-white"
+          className="w-2/5 bg-white dark:bg-secondary shadow-xl shadow-white dark:shadow-black p-8 rounded-xl flex flex-col gap-5 justify-center items-center [&>input]:bg-white"
         >
           <div className="w-full [&>input]:bg-white">
             {image_url && (
@@ -160,7 +160,7 @@ const ProductCreateForm = ({
               Cancel
             </button>
             <button
-              className="w-full h-full border-0 bg-yellow-600 dark:bg-blue-500 hover:bg-orange dark:hover:bg-orange rounded-[5px] py-3 lg:py-auto px-7 font-small lg:text-[20px] lg:font-medium cursor-pointer transition-all transform duration-300 ease-linear"
+              className="w-full h-full border-0 bg-blue-500 hover:bg-orange rounded-[5px] py-3 lg:py-auto px-7 font-small lg:text-[20px] lg:font-medium cursor-pointer transition-all transform duration-300 ease-linear"
               type="submit"
             >
               Save

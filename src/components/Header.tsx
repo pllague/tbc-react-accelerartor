@@ -17,7 +17,7 @@ const Header = async () => {
   const userId = session?.user?.sub;
 
   return (
-    <header className="w-full h-[70px] lg:h-[85px] bg-[#E5E1CC] dark:bg-secondary/90 sticky top-0 z-10">
+    <header className="w-full h-[70px] lg:h-[85px] bg-white dark:bg-secondary/90 sticky top-0 z-10">
       <div className="w-full h-full flex mx-auto justify-between items-center px-10 lg:px-0 lg:max-w-[1400px]">
         <Link className="w-[120px] lg:w-[150px]" href={`/${locale}`}>
           <svg

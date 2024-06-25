@@ -1,14 +1,13 @@
-// import DeleteUser from "../../../../components/DeleteUser";
-// import { getUsers } from "../../../api";
 import AllBlogsButton from "../../../../components/AllBlogsButton";
 import AllContactsButton from "../../../../components/AllContactsButton";
 import AllProductButton from "../../../../components/AllProductButton";
 import AllSubscribersButton from "../../../../components/AllSubscribersButton";
 import BlogCreateButton from "../../../../components/BlogCreateButton";
 import ProductCreateButton from "../../../../components/ProductCreateButton";
-// import UserCreateButton from "../../../../components/UserCreateButton";
-// import UserEditButton from "../../../../components/UserEditButton";
-// import { getTranslations } from "next-intl/server";
+import AllUsersButton from "../../../../components/AllUsersButton";
+import Link from "next/link";
+import { useLocale } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
 export const metadata = {
   title: "Classic Football Shirts - Admin",
@@ -16,45 +15,23 @@ export const metadata = {
 };
 
 const AdminPage = async () => {
-  // const t = await getTranslations("Index");
-  // const users = await getUsers();
+  const locale = useLocale();
+  const t = await getTranslations("Index");
   return (
-    <div className="h-full flex flex-col gap-10 max-w-full lg:max-w-[70%] mx-10 lg:mx-auto">
-      {/* <UserCreateButton /> */}
+    <div className="w-full h-full flex flex-col lg:p-10 gap-5">
       <ProductCreateButton />
       <AllProductButton />
       <BlogCreateButton />
       <AllBlogsButton />
       <AllContactsButton />
       <AllSubscribersButton />
-      {/* <div className="flex flex-col">
-        {users.length ? (
-          <div className="grid grid-cols-5 border-b border-t gap-5 py-2 px-2 bg-yellow-600 dark:bg-blue-500">
-            <div>{t("name")}</div>
-            <div>{t("email")}</div>
-            <div>{t("age")}</div>
-          </div>
-        ) : (
-          ""
-        )}
-
-        {users.map((user: User) => (
-          <div
-            key={user.id}
-            className="grid grid-cols-5 border-b gap-5 py-2 px-2 hover:bg-[#E5E1CC] dark:hover:bg-blue-300/50 "
-          >
-            <p>{user.name}</p>
-            <p>{user.email}</p>
-            <p>{user.age}</p>
-            <p className="text-right">
-              <UserEditButton user={user} />
-            </p>
-            <p className="text-right">
-              <DeleteUser id={user.id} />
-            </p>
-          </div>
-        ))}
-      </div> */}
+      <AllUsersButton />
+      <Link
+        href={`/${locale}/orders`}
+        className="w-[150px] lg:w-[200px] bg-blue-500 hover:bg-orange rounded-md py-3 font-small lg:font-medium  transition-all transform duration-300 ease-linear text-center"
+      >
+        {t("orders")}
+      </Link>
     </div>
   );
 };

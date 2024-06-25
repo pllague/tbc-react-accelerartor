@@ -23,15 +23,10 @@ export async function deleteUser(id: number) {
   });
 }
 
-export async function updateUser(
-  id: string,
-  name: string,
-  email: string,
-  age: string
-) {
+export async function updateUser(id: string, name: string, email: string) {
   return await fetch(process.env.NEXT_PUBLIC_VERCEL_URL + "/api/edit-user", {
     method: "PUT",
-    body: JSON.stringify({ id, name, email, age }),
+    body: JSON.stringify({ id, name, email }),
   });
 }
 

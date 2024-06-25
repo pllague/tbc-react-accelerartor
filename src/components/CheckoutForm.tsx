@@ -1,13 +1,10 @@
 "use client";
 
 import { ChangeEvent, FormEvent, useState } from "react";
-// import { selectedProduct } from "../../types/products-types";
-// import { AuthUser, CheckoutProfile } from "../../types/profile-types";
 import { checkoutAction } from "../app/actions";
 import LoadingAnimation from "./LoadingAnimation";
 import { useUser } from "@auth0/nextjs-auth0/client";
-// import { useTranslations } from "next-intl";
-// import ThemeLoader from "../UI/ThemeLoader";
+import { useTranslations } from "next-intl";
 
 const Checkout = ({
   selectedProducts,
@@ -16,7 +13,7 @@ const Checkout = ({
   selectedProducts: ProductElement[];
   setOpenModal: (openModal: boolean) => void;
 }) => {
-  //   const [cartProducts, setCartProducts] = useState<ProductElement[] | []>([]);
+  const t = useTranslations("Index");
   const { user } = useUser();
   const [profile, setProfile] = useState<CheckoutProfile>({
     city: "",
@@ -25,23 +22,6 @@ const Checkout = ({
     sub: user?.sub,
   });
   const [loading, setLoading] = useState(false);
-  //   const t = useTranslations("profile");
-  //   const tCart = useTranslations("cart");
-
-  //   useEffect(() => {
-  //     setCartProducts(selectedProducts);
-  //   }, []);
-
-  //   useEffect(() => {
-  //     if (authUser) {
-  //       setProfile({
-  //         city: authUser.city || "",
-  //         address: authUser.address || "",
-  //         phone: authUser.phone || "",
-  //         sub: authUser.sub || "",
-  //       });
-  //     }
-  //   }, [authUser]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -69,10 +49,10 @@ const Checkout = ({
     <div className="absolute top-0 left-0 w-screen h-screen flex justify-center items-center bg-secondary/80 z-[999]">
       <form
         onSubmit={handleSubmit}
-        className="w-3/5 relative bg-[#E5E1CC] dark:bg-secondary shadow-xl shadow-white dark:shadow-black p-8 rounded-xl flex flex-col gap-5 justify-center items-center [&>input]:bg-white"
+        className="w-3/5 relative bg-white dark:bg-secondary shadow-xl shadow-white dark:shadow-black p-8 rounded-xl flex flex-col gap-5 justify-center items-center [&>input]:bg-white"
       >
-        <div>
-          <h3 className="text-[24px] mb-4 font-normal text-black dark:text-white">
+        <div className="w-1/2">
+          <h3 className="text-[24px] mb-4 font-normal text-black dark:text-white text-center">
             Cart Totals
           </h3>
           <p className="flex justify-between">
@@ -80,52 +60,70 @@ const Checkout = ({
             <span className="text-[16px]">${subtotal}</span>
           </p>
           <p className="flex justify-between">
-            <span className="text-[16px] font-bold"> delivery</span>
+            <span className="text-[16px] font-bold">Delivery</span>
             <span className="text-[16px]">$0.00</span>
           </p>
-          <p className="flex justify-between mb-4">
-            <span className="text-[16px] font-bold">discount</span>
+          <p className="flex justify-between mb-2 pb-2 border-b-2 border-blue-500">
+            <span className="text-[16px] font-bold">Discount</span>
             <span className="text-[16px]">$0.00</span>
           </p>
-          <hr className="text-red-500" />
-          <p className="flex justify-between p-4">
-            <span className="text-[22px] font-bold">Total</span>
-            <span className="text-[22px] text-black font-bold dark:text-red-500">
+
+          <p className="flex justify-between pt-2">
+            <span className="text-[22px] font-bold">{t("total")}</span>
+            <span className="text-[22px] text-black font-bold dark:text-blue-500">
               ${subtotal - 0 - 0}
             </span>
           </p>
         </div>
         <div className="w-3/5 flex flex-col gap-2">
-          <h2 className="text-black font-normal dark:text-white">city</h2>
+          <label
+            htmlFor="checkoutCity"
+            className="text-black font-normal dark:text-white"
+          >
+            {t("city")}
+          </label>
           <input
             type="text"
             name="city"
+            id="checkoutCity"
             value={profile.city}
             onChange={handleChange}
-            className="border-[1px] border-solid border-red-500 py-[5px] pl-[20px] dark:text-white"
+            className="border-[1px] border-solid rounded-md border-blue-500 py-[5px] pl-[20px] bg-white dark:text-black"
           />
-          <h2 className="text-black font-normal dark:text-white">address</h2>
+          <label
+            htmlFor="checkoutAddress"
+            className="text-black font-normal dark:text-white"
+          >
+            {t("address")}
+          </label>
           <input
             type="text"
             name="address"
+            id="checkoutAddress"
             value={profile.address}
             onChange={handleChange}
-            className="border-[1px] border-solid border-red-500 py-[5px] pl-[20px] dark:text-white"
+            className="border-[1px] border-solid rounded-md border-blue-500 py-[5px] pl-[20px] bg-white dark:text-black"
           />
-          <h2 className="text-black font-normal dark:text-white">phone</h2>
+          <label
+            htmlFor="checkoutPhone"
+            className="text-black font-normal dark:text-white"
+          >
+            {t("phone")}
+          </label>
           <input
             type="text"
             name="phone"
+            id="checkoutPhone"
             value={profile.phone}
             onChange={handleChange}
-            className="border-[1px] border-solid border-red-500 py-[5px] pl-[20px] dark:text-white"
+            className="border-[1px] border-solid rounded-md border-blue-500 py-[5px] pl-[20px] bg-white dark:text-black"
           />
         </div>
         <button
           type="submit"
-          className="p-[7px] px-[25px] border border-solid border-red-500 text-[18px] text-white bg-red-500 font-medium align-middle duration-300 uppercase flex items-center justify-center gap-2 hover:bg-lightred hover:text-white my-4 w-full sm:w-[300px]"
+          className="px-6 py-2 bg-blue-500 rounded-md hover:bg-orange transform transition-all duration-300 ease-in-out"
         >
-          Buy Now
+          {loading ? <LoadingAnimation /> : t("buyNow")}
         </button>
         <button
           onClick={() => setOpenModal(false)}
@@ -137,7 +135,7 @@ const Checkout = ({
             viewBox="0 0 24 24"
             strokeWidth={2.5}
             stroke="currentColor"
-            className="w-8 h-8 group-hover:stroke-red-700 transition-all duration-300 ease-in-out"
+            className="w-8 h-8 text-blue-500 group-hover:stroke-red-700 transition-all duration-300 ease-in-out"
           >
             <path
               strokeLinecap="round"
@@ -147,7 +145,6 @@ const Checkout = ({
           </svg>
         </button>
       </form>
-      {loading ?? <LoadingAnimation />}
     </div>
   );
 };

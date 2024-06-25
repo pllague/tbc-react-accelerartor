@@ -32,12 +32,22 @@ const AllProductList = ({
 
     fetchData();
   }, [products]);
+
+  function handleModalClick(e: React.MouseEvent<HTMLDivElement>) {
+    e.stopPropagation();
+  }
   return (
-    <div className="absolute top-0 left-0 w-screen h-screen flex justify-center items-center bg-secondary/80 z-[999]">
+    <div
+      onClick={() => setOpenModal(false)}
+      className="absolute top-0 left-0 w-screen h-screen flex justify-center items-center bg-secondary/80 z-[999]"
+    >
       {products.length === 0 ? (
         <LoadingAnimation />
       ) : (
-        <div className="w-3/5 bg-[#E5E1CC] dark:bg-secondary shadow-xl shadow-white dark:shadow-black p-8 rounded-xl flex flex-col gap-5 justify-start items-center [&>input]:bg-white h-[80%] max-h-[80%] overflow-x-auto overflow-y-auto">
+        <div
+          onClick={handleModalClick}
+          className="w-3/5 bg-white dark:bg-secondary shadow-xl shadow-white dark:shadow-black p-8 rounded-xl flex flex-col gap-5 justify-start items-center [&>input]:bg-white h-[80%] max-h-[80%] overflow-x-auto overflow-y-auto"
+        >
           {products.length && (
             <div className="w-full px-2 flex justify-between">
               <div className="w-1/5 text-left">{t("image")}</div>

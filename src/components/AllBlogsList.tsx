@@ -47,7 +47,7 @@ const AllBlogsList = ({
       ) : (
         <div
           onClick={handleModalClick}
-          className="w-3/5 bg-[#E5E1CC] dark:bg-secondary shadow-xl shadow-white dark:shadow-black p-8 rounded-xl flex flex-col gap-5 justify-start items-center [&>input]:bg-white h-[80%] max-h-[80%] overflow-x-auto overflow-y-auto"
+          className="w-3/5 bg-white dark:bg-secondary shadow-xl shadow-white dark:shadow-black p-8 rounded-xl flex flex-col gap-5 justify-start items-center [&>input]:bg-white h-[80%] max-h-[80%] overflow-x-auto overflow-y-auto"
         >
           {blogs.length && (
             <div className="w-full px-2 flex justify-between">
