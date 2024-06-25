@@ -1,8 +1,8 @@
 {
   "Index": {
     "home": "Home",
-    "products": "PRODUCTS",
-    "contact": "CONTACT",
+    "products": "Products",
+    "contact": "Contact",
     "contactUs": "Contact us",
     "street": "Street",
     "city": "City",
@@ -19,9 +19,9 @@
     "loginError": "Username or Password is incorrect",
     "getOurUpdates": "Get our updates",
     "readMore": "Read more ...",
-    "blog": "BLOG",
+    "blog": "Blog",
     "profile": "Profile",
-    "admin": "ADMIN",
+    "admin": "Admin",
     "add-user": "Add User",
     "cart": "Cart",
     "product-image": "Product Image",
@@ -99,6 +99,8 @@
     "yes": "Yes",
     "no": "No",
     "orders": "Orders",
-    "backToAdmin": "Back To Admin"
+    "backToAdmin": "Back To Admin",
+    "goToProducts": "Go To Products",
+    "ordersEmpty": "Orders Empty"
   }
 }

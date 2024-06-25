@@ -10,7 +10,7 @@ const AllUsersButton = () => {
     <>
       <button
         onClick={() => setOpenModal(!openModal)}
-        className="w-[150px] lg:w-[200px] bg-blue-500 hover:bg-orange rounded-md py-3 font-small lg:font-medium cursor-pointer transition-all transform duration-300 ease-linear "
+        className="w-[150px] lg:w-[200px] bg-blue-500 hover:bg-orange rounded-md py-3 font-small lg:font-medium cursor-pointer transition-all transform duration-300 ease-linear text-white"
       >
         {t("users")}
       </button>

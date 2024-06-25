@@ -113,7 +113,7 @@ const Orders = ({
                       <button
                         onClick={() => isOpen(order.latest_charge.id)}
                         type="button"
-                        className="w-fit px-4 py-2 bg-blue-500 hover:bg-orange transform transition-all duration-300 ease-in-out rounded-md"
+                        className="w-fit px-4 py-2 bg-blue-500 hover:bg-orange transform transition-all duration-300 ease-in-out rounded-md text-white"
                       >
                         {t("refund")}
                       </button>

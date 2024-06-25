@@ -89,6 +89,7 @@ const Checkout = ({
             value={profile.city}
             onChange={handleChange}
             className="border-[1px] border-solid rounded-md border-blue-500 py-[5px] pl-[20px] bg-white dark:text-black"
+            required
           />
           <label
             htmlFor="checkoutAddress"
@@ -103,6 +104,7 @@ const Checkout = ({
             value={profile.address}
             onChange={handleChange}
             className="border-[1px] border-solid rounded-md border-blue-500 py-[5px] pl-[20px] bg-white dark:text-black"
+            required
           />
           <label
             htmlFor="checkoutPhone"
@@ -117,11 +119,12 @@ const Checkout = ({
             value={profile.phone}
             onChange={handleChange}
             className="border-[1px] border-solid rounded-md border-blue-500 py-[5px] pl-[20px] bg-white dark:text-black"
+            required
           />
         </div>
         <button
           type="submit"
-          className="px-6 py-2 bg-blue-500 rounded-md hover:bg-orange transform transition-all duration-300 ease-in-out"
+          className="px-6 py-2 bg-blue-500 rounded-md hover:bg-orange transform transition-all duration-300 ease-in-out text-white"
         >
           {loading ? <LoadingAnimation /> : t("buyNow")}
         </button>
